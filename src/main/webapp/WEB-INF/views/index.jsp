@@ -1,10 +1,12 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Premium Vehicle Booking</title>
-  <link rel="stylesheet" href="../../static/css/main.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/main.css">
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
@@ -13,11 +15,11 @@
 <header>
   <div class="logo">VEHICLES<span>.NP</span></div>
   <nav>
-    <a href="index.html">Home</a>
-    <a href="#">About Us</a>
-    <a href="#">Contact Us</a>
-    <a href="login.html" class="login">Login</a>
-    <a href="signup.html" class="signup">Signup</a>
+    <a href="${pageContext.request.contextPath}/home">Home</a>
+    <a href="${pageContext.request.contextPath}/aboutus">About Us</a>
+    <a href="${pageContext.request.contextPath}/contactus">Contact Us</a>
+    <a href="${pageContext.request.contextPath}/login" class="login">Login</a>
+    <a href="${pageContext.request.contextPath}/signup" class="signup">Signup</a>
 
   </nav>
 </header>
@@ -37,133 +39,30 @@
     </div>
 
     <div class="grid">
-      <div class="card">
-        <div class="img">Car Image 1</div>
-        <div class="info">
-          <div class="vehicle-meta">
-            <span class="vehicle-type">Sedan</span>
-            <span class="vehicle-seats">👤 5 Seats</span>
-          </div>
-          <h3>Executive Sedan</h3>
-          <p class="vehicle-desc">Comfortable and fuel-efficient sedan perfect for city and highway travel.</p>
-          <div class="vehicle-footer">
-            <span class="vehicle-price">रू 5,000<small>/day</small></span>
-            <button class="btn">Book Now</button>
-          </div>
-        </div>
-      </div>
+        <c:forEach var="vehicle" items="${vehicles}" varStatus="status">
+            <c:if test="${status.index < 8}">
+                <div class="card">
+                    <div class="img" >
+                        <img src="${pageContext.request.contextPath}/static/images/truck.jpg" alt="truck"  />
+                    </div>
+                    <div class="info">
+                        <div class="vehicle-meta">
+                            <span class="vehicle-type">${vehicle.vehicleType}</span>
+                            <span class="vehicle-seats">👤 ${vehicle.totalSeats} Seats</span>
+                        </div>
+                        <h3>Executive Sedan</h3>
+                        <p class="vehicle-desc">${vehicle.vehicleDescription}</p>
+                        <div class="vehicle-footer">
+                            <span class="vehicle-price">रू ${vehicle.pricePerDay}<small>/day</small></span>
+                            <button class="btn">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </c:if>
 
-      <div class="card">
-        <div class="img">Car Image 1</div>
-        <div class="info">
-          <div class="vehicle-meta">
-            <span class="vehicle-type">Sedan</span>
-            <span class="vehicle-seats">👤 5 Seats</span>
-          </div>
-          <h3>Executive Sedan</h3>
-          <p class="vehicle-desc">Comfortable and fuel-efficient sedan perfect for city and highway travel.</p>
-          <div class="vehicle-footer">
-            <span class="vehicle-price">रू 5,000<small>/day</small></span>
-            <button class="btn">Book Now</button>
-          </div>
-        </div>
-      </div>
+        </c:forEach>
 
-      <div class="card">
-        <div class="img">Car Image 1</div>
-        <div class="info">
-          <div class="vehicle-meta">
-            <span class="vehicle-type">Sedan</span>
-            <span class="vehicle-seats">👤 5 Seats</span>
-          </div>
-          <h3>Executive Sedan</h3>
-          <p class="vehicle-desc">Comfortable and fuel-efficient sedan perfect for city and highway travel.</p>
-          <div class="vehicle-footer">
-            <span class="vehicle-price">रू 5,000<small>/day</small></span>
-            <button class="btn">Book Now</button>
-          </div>
-        </div>
-      </div>
 
-      <div class="card">
-        <div class="img">Car Image 1</div>
-        <div class="info">
-          <div class="vehicle-meta">
-            <span class="vehicle-type">Sedan</span>
-            <span class="vehicle-seats">👤 5 Seats</span>
-          </div>
-          <h3>Executive Sedan</h3>
-          <p class="vehicle-desc">Comfortable and fuel-efficient sedan perfect for city and highway travel.</p>
-          <div class="vehicle-footer">
-            <span class="vehicle-price">रू 5,000<small>/day</small></span>
-            <button class="btn">Book Now</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="img">Car Image 1</div>
-        <div class="info">
-          <div class="vehicle-meta">
-            <span class="vehicle-type">Sedan</span>
-            <span class="vehicle-seats">👤 5 Seats</span>
-          </div>
-          <h3>Executive Sedan</h3>
-          <p class="vehicle-desc">Comfortable and fuel-efficient sedan perfect for city and highway travel.</p>
-          <div class="vehicle-footer">
-            <span class="vehicle-price">रू 5,000<small>/day</small></span>
-            <button class="btn">Book Now</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="img">Car Image 1</div>
-        <div class="info">
-          <div class="vehicle-meta">
-            <span class="vehicle-type">Sedan</span>
-            <span class="vehicle-seats">👤 5 Seats</span>
-          </div>
-          <h3>Executive Sedan</h3>
-          <p class="vehicle-desc">Comfortable and fuel-efficient sedan perfect for city and highway travel.</p>
-          <div class="vehicle-footer">
-            <span class="vehicle-price">रू 5,000<small>/day</small></span>
-            <button class="btn">Book Now</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="img">Car Image 1</div>
-        <div class="info">
-          <div class="vehicle-meta">
-            <span class="vehicle-type">Sedan</span>
-            <span class="vehicle-seats">👤 5 Seats</span>
-          </div>
-          <h3>Executive Sedan</h3>
-          <p class="vehicle-desc">Comfortable and fuel-efficient sedan perfect for city and highway travel.</p>
-          <div class="vehicle-footer">
-            <span class="vehicle-price">रू 5,000<small>/day</small></span>
-            <button class="btn">Book Now</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="img">Car Image 1</div>
-        <div class="info">
-          <div class="vehicle-meta">
-            <span class="vehicle-type">Sedan</span>
-            <span class="vehicle-seats">👤 5 Seats</span>
-          </div>
-          <h3>Executive Sedan</h3>
-          <p class="vehicle-desc">Comfortable and fuel-efficient sedan perfect for city and highway travel.</p>
-          <div class="vehicle-footer">
-            <span class="vehicle-price">रू 5,000<small>/day</small></span>
-            <button class="btn">Book Now</button>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 </main>

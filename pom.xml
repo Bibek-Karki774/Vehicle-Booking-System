@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.vehiclebooking</groupId>
-  <artifactId>Vehicle_Booking_System</artifactId>
+  <artifactId>vehicle-booking</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>Vehicle_Booking_System Maven Webapp</name>
@@ -19,7 +19,7 @@
     <dependency>
       <groupId>com.mysql</groupId>
       <artifactId>mysql-connector-j</artifactId>
-      <version>9.2.0</version>
+      <version>9.6.0</version>
     </dependency>
 
     <!-- Jakarta Servlet API — required for HttpServlet, @WebServlet -->
@@ -96,6 +96,6 @@
         </configuration>
       </plugin>
     </plugins>
-    <finalName>Vehicle_Booking_System</finalName>
+    <finalName>vehicle-booking</finalName>
   </build>
 </project>
