@@ -1,11 +1,13 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login | Vehicles.np</title>
-  <link rel="stylesheet" href="../../static/css/main.css">
-  <link rel="stylesheet" href="../../static/css/auth.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/main.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/auth.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body class="auth-page">
@@ -13,11 +15,11 @@
 <header>
   <div class="logo">VEHICLES<span>.NP</span></div>
   <nav>
-    <a href="index.jsp">Home</a>
-    <a href="#">About Us</a>
-    <a href="#">Services</a>
-    <a href="login.html">Login</a>
-    <a href="signup.html">Signup</a>
+    <a href="${pageContext.request.contextPath}/home">Home</a>
+    <a href="${pageContext.request.contextPath}/WEB-INF/views/aboutus.html">About Us</a>
+    <a href="${pageContext.request.contextPath}/WEB-INF/views/contactus.html">Contact Us</a>
+    <a href="${pageContext.request.contextPath}/login" class="login">Login</a>
+    <a href="${pageContext.request.contextPath}/signup" class="signup">Signup</a>
   </nav>
 </header>
 
@@ -27,16 +29,19 @@
       <h1>Welcome Back</h1>
       <p>Enter your details to access your bookings.</p>
     </div>
+    <c:if test="${not empty error}">
+      <p class="error"><c:out value="${error}" /></p>
+    </c:if>
 
-    <form action="index.jsp" class="auth-form">
+    <form action="${pageContext.request.contextPath}/login" method="POST" class="auth-form">
       <div class="form-group">
         <label>Username</label>
-        <input type="text" placeholder="e.g. ram_bahadur" required>
+        <input type="text" name="username" placeholder="e.g. ram_bahadur" required>
       </div>
 
       <div class="form-group">
         <label>Password</label>
-        <input type="password" placeholder="•••••••••" required>
+        <input type="password" name="password" placeholder="•••••••••" required>
         <div class="form-footer">
           <a href="#" class="forgot-link">Forgot password?</a>
         </div>
@@ -50,7 +55,7 @@
     </div>
 
     <p class="switch-auth">
-      Don't have an account? <a href="signup.html">Create an account</a>
+      Don't have an account? <a href="${pageContext.request.contextPath}/signup">Create an account</a>
     </p>
   </div>
 </main>

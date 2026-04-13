@@ -1,11 +1,13 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account | Vehicles.np</title>
-    <link rel="stylesheet" href="../../static/css/main.css">
-    <link rel="stylesheet" href="../../static/css/auth.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/auth.css">
 
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -15,12 +17,11 @@
 <header>
     <div class="logo">VEHICLES<span>.NP</span></div>
     <nav>
-        <a href="index.jsp">Home</a>
-        <a href="#">About Us</a>
-        <a href="#">Services</a>
-        <a href="login.html">Login</a>
-        <a href="signup.html">Signup</a>
-    </nav>
+        <a href="${pageContext.request.contextPath}/home">Home</a>
+        <a href="${pageContext.request.contextPath}/WEB-INF/views/aboutus.html">About Us</a>
+        <a href="${pageContext.request.contextPath}/WEB-INF/views/contactus.html">Contact Us</a>
+        <a href="${pageContext.request.contextPath}/login" class="login">Login</a>
+        <a href="${pageContext.request.contextPath}/signup" class="signup">Signup</a>
     </nav>
 </header>
 
@@ -31,34 +32,38 @@
             <p>Create an account to start booking your next ride.</p>
         </div>
 
-        <form action="login.html" class="auth-form">
+        <form action="${pageContext.request.contextPath}/signup" method="POST" class="auth-form">
+            <c:if test="${not empty error}">
+                <p class="error"><c:out value="${error}" /></p>
+            </c:if>
+
             <div class="form-group">
                 <label>Username</label>
-                <input type="text" placeholder="e.g. ram_bahadur" required>
+                <input type="text" name="username" placeholder="e.g. ram_bahadur" required>
             </div>
             <div class="form-group full-width">
                 <label>Email Address</label>
-                <input type="email" placeholder="name@example.com" required>
+                <input type="email" name="email" placeholder="name@example.com" required>
             </div>
             <div class="form-group">
                 <label>Contact Number</label>
-                <input type="text" placeholder="+977-98XXXXXXXX" required>
+                <input type="text" name="phone" placeholder="+977-98XXXXXXXX" required>
             </div>
             <div class="form-group">
                 <label>Address</label>
-                <input type="text" placeholder="Kathmandu, Nepal" required>
+                <input type="text" name="address" placeholder="Kathmandu, Nepal" required>
             </div>
             <div class="form-group">
                 <label>Driver License</label>
-                <input type="text" placeholder="01-90-48392068" required>
+                <input type="text" name="drivingLicense" placeholder="01-90-48392068" required>
             </div>
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" placeholder="•••••••••" required>
+                <input type="password" name="password" placeholder="•••••••••" required>
             </div>
             <div class="form-group">
                 <label>Confirm Password</label>
-                <input type="password" placeholder="•••••••••" required>
+                <input type="password" name="confirmPassword" placeholder="•••••••••" required>
             </div>
 
             <button type="submit" class="btn-login full-width">Create Account</button>
@@ -69,7 +74,7 @@
         </div>
 
         <p class="switch-auth">
-            Already have an account? <a href="login.html">Sign in instead</a>
+            Already have an account? <a href="${pageContext.request.contextPath}/login">Sign in instead</a>
         </p>
     </div>
 </main>

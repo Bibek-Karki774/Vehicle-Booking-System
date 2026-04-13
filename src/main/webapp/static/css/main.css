@@ -362,6 +362,123 @@ footer {
     grid-column: span 2;
 }
 
+
+
+/* Contact Page */
+
+.main {
+    padding: 80px 8%;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+}
+
+/* LEFT SIDE */
+.info .title {
+    margin-bottom: 30px;
+}
+
+/* CARDS */
+.contact-card {
+    margin-bottom: 20px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+}
+
+.box {
+    padding: 25px;
+}
+
+/* TEXT */
+.box p {
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-top: 5px;
+}
+
+/* RIGHT FORM */
+.form-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+/* HEADER */
+.head {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.head p {
+    color: var(--text-muted)
+}
+
+/* FORM */
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ROW */
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* FIELD */
+.field {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+/* LABEL */
+.field label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+/* INPUT + TEXTAREA */
+.field input,
+.field textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.form button {
+    margin-top: 20px;
+}
+
+
+
+
+
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .row {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
 /* Responsive Design */
 @media (max-width: 1200px) {
     .grid {
