@@ -15,11 +15,11 @@
 <header>
   <div class="logo">VEHICLES<span>.NP</span></div>
   <nav>
-    <a href="${pageContext.request.contextPath}/home">Home</a>
-      <a href="${pageContext.request.contextPath}/WEB-INF/views/aboutus.jsp">About Us</a>
-      <a href="${pageContext.request.contextPath}/contactus.html">Contact Us</a>
-    <a href="${pageContext.request.contextPath}/login" class="login">Login</a>
-    <a href="${pageContext.request.contextPath}/signup" class="signup">Signup</a>
+      <a href="${pageContext.request.contextPath}/home">Home</a>
+      <a href="${pageContext.request.contextPath}/about">About Us</a>
+      <a href="${pageContext.request.contextPath}/contact">Contact Us</a>
+      <a href="${pageContext.request.contextPath}/login" class="login">Login</a>
+      <a href="${pageContext.request.contextPath}/signup" class="signup">Signup</a>
 
   </nav>
 </header>
@@ -43,7 +43,7 @@
             <c:if test="${status.index < 8}">
                 <div class="card">
                     <div class="img" >
-                        <img src="${pageContext.request.contextPath}/static/images/truck.jpg" alt="truck"  />
+                        <img src="${pageContext.request.contextPath}/static/images/Toyota_LandCrusier.jpg" alt="truck"  />
                     </div>
                     <div class="info">
                         <div class="vehicle-meta">
