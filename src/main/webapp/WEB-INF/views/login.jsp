@@ -18,7 +18,7 @@
     <a href="${pageContext.request.contextPath}/home">Home</a>
     <a href="${pageContext.request.contextPath}/about">About Us</a>
     <a href="${pageContext.request.contextPath}/contact">Contact Us</a>
-    <a href="${pageContext.request.contextPath}/login" class="login">Login</a>
+    <a href="${pageContext.request.contextPath}/login" class="login active">Login</a>
     <a href="${pageContext.request.contextPath}/signup" class="signup">Signup</a>
   </nav>
 </header>
@@ -29,14 +29,17 @@
       <h1>Welcome Back</h1>
       <p>Enter your details to access your bookings.</p>
     </div>
-    <c:if test="${not empty error}">
-      <p class="error"><c:out value="${error}" /></p>
-    </c:if>
+
 
     <form action="${pageContext.request.contextPath}/login" method="POST" class="auth-form">
       <div class="form-group">
+
+        <c:if test="${not empty error}">
+          <p class="error"><c:out value="${error}" /></p>
+        </c:if>
+
         <label>Username</label>
-        <input type="text" name="username" placeholder="e.g. ram_bahadur" required>
+        <input type="text" name="username" value="<c:out value='${param.username}' default='' />" placeholder="e.g. ram_bahadur" required>
       </div>
 
       <div class="form-group">

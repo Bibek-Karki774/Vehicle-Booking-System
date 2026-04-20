@@ -9,4 +9,5 @@ public interface BookingDao{
     Booking getBookingById(int bookingId);
     ArrayList<Booking> getAllBookings();
     boolean deleteBookingById(int bookingId);
+    double getTotalRevenue();
 }

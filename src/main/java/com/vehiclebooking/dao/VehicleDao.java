@@ -8,7 +8,7 @@ public interface VehicleDao {
 
     boolean insertVehicle(Vehicle vehicle);
 
-    ArrayList<Vehicle> fetchAllVehicles();
+    ArrayList<Vehicle> getAllVehicles();
 
     boolean updateVehicle(Vehicle vehicle);
 

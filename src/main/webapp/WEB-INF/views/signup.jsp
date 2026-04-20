@@ -21,7 +21,7 @@
         <a href="${pageContext.request.contextPath}/about">About Us</a>
         <a href="${pageContext.request.contextPath}/contact">Contact Us</a>
         <a href="${pageContext.request.contextPath}/login" class="login">Login</a>
-        <a href="${pageContext.request.contextPath}/signup" class="signup">Signup</a>
+        <a href="${pageContext.request.contextPath}/signup" class="signup active">Signup</a>
     </nav>
 </header>
 
@@ -39,23 +39,23 @@
 
             <div class="form-group">
                 <label>Username</label>
-                <input type="text" name="username" placeholder="e.g. ram_bahadur" required>
+                <input type="text" name="username" value="<c:out value='${param.username}' default='' />" placeholder="e.g. ram_bahadur" required>
             </div>
             <div class="form-group full-width">
                 <label>Email Address</label>
-                <input type="email" name="email" placeholder="name@example.com" required>
+                <input type="email" name="email" value="<c:out value='${param.email}' default='' />" placeholder="name@example.com" required>
             </div>
             <div class="form-group">
                 <label>Contact Number</label>
-                <input type="text" name="phone" placeholder="+977-98XXXXXXXX" required>
+                <input type="text" name="phone" value="<c:out value='${param.phone}' default='' />" placeholder="+977-98XXXXXXXX" required>
             </div>
             <div class="form-group">
                 <label>Address</label>
-                <input type="text" name="address" placeholder="Kathmandu, Nepal" required>
+                <input type="text" name="address" value="<c:out value='${param.address}' default='' />" placeholder="Kathmandu, Nepal" required>
             </div>
             <div class="form-group">
                 <label>Driver License</label>
-                <input type="text" name="drivingLicense" placeholder="01-90-48392068" required>
+                <input type="text" name="drivingLicense" value="<c:out value='${param.drivingLicense}' default='' />" placeholder="01-90-48392068" required>
             </div>
             <div class="form-group">
                 <label>Password</label>

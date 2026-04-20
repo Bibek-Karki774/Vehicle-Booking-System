@@ -15,11 +15,22 @@
 <header>
   <div class="logo">VEHICLES<span>.NP</span></div>
   <nav>
-      <a href="${pageContext.request.contextPath}/home">Home</a>
+      <a href="${pageContext.request.contextPath}/home" class="active">Home</a>
       <a href="${pageContext.request.contextPath}/about">About Us</a>
-      <a href="${pageContext.request.contextPath}/contact">Contact Us</a>
-      <a href="${pageContext.request.contextPath}/login" class="login">Login</a>
-      <a href="${pageContext.request.contextPath}/signup" class="signup">Signup</a>
+      <a href="${pageContext.request.contextPath}/contact" >Contact Us</a>
+      <c:choose>
+      <c:when test="${empty sessionScope.user}">
+          <!-- Not logged in -->
+          <a href="${pageContext.request.contextPath}/login">Login</a>
+          <a href="${pageContext.request.contextPath}/signup">Signup</a>
+      </c:when>
+
+      <c:otherwise>
+          <!-- Logged in -->
+          <a href="${pageContext.request.contextPath}/adminDashboard">Dashboard</a>
+          <a href="${pageContext.request.contextPath}/logout">Logout</a>
+      </c:otherwise>
+      </c:choose>
 
   </nav>
 </header>

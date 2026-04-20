@@ -10,7 +10,7 @@
 body {
     font-family: 'Inter', sans-serif;
     margin: 0;
-    background-color: #fff;
+    background: #f3f4f6;
     color: var(--dark);
 }
 
@@ -52,6 +52,11 @@ nav a {
     padding: 6px 0;
     transition: border-bottom 0.3s, color 0.3s;
     border-bottom: 2px solid transparent;
+}
+
+nav .active {
+    color: var(--primary);
+    border-bottom: 2px solid var(--primary);
 }
 
 nav a:hover {
@@ -134,13 +139,15 @@ nav a:hover {
     gap: 30px;
 }
 
-/* Card styling */
+
 .card {
     background: #fff;
     border-radius: 12px;
     overflow: hidden;
-    border: 1px solid #e5e7eb;
+    border: 2px solid #d1d5db;
     transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+
 
 }
 
@@ -149,7 +156,7 @@ nav a:hover {
     box-shadow: 0 12px 20px rgba(0,0,0,0.12);
 }
 
-/* Vehicle image */
+
 
 .img {
     height: 180px;
@@ -164,7 +171,6 @@ nav a:hover {
 
 }
 
-/* Card content */
 .info {
     padding: 18px;
 }
@@ -221,9 +227,6 @@ nav a:hover {
     font-size: 0.75rem;
     color: #9ca3af;
 }
-
-
-
 
 
 .btn {
@@ -581,19 +584,6 @@ footer {
 }
 
 
-
-
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    .grid {
-        grid-template-columns: 1fr;
-    }
-
-    .row {
-        grid-template-columns: 1fr;
-    }
-}
 
 
 

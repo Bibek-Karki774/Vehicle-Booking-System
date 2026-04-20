@@ -3,6 +3,7 @@ package com.vehiclebooking.controller;
 import com.vehiclebooking.dao.UserDaoImpl;
 import com.vehiclebooking.entity.User;
 import com.vehiclebooking.utils.PasswordUtil;
+import com.vehiclebooking.utils.SessionUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -48,7 +49,30 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
-        response.sendRedirect(request.getContextPath() + "/home");
+        if ("Pending".equalsIgnoreCase(user.getStatus())) {
+            request.setAttribute("error", "Your account is pending approval from admin.");
+            request.getRequestDispatcher("/WEB-INF/views/login.jsp")
+                    .forward(request, response);
+            return;
+        }
+
+        if ("Rejected".equalsIgnoreCase(user.getStatus())) {
+            request.setAttribute("error", "Your account has been rejected.");
+            request.getRequestDispatcher("/WEB-INF/views/login.jsp")
+                    .forward(request, response);
+            return;
+        }
+
+        SessionUtil.setAttribute(request, "user", user);
+
+
+        // Redirect based on role
+        if ("Admin".equals(user.getRole())) {
+            response.sendRedirect(request.getContextPath() + "/adminDashboard");
+        } else {
+            response.sendRedirect(request.getContextPath() + "/home");
+        }
+
 
     }
 }

@@ -16,7 +16,7 @@
     <div class="logo">VEHICLES<span>.NP</span></div>
     <nav>
         <a href="${pageContext.request.contextPath}/home">Home</a>
-        <a href="${pageContext.request.contextPath}/about">About Us</a>
+        <a href="${pageContext.request.contextPath}/about" class="active">About Us</a>
         <a href="${pageContext.request.contextPath}/contact">Contact Us</a>
         <a href="${pageContext.request.contextPath}/login" class="login">Login</a>
         <a href="${pageContext.request.contextPath}/signup" class="signup">Signup</a>

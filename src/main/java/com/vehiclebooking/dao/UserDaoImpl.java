@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UserDaoImpl implements UserDao {
 
@@ -54,8 +55,10 @@ public class UserDaoImpl implements UserDao {
                         rs.getString("address"),
                         rs.getString("driving_license"),
                         rs.getString("email"),
+                        rs.getString("role"),
                         rs.getTimestamp("created_at"),
-                        rs.getTimestamp("updated_at")
+                        rs.getTimestamp("updated_at"),
+                        rs.getString("status")
                 );
             }
         } catch (SQLException e){
@@ -84,8 +87,10 @@ public class UserDaoImpl implements UserDao {
                         rs.getString("address"),
                         rs.getString("driving_license"),
                         rs.getString("email"),
+                        rs.getString("role"),
                         rs.getTimestamp("created_at"),
-                        rs.getTimestamp("updated_at")
+                        rs.getTimestamp("updated_at"),
+                        rs.getString("status")
                 );
             }
         } catch (SQLException e){
@@ -95,4 +100,123 @@ public class UserDaoImpl implements UserDao {
         }
         return null;
     }
+
+    // Get all pending users
+    @Override
+    public ArrayList<User> getPendingUsers() {
+        Connection conn = null;
+        ArrayList<User> pendingUsers = new ArrayList<>();
+        String sql = "SELECT * FROM users WHERE status = 'Pending' ORDER BY created_at DESC";
+
+        try {
+            conn = DatabaseConnection.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                User user = new User(
+                        rs.getInt("user_id"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("phone"),
+                        rs.getString("address"),
+                        rs.getString("driving_license"),
+                        rs.getString("email"),
+                        rs.getString("role"),
+                        rs.getTimestamp("created_at"),
+                        rs.getTimestamp("updated_at"),
+                        rs.getString("status")
+                );
+                pendingUsers.add(user);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error getting pending users: " + e.getMessage());
+        } finally {
+            DatabaseConnection.closeConnection(conn);
+        }
+
+        return pendingUsers;
+    }
+
+    @Override
+    public ArrayList<User> getAllUsers() {
+        ArrayList<User> users = new ArrayList<>();
+        Connection conn = null;
+
+        try {
+            conn = DatabaseConnection.getConnection();
+            String sql = "SELECT * FROM users";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                User user = new User(
+                        rs.getInt("user_id"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("phone"),
+                        rs.getString("address"),
+                        rs.getString("driving_license"),
+                        rs.getString("email"),
+                        rs.getString("role"),
+                        rs.getTimestamp("created_at"),
+                        rs.getTimestamp("updated_at"),
+                        rs.getString("status")
+                );
+            users.add(user);
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error getting all users: " + e.getMessage());
+        } finally {
+            DatabaseConnection.closeConnection(conn);
+        }
+
+        return users;
+    }
+
+    @Override
+    public boolean approveUser(int userId) {
+        Connection conn = null;
+        try {
+            conn = DatabaseConnection.getConnection();
+            String sql = "UPDATE users SET status = 'Active' WHERE user_id = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, userId);
+            int rowsAffected = statement.executeUpdate();
+            if (rowsAffected > 0) {
+                return true;
+            }
+            return false;
+        } catch (SQLException e) {
+            System.out.println("Error approving user: " + e.getMessage());
+            return false;
+        } finally {
+            DatabaseConnection.closeConnection(conn);
+        }
+    }
+
+
+    @Override
+    public boolean rejectUser(int userId) {
+        Connection conn = null;
+        try {
+            conn = DatabaseConnection.getConnection();
+            String sql = "UPDATE users SET status = 'Rejected' WHERE user_id = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, userId);
+            int rowsAffected = statement.executeUpdate();
+            if (rowsAffected > 0) {
+                return true;
+            }
+            return false;
+        } catch (SQLException e) {
+            System.out.println("Error rejecting user: " + e.getMessage());
+            return false;
+        } finally {
+            DatabaseConnection.closeConnection(conn);
+        }
+    }
 }
+

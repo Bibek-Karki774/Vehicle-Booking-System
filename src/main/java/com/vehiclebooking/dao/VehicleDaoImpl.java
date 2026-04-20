@@ -37,7 +37,7 @@ public class VehicleDaoImpl implements VehicleDao {
 
 
     @Override
-    public ArrayList<Vehicle> fetchAllVehicles() {
+    public ArrayList<Vehicle> getAllVehicles() {
         ArrayList<Vehicle> vehicles = new ArrayList<>();
         Connection conn = null;
         try {

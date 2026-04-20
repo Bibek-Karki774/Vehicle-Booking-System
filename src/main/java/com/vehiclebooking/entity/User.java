@@ -14,6 +14,7 @@ public class User {
     private String role;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+    private String status;
 
     // Constructor for registration
     public User(String userName, String password, String phone, String address,
@@ -25,12 +26,13 @@ public class User {
         this.drivingLicense = drivingLicense;
         this.email = email;
         this.role = "Member";
+        this.status= "Pending";
     }
 
     // Constructor for reading database
     public User(int userId, String userName, String password, String phone,
-                String address, String drivingLicense, String email,
-                Timestamp createdAt, Timestamp updatedAt) {
+                String address, String drivingLicense, String email, String role,
+                Timestamp createdAt, Timestamp updatedAt, String status) {
 
         this.userId = userId;
         this.userName = userName;
@@ -39,8 +41,10 @@ public class User {
         this.address = address;
         this.drivingLicense = drivingLicense;
         this.email = email;
+        this.role= role;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.status= status;
 
     }
 
@@ -74,6 +78,9 @@ public class User {
     }
     public Timestamp getUpdatedAt(){
         return updatedAt;
+    }
+    public String getStatus(){
+        return status;
     }
 
     public void setAddress(String address) {

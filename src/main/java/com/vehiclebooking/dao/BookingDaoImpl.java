@@ -105,4 +105,24 @@ public class BookingDaoImpl implements  BookingDao {
             DatabaseConnection.closeConnection(conn);
         }
     }
+
+    @Override
+    public double getTotalRevenue() {
+        Connection conn = null;
+        try {
+            conn = DatabaseConnection.getConnection();
+            String sql = "SELECT SUM(total_amount) AS total FROM bookings";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getDouble("total");
+            }
+            return 0.0;
+        } catch (SQLException e) {
+            System.out.println("Error getting total revenue: " + e.getMessage());
+        } finally {
+            DatabaseConnection.closeConnection(conn);
+        }
+        return 0.0;
+    }
 }
