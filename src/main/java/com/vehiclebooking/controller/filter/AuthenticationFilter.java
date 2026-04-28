@@ -64,7 +64,8 @@ public class AuthenticationFilter implements Filter {
         }
 
         if (!isLoggedIn && !isPublicPage) {
-            res.sendRedirect(contextPath + "/login");
+            boolean isVisitor = req.getSession(false) == null;
+            res.sendRedirect(contextPath + (isVisitor ? "/home" : "/login"));
             return;
         }
 

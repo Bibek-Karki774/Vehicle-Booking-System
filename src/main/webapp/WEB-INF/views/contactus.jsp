@@ -4,6 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us | Vehicles.NP</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -12,12 +13,17 @@
 
 <header>
     <div class="logo">VEHICLES<span>.NP</span></div>
-    <nav>
+
+
+    <div class="hamburger" onclick="toggleMenu()" id="menuBtn">☰</div>
+
+    <nav id="nav">
         <a href="${pageContext.request.contextPath}/home">Home</a>
         <a href="${pageContext.request.contextPath}/about">About Us</a>
         <a href="${pageContext.request.contextPath}/contact" class="active">Contact Us</a>
-        <a href="${pageContext.request.contextPath}/login" class="login">Login</a>
-        <a href="${pageContext.request.contextPath}/signup" class="signup">Signup</a>
+
+        <a href="${pageContext.request.contextPath}/login">Login</a>
+        <a href="${pageContext.request.contextPath}/signup">Signup</a>
     </nav>
 </header>
 
@@ -134,5 +140,6 @@
     </div>
 </footer>
 
+<script src="${pageContext.request.contextPath}/static/js/nav-toggle.js"></script>
 </body>
 </html>

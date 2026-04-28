@@ -41,8 +41,15 @@ public class SignupServlet extends HttpServlet {
 
         StringBuilder errors = new StringBuilder();
 
-        if (ValidationUtil.isNullOrEmpty(userName)
-                || !ValidationUtil.isAlphanumericStartingWithLetter(userName)
+        if (ValidationUtil.isNullOrEmpty(userName) ||
+                ValidationUtil.isNullOrEmpty(email) ||
+                ValidationUtil.isNullOrEmpty(phone) ||
+                ValidationUtil.isNullOrEmpty(address)) {
+
+            errors.append("All fields are required. ");
+            }
+
+        if (!ValidationUtil.isAlphanumericStartingWithLetter(userName)
                 || userName.length() < 5) {
             errors.append("Username must be alphanumeric, start with a letter, and be at least 5 characters. ");
         }
@@ -55,8 +62,13 @@ public class SignupServlet extends HttpServlet {
         if (!ValidationUtil.doPasswordsMatch(password, confirmPassword)) {
             errors.append("Passwords do not match. ");
         }
+
         if(!ValidationUtil.isValidLicense(drivingLicense)) {
             errors.append("Invalid driving license format. ");
+        }
+
+        if (userDao.findByDrivingLicense(drivingLicense) != null) {
+            errors.append("Driving license already registered. ");
         }
 
 
@@ -81,3 +93,4 @@ public class SignupServlet extends HttpServlet {
         response.sendRedirect(request.getContextPath() + "/login");
     }
     }
+

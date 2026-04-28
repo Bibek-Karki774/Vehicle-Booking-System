@@ -13,28 +13,29 @@
 <body>
 
 <header>
-  <div class="logo">VEHICLES<span>.NP</span></div>
-  <nav>
-      <a href="${pageContext.request.contextPath}/home" class="active">Home</a>
-      <a href="${pageContext.request.contextPath}/about">About Us</a>
-      <a href="${pageContext.request.contextPath}/contact" >Contact Us</a>
-      <c:choose>
-      <c:when test="${empty sessionScope.user}">
-          <!-- Not logged in -->
-          <a href="${pageContext.request.contextPath}/login">Login</a>
-          <a href="${pageContext.request.contextPath}/signup">Signup</a>
-      </c:when>
+    <div class="logo">VEHICLES<span>.NP</span></div>
 
-      <c:otherwise>
-          <!-- Logged in -->
-          <a href="${pageContext.request.contextPath}/adminDashboard">Dashboard</a>
-          <a href="${pageContext.request.contextPath}/logout">Logout</a>
-      </c:otherwise>
-      </c:choose>
+    <!-- Hamburger -->
+    <div class="hamburger" onclick="toggleMenu()" id="menuBtn">☰</div>
 
-  </nav>
+    <nav id="nav">
+        <a href="${pageContext.request.contextPath}/home" class="active">Home</a>
+        <a href="${pageContext.request.contextPath}/about">About Us</a>
+        <a href="${pageContext.request.contextPath}/contact">Contact Us</a>
+
+        <c:choose>
+            <c:when test="${empty sessionScope.user}">
+                <a href="${pageContext.request.contextPath}/login">Login</a>
+                <a href="${pageContext.request.contextPath}/signup">Signup</a>
+            </c:when>
+
+            <c:otherwise>
+                <a href="${pageContext.request.contextPath}/adminDashboard">Dashboard</a>
+                <a href="${pageContext.request.contextPath}/logout">Logout</a>
+            </c:otherwise>
+        </c:choose>
+    </nav>
 </header>
-
 <section class="hero">
   <div class="hero-box">
     <h1>Premium Rides for Your <span class="text-accent">Next Adventure</span></h1>
@@ -125,5 +126,9 @@
   </div>
 </footer>
 
+
+
+<script src="${pageContext.request.contextPath}/static/js/nav-toggle.js"></script>
 </body>
+
 </html>

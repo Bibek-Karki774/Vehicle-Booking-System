@@ -17,7 +17,7 @@ public class LoginServlet extends HttpServlet {
 
     private UserDaoImpl userDao = new UserDaoImpl();
 
-    //show login page
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
                 .forward(request, response);
     }
 
-    // Handle form submission
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -57,7 +57,9 @@ public class LoginServlet extends HttpServlet {
         }
 
         if ("Rejected".equalsIgnoreCase(user.getStatus())) {
-            request.setAttribute("error", "Your account has been rejected.");
+            request.setAttribute("error", "Your registration was rejected by the admin.");
+            request.setAttribute("rejected", true);
+            request.setAttribute("rejectedUsername", user.getUserName());
             request.getRequestDispatcher("/WEB-INF/views/login.jsp")
                     .forward(request, response);
             return;

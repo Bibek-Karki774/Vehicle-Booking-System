@@ -14,12 +14,16 @@
 
 <header>
     <div class="logo">VEHICLES<span>.NP</span></div>
-    <nav>
+
+    <div class="hamburger" onclick="toggleMenu()" id="menuBtn">☰</div>
+
+    <nav id="nav">
         <a href="${pageContext.request.contextPath}/home">Home</a>
         <a href="${pageContext.request.contextPath}/about" class="active">About Us</a>
         <a href="${pageContext.request.contextPath}/contact">Contact Us</a>
-        <a href="${pageContext.request.contextPath}/login" class="login">Login</a>
-        <a href="${pageContext.request.contextPath}/signup" class="signup">Signup</a>
+
+        <a href="${pageContext.request.contextPath}/login">Login</a>
+        <a href="${pageContext.request.contextPath}/signup">Signup</a>
     </nav>
 </header>
 
@@ -113,5 +117,6 @@
     </div>
 </footer>
 
+<script src="${pageContext.request.contextPath}/static/js/nav-toggle.js"></script>
 </body>
 </html>

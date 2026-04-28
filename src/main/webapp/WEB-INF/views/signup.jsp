@@ -16,12 +16,17 @@
 
 <header>
     <div class="logo">VEHICLES<span>.NP</span></div>
-    <nav>
+
+    <!-- Hamburger -->
+    <div class="hamburger" onclick="toggleMenu()" id="menuBtn">☰</div>
+
+    <nav id="nav">
         <a href="${pageContext.request.contextPath}/home">Home</a>
         <a href="${pageContext.request.contextPath}/about">About Us</a>
         <a href="${pageContext.request.contextPath}/contact">Contact Us</a>
-        <a href="${pageContext.request.contextPath}/login" class="login">Login</a>
-        <a href="${pageContext.request.contextPath}/signup" class="signup active">Signup</a>
+
+        <a href="${pageContext.request.contextPath}/login">Login</a>
+        <a href="${pageContext.request.contextPath}/signup" class="active">Signup</a>
     </nav>
 </header>
 
@@ -33,13 +38,14 @@
         </div>
 
         <form action="${pageContext.request.contextPath}/signup" method="POST" class="auth-form">
+
             <c:if test="${not empty error}">
                 <p class="error"><c:out value="${error}" /></p>
             </c:if>
 
             <div class="form-group">
                 <label>Username</label>
-                <input type="text" name="username" value="<c:out value='${param.username}' default='' />" placeholder="e.g. ram_bahadur" required>
+                <input type="text" name="username" value="<c:out value='${param.username}' default='' />" placeholder="e.g. ram739" required>
             </div>
             <div class="form-group full-width">
                 <label>Email Address</label>
@@ -126,5 +132,6 @@
     </div>
 </footer>
 
+<script src="${pageContext.request.contextPath}/static/js/nav-toggle.js"></script>
 </body>
 </html>

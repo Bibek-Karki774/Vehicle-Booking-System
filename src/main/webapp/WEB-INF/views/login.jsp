@@ -14,12 +14,16 @@
 
 <header>
   <div class="logo">VEHICLES<span>.NP</span></div>
-  <nav>
+
+  <div class="hamburger" onclick="toggleMenu()" id="menuBtn">☰</div>
+
+  <nav id="nav">
     <a href="${pageContext.request.contextPath}/home">Home</a>
     <a href="${pageContext.request.contextPath}/about">About Us</a>
     <a href="${pageContext.request.contextPath}/contact">Contact Us</a>
-    <a href="${pageContext.request.contextPath}/login" class="login active">Login</a>
-    <a href="${pageContext.request.contextPath}/signup" class="signup">Signup</a>
+
+    <a href="${pageContext.request.contextPath}/login" class="active">Login</a>
+    <a href="${pageContext.request.contextPath}/signup">Signup</a>
   </nav>
 </header>
 
@@ -34,20 +38,27 @@
     <form action="${pageContext.request.contextPath}/login" method="POST" class="auth-form">
       <div class="form-group">
 
+
         <c:if test="${not empty error}">
-          <p class="error"><c:out value="${error}" /></p>
+          <p class="error">
+          <c:out value="${error}" />
+          <c:if test="${rejected}">
+            <form action="${pageContext.request.contextPath}/reapply" method="POST" style="display:inline;">
+              <input type="hidden" name="username" value="${rejectedUsername}" />
+              <button type="submit" class="reapply-link">Re-apply</button>
+            </form>
+          </c:if>
+          </p>
         </c:if>
 
         <label>Username</label>
-        <input type="text" name="username" value="<c:out value='${param.username}' default='' />" placeholder="e.g. ram_bahadur" required>
+        <input type="text" name="username" value="<c:out value='${param.username}' default='' />" placeholder="e.g. ram739" required>
       </div>
 
       <div class="form-group">
         <label>Password</label>
         <input type="password" name="password" placeholder="•••••••••" required>
-        <div class="form-footer">
-          <a href="#" class="forgot-link">Forgot password?</a>
-        </div>
+
       </div>
 
       <button type="submit" class="btn-login">Sign In</button>
@@ -110,5 +121,6 @@
   </div>
 </footer>
 
+<script src="${pageContext.request.contextPath}/static/js/nav-toggle.js"></script>
 </body>
 </html>

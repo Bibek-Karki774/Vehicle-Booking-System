@@ -1,0 +1,532 @@
+
+:root {
+  --green: #6366f1;
+  --orange: #f59e0b;
+  --red: #ef4444;
+
+  --bg: #f0f1f5;
+  --sidebar-bg: #1e1b4b;
+  --card: #ffffff;
+  --card-2: #f8f9fc;
+
+  --border: #e5e7eb;
+
+  --text-main: #1a1a2e;
+  --text-gray: #4b5563;
+  --text-muted: #9ca3af;
+
+  --sidebar-w: 230px;
+
+  --font-head: "Rajdhani", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+}
+
+/* ================================================
+   2. RESET & BASE
+================================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg);
+  color: var(--text-main);
+  display: flex;
+  min-height: 100vh;
+}
+
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-body);
+  border: none;
+  background: none;
+  outline: none;
+}
+
+.page {
+  display: none;
+}
+.page.active {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ================================================
+   3. SIDEBAR
+================================================ */
+.sidebar {
+  width: var(--sidebar-w);
+  min-width: var(--sidebar-w);
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+  z-index: 100;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 20px;
+  margin-bottom: 32px;
+}
+
+.logo-icon {
+  width: 38px;
+  height: 38px;
+  background: var(--green);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 14px rgba(99, 102, 241, 0.4);
+}
+.logo-icon i {
+  color: #fff;
+  font-size: 17px;
+}
+
+.logo-brand {
+  display: block;
+  font-family: var(--font-head);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: 1px;
+}
+.logo-sub {
+  display: block;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 0 8px;
+}
+
+.sidebar-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.nav-item a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  color: var(--text-gray);
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s, color 0.2s;
+  position: relative;
+  border: 1px solid transparent;
+}
+
+.nav-item a i {
+  font-size: 15px;
+  width: 18px;
+  text-align: center;
+}
+.nav-label {
+  flex: 1;
+}
+
+.nav-item a:hover {
+  background: var(--card);
+  color: var(--text-main);
+}
+
+.nav-item.active a {
+  background: rgba(99, 102, 241, 0.12);
+  color: var(--green);
+  border-color: rgba(99, 102, 241, 0.22);
+  font-weight: 600;
+}
+.nav-item.active a i {
+  color: var(--green);
+}
+
+.nav-item.active a::before {
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 55%;
+  background: var(--green);
+  border-radius: 0 3px 3px 0;
+}
+
+/* ================================================
+   4. TOP NAVBAR
+================================================ */
+.main-content {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.top-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 32px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(240, 241, 245, 0.92);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.page-title {
+  font-family: var(--font-head);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+.page-subtitle {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.navbar-admin {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-admin .admin-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.admin-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #ede9fe;
+  border: 2px solid var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.admin-avatar i {
+  color: var(--green);
+  font-size: 14px;
+}
+
+.admin-name {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+}
+.admin-email {
+  display: block;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+.signout-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 10px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 500;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+.signout-btn:hover {
+  background: rgba(239, 68, 68, 0.18);
+  color: var(--red);
+  border-color: var(--red);
+}
+
+/* ================================================
+   5. PAGE LAYOUT
+================================================ */
+#page-users {
+  padding: 28px 32px;
+}
+
+/* ================================================
+   6. SEARCH BAR
+================================================ */
+.users-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--card-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 16px;
+  transition: border-color 0.2s;
+}
+.users-search-bar:focus-within {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.08);
+}
+.users-search-bar i {
+  color: var(--text-muted);
+  font-size: 13px;
+  flex-shrink: 0;
+}
+.users-search-bar input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text-main);
+}
+.users-search-bar input::placeholder {
+  color: var(--text-muted);
+}
+
+.btn-clear i {
+  font-size: 20px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+
+
+/* ================================================
+   7. TABLE
+================================================ */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.users-table thead tr {
+  border-bottom: 1px solid var(--border);
+}
+
+.users-table th {
+  text-align: left;
+  padding: 10px 16px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.users-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+}
+.users-table tbody tr:last-child {
+  border-bottom: none;
+}
+.users-table tbody tr:hover {
+  background: rgba(99, 102, 241, 0.03);
+}
+
+.row-pending {
+  background: rgba(245, 158, 11, 0.03);
+}
+.row-pending:hover {
+  background: rgba(245, 158, 11, 0.07) !important;
+}
+
+.users-table td {
+  padding: 14px 16px;
+  vertical-align: middle;
+}
+
+.table-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-name {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.td-email {
+  color: var(--text-muted);
+}
+.td-date {
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ================================================
+   8. BADGES & PILLS
+================================================ */
+.role-badge {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+.role-user {
+  background: rgba(96, 165, 250, 0.12);
+  color: #60a5fa;
+  border: 1px solid rgba(96, 165, 250, 0.25);
+}
+
+.status-badge {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.status-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-approved {
+  background: rgba(34, 197, 94, 0.12);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.25);
+}
+.status-approved::before {
+  background: #22c55e;
+}
+
+.status-pending {
+  background: rgba(245, 158, 11, 0.12);
+  color: var(--orange);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+.status-pending::before {
+  background: var(--orange);
+}
+
+.status-rejected {
+  background: rgba(239, 68, 68, 0.12);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+.status-rejected::before {
+  background: #ef4444;
+}
+
+/* ================================================
+   9. ACTION BUTTONS
+================================================ */
+.action-btns {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.btn-delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 10px;
+  background: rgba(239, 68, 68, 0.08);
+  color: var(--red);
+  font-size: 13px;
+  border-radius: 8px;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  transition: background-color 0.15s, border-color 0.15s, transform 0.15s;
+}
+.btn-delete:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: var(--red);
+  transform: scale(1.06);
+}
+.btn-delete:active {
+  transform: scale(0.97);
+}
+
+/* ================================================
+   10. RESPONSIVE
+================================================ */
+@media (max-width: 900px) {
+  .top-navbar {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --sidebar-w: 0px;
+  }
+  .sidebar {
+    display: none;
+  }
+  .main-content {
+    margin-left: 0;
+  }
+  #page-users {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-navbar {
+    padding: 14px 16px;
+  }
+  .admin-info {
+    display: none;
+  }
+}

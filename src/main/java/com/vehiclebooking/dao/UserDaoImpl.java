@@ -37,6 +37,22 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+    public boolean deleteUser(int userId) {
+        Connection conn = null;
+        try {
+            conn = DatabaseConnection.getConnection();
+            String sql = "DELETE FROM users WHERE user_id = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, userId);
+            return statement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println("Error deleting user: " + e.getMessage());
+            return false;
+        } finally {
+            DatabaseConnection.closeConnection(conn);
+        }
+    }
+
     @Override
     public User findByUsername(String username) {
         Connection conn = null;
@@ -100,6 +116,50 @@ public class UserDaoImpl implements UserDao {
         }
         return null;
     }
+
+    public ArrayList<User> searchUsers(String keyword) {
+        ArrayList<User> users = new ArrayList<>();
+        Connection conn = null;
+
+        try{
+            conn = DatabaseConnection.getConnection();
+            String sql = "SELECT user_id, username, password, phone, address, driving_license, " +
+                    "email, role, created_at, updated_at, status FROM users " +
+                    "WHERE username LIKE ? OR email LIKE ? " +
+                    "ORDER BY created_at DESC";
+
+            PreparedStatement statement = conn.prepareStatement(sql);
+            String keyword2 = "%" + keyword + "%";
+            statement.setString(1, keyword2);
+            statement.setString(2, keyword2);
+
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                User user = new User(
+                        rs.getInt("user_id"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("phone"),
+                        rs.getString("address"),
+                        rs.getString("driving_license"),
+                        rs.getString("email"),
+                        rs.getString("role"),
+                        rs.getTimestamp("created_at"),
+                        rs.getTimestamp("updated_at"),
+                        rs.getString("status")
+                );
+                users.add(user);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error searching user using username or email: " + e.getMessage());
+        } finally {
+            DatabaseConnection.closeConnection(conn);
+        }
+
+        return users;
+    }
+
 
     // Get all pending users
     @Override
@@ -217,6 +277,63 @@ public class UserDaoImpl implements UserDao {
         } finally {
             DatabaseConnection.closeConnection(conn);
         }
+    }
+
+    public boolean updateUser(User user) {
+        Connection conn = null;
+        System.out.println("User ID: " + user.getUserId());
+        try{
+            conn = DatabaseConnection.getConnection();
+            String sql = "UPDATE users SET username = ?, email= ?,  phone = ?, address=? WHERE user_id = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            statement.setString(1, user.getUserName());
+            statement.setString(2, user.getEmail());
+            statement.setString(3, user.getPhone());
+            statement.setString(4, user.getAddress());
+            statement.setInt(5, user.getUserId());
+
+            int rowsAffected = statement.executeUpdate();
+            System.out.println("Rows affected"+ rowsAffected);
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            System.out.println("Error updating user: " + e.getMessage());
+            return false;
+        } finally {
+            DatabaseConnection.closeConnection(conn);
+        }
+    }
+
+    public User findByDrivingLicense(String license) {
+        Connection conn = null;
+        try {
+            conn = DatabaseConnection.getConnection();
+            String sql = "SELECT * FROM users WHERE driving_license = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, license);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return new User(
+                        rs.getInt("user_id"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("phone"),
+                        rs.getString("address"),
+                        rs.getString("driving_license"),
+                        rs.getString("email"),
+                        rs.getString("role"),
+                        rs.getTimestamp("created_at"),
+                        rs.getTimestamp("updated_at"),
+                        rs.getString("status")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println("Error finding user by driving license: " + e.getMessage());
+        } finally {
+            DatabaseConnection.closeConnection(conn);
+        }
+        return null;
     }
 }
 

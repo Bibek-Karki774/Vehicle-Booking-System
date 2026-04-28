@@ -91,6 +91,8 @@ public class User {
         this.phone = phone;
     }
 
+    public void setEmail(String email) {this.email = email;}
+
     public void setUserName(String userName) {
         this.userName = userName;
     }

@@ -12,4 +12,7 @@ public interface UserDao {
     boolean approveUser(int userId);
     boolean rejectUser(int userId);
     ArrayList<User> getAllUsers();
+    boolean updateUser(User user);
+    ArrayList<User> searchUsers(String keyword);
+    boolean deleteUser(int userId);
 }

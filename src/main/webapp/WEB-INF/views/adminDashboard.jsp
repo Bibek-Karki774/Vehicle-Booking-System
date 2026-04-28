@@ -33,7 +33,7 @@
         </a>
       </li>
       <li class="nav-item" data-page="users">
-        <a href="#">
+        <a href="${pageContext.request.contextPath}/admin-user">
           <i class="fas fa-users"></i>
           <span class="nav-label">Users</span>
         </a>
@@ -81,28 +81,35 @@
                 <div class="profile-avatar">
                   <i class="fas fa-user"></i>
                 </div>
-                <div class="profile-title">Admin User</div>
+                <div class="profile-title">${sessionScope.user.userName}</div>
               </div>
 
               <!-- details -->
               <div class="profile-details">
 
                 <div class="profile-item">
-                  <i class="fas fa-phone"></i>
-                  <span>+977 9800000000</span>
+                  <i class="fas fa-envelope"></i>
+                  <span>${sessionScope.user.email}</span>
                 </div>
 
                 <div class="profile-item">
-                  <i class="fas fa-envelope"></i>
-                  <span>admin@wheels.com</span>
+                  <i class="fas fa-phone"></i>
+                  <span>${sessionScope.user.phone}</span>
                 </div>
 
+                <div class="profile-item">
+                  <i class="fas fa-location-dot"></i>
+                  <span>${sessionScope.user.address}</span>
+                </div>
+
+
+
               </div>
-              <a class="profile-edit" href="#">
+              <a class="profile-edit" href="${pageContext.request.contextPath}/editProfile">
                 <i class="fas fa-pen"></i>
                 Edit Profile
               </a>
-              <a href="#" class="profile-logout">
+              <a href="${pageContext.request.contextPath}/logout" class="profile-logout">
                 <i class="fas fa-sign-out-alt"></i>
                 Logout
               </a>
@@ -182,6 +189,8 @@
           <span class="pill pill-orange">${pendingUsers.size()} pending</span>
         </div>
 
+
+
         <c:forEach var="pendingUser" items="${pendingUsers}">
           <div class="approval-item">
             <div class="user-info">
@@ -189,12 +198,23 @@
               <span class="user-email">${pendingUser.email}</span>
             </div>
             <div class="action-btns">
-              <button class="btn-approve">
-                Approve
-              </button>
-              <button class="btn-reject">
-                <i class="fas fa-circle-xmark"></i>
-              </button>
+                <%-- Approve Button --%>
+              <form method="post" action="${pageContext.request.contextPath}/adminDashboard" >
+                <input type="hidden" name="userId" value="${pendingUser.userId}" />
+                <button type="submit" name="action" value="approve" class="btn-approve">
+                  Approve
+                </button>
+              </form>
+
+                <%-- Reject Button  --%>
+              <form method="post" action="${pageContext.request.contextPath}/adminDashboard">
+                <input type="hidden" name="userId" value="${pendingUser.userId}" />
+                <button type="submit" name="action" value="reject" class="btn-reject"
+                        onclick="return confirm('Reject ${pendingUser.userName}? They will be asked to register again.');">
+                  <i class="fas fa-circle-xmark"></i>
+                </button>
+              </form>
+
             </div>
           </div>
         </c:forEach>

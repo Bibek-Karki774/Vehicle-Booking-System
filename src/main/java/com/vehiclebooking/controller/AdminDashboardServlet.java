@@ -25,6 +25,7 @@ public class AdminDashboardServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+
         // Session check
         User user = (User) SessionUtil.getAttribute(request, "user");
         if (user == null || !"Admin".equals(user.getRole())) {
@@ -50,7 +51,6 @@ public class AdminDashboardServlet extends HttpServlet {
         request.setAttribute("pendingUsers", pendingUsers);
 
 
-        // Forward to JSP
         request.getRequestDispatcher("/WEB-INF/views/adminDashboard.jsp")
                 .forward(request, response);
     }
@@ -60,6 +60,16 @@ public class AdminDashboardServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String action = request.getParameter("action");
+        int userId = Integer.parseInt(request.getParameter("userId"));
+
+        if ("approve".equals(action)) {
+            userDAO.approveUser(userId);
+        } else if ("reject".equals(action)) {
+            userDAO.rejectUser(userId);
+        }
+
+        response.sendRedirect(request.getContextPath() + "/adminDashboard");
 
     }
 }
