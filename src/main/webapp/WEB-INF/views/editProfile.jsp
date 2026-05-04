@@ -2,88 +2,19 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit Profile – WHEELS Admin</title>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/admin.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/profile.css" />
-</head>
+<jsp:include page="/WEB-INF/templates/head.jsp">
+    <jsp:param name="title" value="Edit Profile" />
+</jsp:include>
 <body>
 
 <!-- ── SIDEBAR ── -->
-<aside class="sidebar">
-    <div class="sidebar-logo">
-        <div class="logo-icon"><i class="fas fa-car-side"></i></div>
-        <div>
-            <span class="logo-brand">WHEELS</span>
-            <span class="logo-sub">Admin</span>
-        </div>
-    </div>
-    <nav class="sidebar-nav">
-        <ul>
-            <li class="nav-item">
-                <a href="${pageContext.request.contextPath}/adminDashboard">
-                    <i class="fa-regular fa-house"></i>
-                    <span class="nav-label">Dashboard</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#"><i class="fas fa-users"></i><span class="nav-label">Users</span></a>
-            </li>
-            <li class="nav-item">
-                <a href="#"><i class="fas fa-truck"></i><span class="nav-label">Vehicles</span></a>
-            </li>
-            <li class="nav-item">
-                <a href="#"><i class="fas fa-calendar-check"></i><span class="nav-label">Bookings</span></a>
-            </li>
-            <li class="nav-item">
-                <a href="#"><i class="fas fa-chart-bar"></i><span class="nav-label">Reports</span></a>
-            </li>
-        </ul>
-    </nav>
-</aside>
+<jsp:include page="/WEB-INF/templates/sidebar.jsp" />
 
 <!-- ── MAIN ── -->
 <main class="main-content">
 
     <!-- ── NAVBAR ── -->
-    <header class="top-navbar">
-        <div class="navbar-admin">
-            <div class="profile-wrapper">
-                <div class="profile-trigger" id="profileIcon">
-                    <i class="fas fa-user-circle profile-trigger"></i>
-                </div>
-                <div class="profile-dropdown" id="profilePanel">
-                    <div class="profile-container">
-                        <div class="profile-header">
-                            <div class="profile-avatar"><i class="fas fa-user"></i></div>
-                            <div class="profile-title">${sessionScope.user.userName}</div>
-                            <div class="profile-role">${sessionScope.user.role}</div>
-                        </div>
-                        <div class="profile-details">
-                            <div class="profile-item">
-                                <i class="fas fa-envelope"></i>
-                                <span>${sessionScope.user.email}</span>
-                            </div>
-                            <div class="profile-item">
-                                <i class="fas fa-phone"></i>
-                                <span>${sessionScope.user.phone}</span>
-                            </div>
-                        </div>
-                        <a class="profile-edit" href="${pageContext.request.contextPath}/editProfile">
-                            <i class="fas fa-pen"></i> Edit Profile
-                        </a>
-                        <a href="${pageContext.request.contextPath}/logout" class="profile-logout">
-                            <i class="fas fa-sign-out-alt"></i> Logout
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+    <jsp:include page="/WEB-INF/templates/header.jsp" />
 
     <!-- ── EDIT PROFILE CONTENT ── -->
     <div class="profile-page">

@@ -15,7 +15,7 @@
     <div class="logo">VEHICLES<span>.NP</span></div>
 
 
-    <div class="hamburger" onclick="toggleMenu()" id="menuBtn">☰</div>
+    <div class="hamburger" onclick="toggleTopNav()" id="menuBtn">☰</div>
 
     <nav id="nav">
         <a href="${pageContext.request.contextPath}/home">Home</a>

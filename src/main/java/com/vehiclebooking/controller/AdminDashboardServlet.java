@@ -35,14 +35,29 @@ public class AdminDashboardServlet extends HttpServlet {
 
         // Get stats for admin dashboard
         ArrayList<User> users = userDAO.getAllUsers();
+
         ArrayList<Vehicle> vehicles = vehicleDAO.getAllVehicles();
         ArrayList<Booking> bookings = bookingDAO.getAllBookings();
-        double revenue = bookingDAO.getTotalRevenue();
+        double dailyRevenue  = bookingDAO.getDailyRevenue();
+        double yesterdayRevenue = bookingDAO.getYesterdayRevenue();
+        double monthlyRevenue = bookingDAO.getMonthlyRevenue();
+        int bookedToday        = bookingDAO.getBookedToday();
+        int newUsersThisMonth  = userDAO.getNewUsersThisMonth();
+
+        double averageRevenuePerDay = monthlyRevenue / 30.0;
+        double revenueDiff = Math.abs(dailyRevenue - yesterdayRevenue);
+
+
 
         request.setAttribute("totalUsers", users.size());
+        request.setAttribute("newUsersThisMonth", newUsersThisMonth);
+        request.setAttribute("bookedToday", bookedToday);
         request.setAttribute("totalVehicles", vehicles.size());
-        request.setAttribute("totalBookings", bookings.size());
-        request.setAttribute("totalRevenue", revenue);
+        request.setAttribute("dailyRevenue", dailyRevenue);
+        request.setAttribute("revenueDiff", revenueDiff);
+        request.setAttribute("monthlyRevenue", monthlyRevenue);
+        request.setAttribute("averageRevenuePerDay", averageRevenuePerDay);
+
 
 
         // Get pending users

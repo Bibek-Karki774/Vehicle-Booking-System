@@ -32,7 +32,8 @@ public class AdminUserServlet extends HttpServlet {
         }
 
         request.setAttribute("users", users);
-        request.getRequestDispatcher("/WEB-INF/views/admin-user.jsp").forward(request, response);
+        request.setAttribute("totalUsers", users.size());
+        request.getRequestDispatcher("/WEB-INF/views/adminUser.jsp").forward(request, response);
 
     }
 

@@ -160,6 +160,23 @@ public class UserDaoImpl implements UserDao {
         return users;
     }
 
+    @Override
+    public int getNewUsersThisMonth() {
+        Connection conn = null;
+        try {
+            conn = DatabaseConnection.getConnection();
+            String sql = "SELECT COUNT(*) FROM users WHERE MONTH(created_at) = MONTH(NOW()) AND YEAR(created_at) = YEAR(NOW())";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) return rs.getInt(1);
+        } catch (SQLException e) {
+            System.out.println("Error fetching new users this month: " + e.getMessage());
+        } finally {
+            DatabaseConnection.closeConnection(conn);
+        }
+        return 0;
+    }
+
 
     // Get all pending users
     @Override
@@ -335,5 +352,7 @@ public class UserDaoImpl implements UserDao {
         }
         return null;
     }
+
+
 }
 

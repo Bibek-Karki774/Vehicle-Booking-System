@@ -9,6 +9,8 @@ public class Booking {
     private Timestamp startDate;
     private Timestamp endDate;
     private double totalAmount;
+    private String userName;
+    private String vehicleName;
 
     // Constructor for inserting booking record
     public Booking(int userId, int vehicleId, double totalAmount, Timestamp startDate, Timestamp endDate
@@ -49,6 +51,10 @@ public class Booking {
     public double getTotalAmount() {
         return totalAmount;
     }
+    public String getUserName() { return userName; }
+    public void setUserName(String userName) { this.userName = userName; }
+    public String getVehicleName() { return vehicleName; }
+    public void setVehicleName(String vehicleName) { this.vehicleName = vehicleName; }
 
     @Override
     public String toString() {

@@ -16,10 +16,5 @@ public class PasswordUtil {
         return BCrypt.checkpw(passwordTyped, hashedPassword);
     }
 
-    // Main method just to hash password for admin
-    public static void main(String[] args) {
-        String password = "admin@123";
-        String hashed = PasswordUtil.getHashPassword(password);
-        System.out.println("Hashed Password for admin: " + hashed);
-    }
+
 }

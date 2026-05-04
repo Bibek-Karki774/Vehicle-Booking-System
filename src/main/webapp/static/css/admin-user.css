@@ -5,7 +5,7 @@
   --red: #ef4444;
 
   --bg: #f0f1f5;
-  --sidebar-bg: #1e1b4b;
+
   --card: #ffffff;
   --card-2: #f8f9fc;
 
@@ -63,127 +63,7 @@ button {
   gap: 24px;
 }
 
-/* ================================================
-   3. SIDEBAR
-================================================ */
-.sidebar {
-  width: var(--sidebar-w);
-  min-width: var(--sidebar-w);
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: var(--sidebar-bg);
-  border-right: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  padding: 24px 0;
-  z-index: 100;
-}
 
-.sidebar-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0 20px;
-  margin-bottom: 32px;
-}
-
-.logo-icon {
-  width: 38px;
-  height: 38px;
-  background: var(--green);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  box-shadow: 0 0 14px rgba(99, 102, 241, 0.4);
-}
-.logo-icon i {
-  color: #fff;
-  font-size: 17px;
-}
-
-.logo-brand {
-  display: block;
-  font-family: var(--font-head);
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--green);
-  letter-spacing: 1px;
-}
-.logo-sub {
-  display: block;
-  font-size: 11px;
-  color: var(--text-muted);
-  margin-top: 1px;
-}
-
-.sidebar-nav {
-  flex: 1;
-  padding: 0 8px;
-}
-
-.sidebar-nav ul {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.nav-item a {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 11px 14px;
-  border-radius: 10px;
-  color: var(--text-gray);
-  font-size: 14px;
-  font-weight: 500;
-  transition: background-color 0.2s, color 0.2s;
-  position: relative;
-  border: 1px solid transparent;
-}
-
-.nav-item a i {
-  font-size: 15px;
-  width: 18px;
-  text-align: center;
-}
-.nav-label {
-  flex: 1;
-}
-
-.nav-item a:hover {
-  background: var(--card);
-  color: var(--text-main);
-}
-
-.nav-item.active a {
-  background: rgba(99, 102, 241, 0.12);
-  color: var(--green);
-  border-color: rgba(99, 102, 241, 0.22);
-  font-weight: 600;
-}
-.nav-item.active a i {
-  color: var(--green);
-}
-
-.nav-item.active a::before {
-  content: "";
-  position: absolute;
-  left: -8px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 3px;
-  height: 55%;
-  background: var(--green);
-  border-radius: 0 3px 3px 0;
-}
-
-/* ================================================
-   4. TOP NAVBAR
-================================================ */
 .main-content {
   margin-left: var(--sidebar-w);
   flex: 1;
@@ -192,93 +72,8 @@ button {
   min-height: 100vh;
 }
 
-.top-navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 18px 32px;
-  border-bottom: 1px solid var(--border);
-  background: rgba(240, 241, 245, 0.92);
-  position: sticky;
-  top: 0;
-  z-index: 50;
-}
 
-.page-title {
-  font-family: var(--font-head);
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: 0.4px;
-}
-.page-subtitle {
-  font-size: 12px;
-  color: var(--text-muted);
-  margin-top: 2px;
-}
 
-.navbar-admin {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.navbar-admin .admin-info {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 14px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-}
-
-.admin-avatar {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: #ede9fe;
-  border: 2px solid var(--green);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.admin-avatar i {
-  color: var(--green);
-  font-size: 14px;
-}
-
-.admin-name {
-  display: block;
-  font-size: 13px;
-  font-weight: 600;
-}
-.admin-email {
-  display: block;
-  font-size: 11px;
-  color: var(--text-muted);
-  margin-top: 1px;
-}
-
-.signout-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 9px 16px;
-  border-radius: 10px;
-  background: rgba(239, 68, 68, 0.08);
-  border: 1px solid rgba(239, 68, 68, 0.2);
-  color: var(--text-muted);
-  font-size: 13px;
-  font-weight: 500;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
-}
-.signout-btn:hover {
-  background: rgba(239, 68, 68, 0.18);
-  color: var(--red);
-  border-color: var(--red);
-}
 
 /* ================================================
    5. PAGE LAYOUT
@@ -320,6 +115,13 @@ button {
 }
 .users-search-bar input::placeholder {
   color: var(--text-muted);
+}
+
+.search-hint {
+  font-size: 12px;
+  color: var(--text-muted);
+  padding-left: 4px;
+  margin-top: 8px;
 }
 
 .btn-clear i {
@@ -500,33 +302,54 @@ button {
 /* ================================================
    10. RESPONSIVE
 ================================================ */
-@media (max-width: 900px) {
-  .top-navbar {
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-}
-
 @media (max-width: 768px) {
-  :root {
-    --sidebar-w: 0px;
-  }
-  .sidebar {
-    display: none;
-  }
-  .main-content {
-    margin-left: 0;
-  }
-  #page-users {
-    padding: 16px;
-  }
-}
 
-@media (max-width: 480px) {
-  .top-navbar {
-    padding: 14px 16px;
-  }
-  .admin-info {
+  /* Hide table headers */
+  .users-table thead {
     display: none;
+  }
+
+  /* Each row becomes a card */
+  .users-table tbody tr {
+    display: block;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+
+  /* Each cell becomes a row */
+  .users-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border: none;
+    font-size: 13px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .users-table td:last-child {
+    border-bottom: none;
+    padding-top: 10px;
+  }
+
+  /* Labels via nth-child */
+  .users-table td:nth-child(1)::before { content: "User"; }
+  .users-table td:nth-child(2)::before { content: "Email"; }
+  .users-table td:nth-child(3)::before { content: "Joined"; }
+  .users-table td:nth-child(4)::before { content: "Updated"; }
+  .users-table td:nth-child(5)::before { content: "Status"; }
+  .users-table td:nth-child(6)::before { content: "Actions"; }
+
+  .users-table td::before {
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    flex-shrink: 0;
   }
 }

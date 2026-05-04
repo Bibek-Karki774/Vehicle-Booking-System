@@ -8,9 +8,10 @@ DELETE FROM users;
 
 INSERT INTO users (username, password, phone, address, driving_license, email, role, status)
 VALUES
-    ('bibek-774', 'pass1', '+977-9835029569', 'Phoolbari-11, Pokhara', 'ATX-34Y-57U', 'bibekkarki774@mail.com', 'Admin', 'Active'),
+    ('admin123', '$2a$10$PY7xA.oxcHA6O5qyhje8x.g7YKzDgdx1F5h5w668QZJosNLjh13d2', '+977-9835029569', 'Phoolbari-11, Pokhara', 'ATX-34Y-57U', 'bibekkarki774@mail.com', 'Admin', 'Active'),
+    ('bibek-774', 'pass1', '+977-9835029569', 'Phoolbari-11, Pokhara', 'ATX-34Y-56U', 'bibekkarki324@mail.com', 'Member', 'Active'),
     ('sangamBoss-68', 'pass2', '+977-9843829168', 'Bagar-5, Pokhara', 'TY6-XR4-DP3', 'sangam857@gmail.com', 'Member', 'Active'),
-    ('adean-245', 'pass3', '+977-9843028194', 'Nadipur-3, Pokhara', 'FLE-TL3-9DM', 'adean593@gmail.com', 'Member', 'Active');
+    ('adean-245', 'pass3', '+977-9843028194', 'Nadipur-3, Pokhara', 'FLE-TL3-9DM', 'adean593@gmail.com', 'Member', 'Pending');
 
 
 INSERT INTO vehicles (vehicle_name, vehicle_type, total_seats, vehicle_description, price_per_day)

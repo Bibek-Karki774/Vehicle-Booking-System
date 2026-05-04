@@ -2,40 +2,12 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Premium Vehicle Booking</title>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/main.css">
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-</head>
+<jsp:include page="/WEB-INF/templates/head.jsp">
+    <jsp:param name="title" value="Wheels.NP" />
+    <jsp:param name="cssFile" value="main" />
+</jsp:include>
 <body>
-
-<header>
-    <div class="logo">VEHICLES<span>.NP</span></div>
-
-    <!-- Hamburger -->
-    <div class="hamburger" onclick="toggleMenu()" id="menuBtn">☰</div>
-
-    <nav id="nav">
-        <a href="${pageContext.request.contextPath}/home" class="active">Home</a>
-        <a href="${pageContext.request.contextPath}/about">About Us</a>
-        <a href="${pageContext.request.contextPath}/contact">Contact Us</a>
-
-        <c:choose>
-            <c:when test="${empty sessionScope.user}">
-                <a href="${pageContext.request.contextPath}/login">Login</a>
-                <a href="${pageContext.request.contextPath}/signup">Signup</a>
-            </c:when>
-
-            <c:otherwise>
-                <a href="${pageContext.request.contextPath}/adminDashboard">Dashboard</a>
-                <a href="${pageContext.request.contextPath}/logout">Logout</a>
-            </c:otherwise>
-        </c:choose>
-    </nav>
-</header>
+<jsp:include page="/WEB-INF/templates/header.jsp" />
 <section class="hero">
   <div class="hero-box">
     <h1>Premium Rides for Your <span class="text-accent">Next Adventure</span></h1>
