@@ -1,14 +1,19 @@
-function openSidebar() {
-    document.querySelector(".sidebar").classList.add("open");
+const menuBtn = document.getElementById("menuBtn");
+if (menuBtn) {
+    const sidebar = document.querySelector(".sidebar");
+    if (sidebar) {
+        menuBtn.addEventListener("click", function () {
+            sidebar.classList.toggle("open");
+        });
+    } else {
+        const nav = document.getElementById("nav");
+        menuBtn.addEventListener("click", function () {
+            nav.classList.toggle("open");
+            menuBtn.textContent = nav.classList.contains("open") ? "✖" : "☰";
+        });
+    }
 }
 
 function closeSidebar() {
     document.querySelector(".sidebar").classList.remove("open");
-}
-
-function toggleTopNav() {
-    const nav = document.getElementById("nav");
-    const btn = document.getElementById("menuBtn");
-    nav.classList.toggle("open");
-    btn.textContent = nav.classList.contains("open") ? "✖" : "☰";
 }

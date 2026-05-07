@@ -23,10 +23,6 @@ public class EditProfileServlet extends HttpServlet {
 
         User user = (User) SessionUtil.getAttribute(request, "user");
 
-        if (user == null) {
-            response.sendRedirect(request.getContextPath() + "/login");
-            return;
-        }
 
         String success = (String) SessionUtil.getAttribute(request, "success");
         if (success != null) {

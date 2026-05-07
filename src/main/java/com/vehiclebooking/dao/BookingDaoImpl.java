@@ -14,7 +14,7 @@ public class BookingDaoImpl implements  BookingDao {
     @Override
     public boolean addBooking(Booking booking) {
         Connection conn = null;
-        try{
+        try {
             conn = DatabaseConnection.getConnection();
             String sql = "INSERT INTO bookings(user_id, vehicle_id, start_date, end_date, total_amount) VALUES (?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -25,7 +25,7 @@ public class BookingDaoImpl implements  BookingDao {
             ps.setDouble(5, booking.getTotalAmount());
             ps.executeUpdate();
             return true;
-        } catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println("Error adding booking: " + e.getMessage());
             return false;
         } finally {

@@ -1,26 +1,11 @@
 let icon = document.getElementById("profileIcon");
 let panel = document.getElementById("profilePanel");
 
-icon.onclick = function () {
-    if (panel.style.display == "block") {
-        panel.style.display = "none";
-    } else {
-        panel.style.display = "block";
-    }
-};
-
-// click anywhere in page
-document.onclick = function () {
-    panel.style.display = "none";
-};
-
-// stop closing when clicking icon
 icon.onclick = function (event) {
     event.stopPropagation();
+    panel.style.display = panel.style.display === "block" ? "none" : "block";
+};
 
-    if (panel.style.display == "block") {
-        panel.style.display = "none";
-    } else {
-        panel.style.display = "block";
-    }
+document.onclick = function () {
+    panel.style.display = "none";
 };

@@ -5,47 +5,132 @@
 <jsp:include page="/WEB-INF/templates/head.jsp">
     <jsp:param name="title" value="Wheels.NP" />
     <jsp:param name="cssFile" value="main" />
+    <jsp:param name="cssFile2" value="vehicle" />
 </jsp:include>
 <body>
 <jsp:include page="/WEB-INF/templates/header.jsp" />
 <section class="hero">
-  <div class="hero-box">
-    <h1>Premium Rides for Your <span class="text-accent">Next Adventure</span></h1>
-    <p>Experience the best vehicle rental service in Pokhara. Top vehicles, affordable prices, and 24/7 support.</p>
-  </div>
+    <c:choose>
+
+        <%-- MEMBER HERO --%>
+        <c:when test="${not empty sessionScope.user}">
+            <section class="hero" style="min-height: 150px; padding: 20px 0;">
+                <div class="hero-box">
+                    <h1>Welcome back, ${sessionScope.user.userName}</h1>
+                    <p>Ready for your next ride? Book a vehicle or manage your trips.</p>
+
+                    <div class="hero-actions">
+                        <a href="${pageContext.request.contextPath}/vehicles" class="btn-primary">
+                            Book a Vehicle
+                        </a>
+                        <a href="${pageContext.request.contextPath}/bookings" class="btn-secondary">
+                            My Bookings
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </c:when>
+
+        <%-- VISITOR HERO --%>
+        <c:otherwise>
+            <section class="hero">
+                <div class="hero-box">
+                    <h1>Premium Rides for Your <span class="text-accent">Next Adventure</span></h1>
+                    <p>Experience the best vehicle rental service in Pokhara.</p>
+
+                    <div class="hero-actions">
+                        <a href="${pageContext.request.contextPath}/vehicles" class="btn-primary">
+                            Get Started
+                        </a>
+                        <a href="${pageContext.request.contextPath}/about" class="btn-secondary">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </c:otherwise>
+
+    </c:choose>
 </section>
 
 <main>
   <section class="cars">
     <div class="title">
-      <h2>Most Hired Vehicles</h2>
-      <p>Our top-rated cars and bikes ready for your journey.</p>
+        <c:choose>
+
+            <c:when test="${not empty sessionScope.user}">
+                <h2>Recommended Vehicles</h2>
+                <p>Quick access to vehicles based on your activity</p>
+            </c:when>
+
+
+            <c:otherwise>
+                <h2>Featured Vehicles</h2>
+                <p>Most trusted and frequently chosen vehicles by our users</p>
+            </c:otherwise>
+
+        </c:choose>
+
     </div>
 
-    <div class="grid">
-        <c:forEach var="vehicle" items="${vehicles}" varStatus="status">
-            <c:if test="${status.index < 8}">
-                <div class="card">
-                    <div class="img" >
-                        <img src="${pageContext.request.contextPath}/static/images/Toyota_LandCrusier.jpg" alt="truck"  />
-                    </div>
-                    <div class="info">
-                        <div class="vehicle-meta">
-                            <span class="vehicle-type">${vehicle.vehicleType}</span>
-                            <span class="vehicle-seats">👤 ${vehicle.totalSeats} Seats</span>
-                        </div>
-                        <h3>Executive Sedan</h3>
-                        <p class="vehicle-desc">${vehicle.vehicleDescription}</p>
-                        <div class="vehicle-footer">
-                            <span class="vehicle-price">रू ${vehicle.pricePerDay}<small>/day</small></span>
-                            <button class="btn">Book Now</button>
-                        </div>
-                    </div>
-                </div>
-            </c:if>
+      <div class="vehicles-grid index-grid">
+          <c:forEach var="v" items="${vehicles}" varStatus="status">
+              <c:if test="${status.index < 6}">
 
-        </c:forEach>
+                  <div class="vehicle-card">
 
+                      <!-- Image -->
+                      <div class="vehicle-img">
+                          <img src="" alt="${v.vehicleName}"/>
+                      </div>
+
+                      <!-- Header -->
+                      <div class="vehicle-card-header">
+                          <div class="vehicle-title-row">
+                              <h3 class="vehicle-name">${v.vehicleName}</h3>
+                              <span class="vehicle-type-tag">${v.vehicleType}</span>
+                          </div>
+                          <span class="vehicle-desc">${v.vehicleDescription}</span>
+                      </div>
+
+                      <!-- Meta -->
+                      <div class="vehicle-meta">
+                          <div class="vehicle-plate">
+                              <i class="fas fa-chair"></i> ${v.totalSeats} Seats
+                          </div>
+                          <div class="vehicle-price">
+                              <span class="price-amount">Rs${v.pricePerDay}</span>
+                              <span class="price-unit">/day</span>
+                          </div>
+                      </div>
+
+                          <%-- Actions --%>
+                      <div class="vehicle-actions">
+
+                              <%-- Member --%>
+                          <c:if test="${sessionScope.user.role == 'Member'}">
+                              <a href="${pageContext.request.contextPath}/booking?vehicleId=${v.vehicleId}"
+                                 class="book-btn" >
+                                   Book Now
+                              </a>
+                          </c:if>
+
+
+
+                              <%-- Visitor --%>
+                          <c:if test="${empty sessionScope.user}">
+                              <a href="${pageContext.request.contextPath}/login"
+                                 class="book-btn">
+                                  Book Now
+                              </a>
+                          </c:if>
+
+                      </div>
+
+                  </div>
+
+              </c:if>
+          </c:forEach>
 
     </div>
   </section>
@@ -57,9 +142,9 @@
       <div class="footer-logo">VEHICLES<span>.NP</span></div>
       <p>Providing safe and reliable transport solutions since 2026. Your journey is our priority.</p>
       <div class="social">
-        <span class="icon">fb</span>
-        <span class="icon">ig</span>
-        <span class="icon">tw</span>
+        <i class="fab fa-facebook-f icon"></i>
+          <i class="fab fa-instagram icon"></i>
+          <i class="fab fa-twitter icon"></i>
       </div>
     </div>
 
@@ -101,6 +186,7 @@
 
 
 <script src="${pageContext.request.contextPath}/static/js/nav-toggle.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/profile-toggle.js"></script>
 </body>
 
 </html>

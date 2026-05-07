@@ -4,11 +4,14 @@
 <html lang="en">
 <jsp:include page="/WEB-INF/templates/head.jsp">
     <jsp:param name="title" value="Edit Profile" />
+    <jsp:param name="cssFile" value="main" />
 </jsp:include>
 <body>
 
-<!-- ── SIDEBAR ── -->
-<jsp:include page="/WEB-INF/templates/sidebar.jsp" />
+
+<c:if test="${sessionScope.user.role == 'Admin'}">
+    <jsp:include page="/WEB-INF/templates/sidebar.jsp" />
+</c:if>
 
 <!-- ── MAIN ── -->
 <main class="main-content">
@@ -22,8 +25,14 @@
 
             <h2 class="profile-title">Edit Profile</h2>
 
-            <div class="profile-avatar">
-                <i class="fas fa-user"></i>
+            <div class="profile-avatar-wrapper">
+                <div class="profile-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <label for="photoInput" class="change-photo-btn">
+                    Change Picture
+                </label>
+                <input type="file" id="photoInput" name="photo" accept="image/*" style="display:none" />
             </div>
 
 
@@ -65,8 +74,8 @@
                 </div>
 
                 <div class="form-actions">
-                    <a href="${pageContext.request.contextPath}/adminDashboard" class="btn btn-outline">Cancel</a>
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <a href="${pageContext.request.contextPath}/adminDashboard" class="profile-form-cancel">Cancel</a>
+                    <button type="submit" class="profile-form-submit">Save Changes</button>
                 </div>
 
             </form>
@@ -76,5 +85,6 @@
 </main>
 
 <script src="${pageContext.request.contextPath}/static/js/profile-toggle.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/nav-toggle.js"></script>
 </body>
 </html>

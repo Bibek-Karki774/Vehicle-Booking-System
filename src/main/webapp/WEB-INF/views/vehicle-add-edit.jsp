@@ -108,6 +108,7 @@
 
     </section>
 </main>
-<script src="${pageContext.request.contextPath}/static/js/profile-toggle.js"></script>  
+<script src="${pageContext.request.contextPath}/static/js/profile-toggle.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/nav-toggle.js"></script>
 </body>
 </html>

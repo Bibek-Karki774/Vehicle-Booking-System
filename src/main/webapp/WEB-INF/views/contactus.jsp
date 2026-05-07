@@ -8,6 +8,7 @@
     <title>Contact Us | Vehicles.NP</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
 </head>
 <body>
 
@@ -42,21 +43,21 @@
 
             <div class="info-card">
                 <div class="info-card-body">
-                    <strong>📍 Location</strong>
+                    <strong><i class="fa-solid fa-location-dot" style="color: #f59e0b;"></i> Location</strong>
                     <p>Informatic College, Matepani<br>Pokhara, Nepal</p>
                 </div>
             </div>
 
             <div class="info-card">
                 <div class="info-card-body">
-                    <strong>📧 Email Us</strong>
+                    <strong><i class="fa-solid fa-envelope" style="color:#3b82f6;"></i> Email Us</strong>
                     <p>support@vehicles.np</p>
                 </div>
             </div>
 
             <div class="info-card">
                 <div class="info-card-body">
-                    <strong>📞 Call Us</strong>
+                    <strong><i class="fa-solid fa-phone" style="color:#10b981;"></i> Call Us</strong>
                     <p>+977 9800000000</p>
                 </div>
             </div>
