@@ -19,14 +19,23 @@
         <header>
             <div class="logo">VEHICLES<span>.NP</span></div>
 
-            <div class="hamburger" id="menuBtn">☰</div>
+
             <div class="header-right">
-            <nav id="nav">
-                <a href="${pageContext.request.contextPath}/home" class="active">Home</a>
-                <a href="${pageContext.request.contextPath}/vehicles">Vehicles</a>
-                <a href="${pageContext.request.contextPath}/about">About Us</a>
-                <a href="${pageContext.request.contextPath}/contact">Contact Us</a>
-            </nav>
+                <div class="hamburger" id="menuBtn">☰</div>
+                    <%-- MEMBER nav --%>
+                        <nav id="nav">
+                                <%-- CHANGE THESE 4 lines --%>
+                            <a href="${pageContext.request.contextPath}/home"
+                               class="${param.activePage == 'home' ? 'active' : ''}">Home</a>
+                            <a href="${pageContext.request.contextPath}/vehicles"
+                               class="${param.activePage == 'vehicles' ? 'active' : ''}">Vehicles</a>
+                            <a href="${pageContext.request.contextPath}/about"
+                               class="${param.activePage == 'about' ? 'active' : ''}">About Us</a>
+                            <a href="${pageContext.request.contextPath}/contact"
+                               class="${param.activePage == 'contact' ? 'active' : ''}">Contact Us</a>
+                                    <a href="${pageContext.request.contextPath}/wishlist"
+                                       style="border-bottom:none; "><i class="fa-regular fa-heart wishlist" ></i></a>
+                        </nav>
             <jsp:include page="/WEB-INF/templates/profilePanel.jsp" />
             </div>
         </header>
@@ -39,12 +48,19 @@
 
             <div class="hamburger" id="menuBtn">☰</div>
 
+                <%-- VISITOR nav --%>
             <nav id="nav">
-                <a href="${pageContext.request.contextPath}/home" class="active">Home</a>
-                <a href="${pageContext.request.contextPath}/about">About Us</a>
-                <a href="${pageContext.request.contextPath}/contact">Contact Us</a>
-                <a href="${pageContext.request.contextPath}/login">Login</a>
-                <a href="${pageContext.request.contextPath}/signup">Signup</a>
+                    <%-- CHANGE THESE 5 lines --%>
+                <a href="${pageContext.request.contextPath}/home"
+                   class="${param.activePage == 'home' ? 'active' : ''}">Home</a>
+                <a href="${pageContext.request.contextPath}/about"
+                   class="${param.activePage == 'about' ? 'active' : ''}">About Us</a>
+                <a href="${pageContext.request.contextPath}/contact"
+                   class="${param.activePage == 'contact' ? 'active' : ''}">Contact Us</a>
+                <a href="${pageContext.request.contextPath}/login"
+                   class="${param.activePage == 'login' ? 'active' : ''}">Login</a>
+                <a href="${pageContext.request.contextPath}/signup"
+                   class="${param.activePage == 'signup' ? 'active' : ''}">Signup</a>
             </nav>
         </header>
     </c:otherwise>

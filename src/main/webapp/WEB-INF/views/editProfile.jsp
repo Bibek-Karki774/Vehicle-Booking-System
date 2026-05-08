@@ -4,13 +4,15 @@
 <html lang="en">
 <jsp:include page="/WEB-INF/templates/head.jsp">
     <jsp:param name="title" value="Edit Profile" />
-    <jsp:param name="cssFile" value="main" />
+    <jsp:param name="cssFile" value="${sessionScope.user.role == 'Member' ? 'main' : ''}" />
 </jsp:include>
-<body>
+<body class="${sessionScope.user.role == 'Admin' ? 'dashboard' : ''}">
 
 
 <c:if test="${sessionScope.user.role == 'Admin'}">
-    <jsp:include page="/WEB-INF/templates/sidebar.jsp" />
+    <jsp:include page="/WEB-INF/templates/sidebar.jsp">
+        <jsp:param name="activePage" value="" />
+    </jsp:include>
 </c:if>
 
 <!-- ── MAIN ── -->

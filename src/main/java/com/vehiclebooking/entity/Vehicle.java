@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 public class Vehicle {
 
     private int vehicleId;
+    private int wishlistId;
     private String vehicleName;
     private String vehicleType;
     private int totalSeats;
@@ -103,6 +104,10 @@ public class Vehicle {
     public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+    public int getWishlistId() { return wishlistId; }
+
+    public void setWishlistId(int wishlistId) { this.wishlistId = wishlistId; }
 
 
     @Override

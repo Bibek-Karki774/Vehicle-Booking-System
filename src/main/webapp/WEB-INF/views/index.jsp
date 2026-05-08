@@ -8,7 +8,9 @@
     <jsp:param name="cssFile2" value="vehicle" />
 </jsp:include>
 <body>
-<jsp:include page="/WEB-INF/templates/header.jsp" />
+<jsp:include page="/WEB-INF/templates/header.jsp">
+    <jsp:param name="activePage" value="home" />
+</jsp:include>
 <section class="hero">
     <c:choose>
 
@@ -96,7 +98,7 @@
                       <!-- Meta -->
                       <div class="vehicle-meta">
                           <div class="vehicle-plate">
-                              <i class="fas fa-chair"></i> ${v.totalSeats} Seats
+                              <i class="fa-solid fa-users"></i> ${v.totalSeats} Seats
                           </div>
                           <div class="vehicle-price">
                               <span class="price-amount">Rs${v.pricePerDay}</span>

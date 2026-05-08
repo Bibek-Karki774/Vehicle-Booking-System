@@ -413,12 +413,13 @@ button {
 
 .modal-content {
   background: white;
-  width: 320px;
+  width: 400px;
+  height: 300px;
   padding: 28px 24px;
   border-radius: 12px;
   text-align: center;
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-
+  font-family: var(--font-body);
 }
 
 .modal-dates {
@@ -439,6 +440,7 @@ button {
   font-size: 0.85rem;
   font-weight: 600;
   color: #374151;
+  font-family: var(--font-body);
 }
 
 .date-input {
@@ -506,6 +508,7 @@ button {
 
 .btn-cancel:hover {
   background: #d1d5db;
+  color: #111827;
 }
 
 .modal-actions {
@@ -519,19 +522,42 @@ button {
 .alert-success {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
-  background: #dcfce7;
-  color: #166534;
-  border: 1px solid #bbf7d0;
-  border-radius: 10px;
-  padding: 14px 18px;
   font-size: 0.95rem;
   font-weight: 600;
+  color: #166534;
   margin-bottom: 20px;
 }
 
 .alert-success i {
   font-size: 1.2rem;
+}
+
+/* Wishlist Button */
+.wishlist-form {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  margin: 0;
+}
+
+.wishlist-btn {
+  background: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.wishlist-btn i {
+  color: #ef4444;
+  font-size: 14px;
 }
 
 
@@ -591,6 +617,8 @@ button {
 
   .vehicle-img {
     height: 120px;
+    background: #eef2ff;
+    position: relative;
   }
 
   .vehicle-card-header {

@@ -13,22 +13,21 @@
 <div class="payment-card">
 
     <div class="payment-header">
-        <i class="fas fa-credit-card"></i>
         <h2>Payment Details</h2>
     </div>
 
     <!-- Booking Summary -->
     <div class="booking-summary">
         <div class="summary-row">
-            <span>From</span>
+            <span>Start Date</span>
             <strong>${fromDate}</strong>
         </div>
         <div class="summary-row">
-            <span>To</span>
+            <span>End Date</span>
             <strong>${toDate}</strong>
         </div>
         <div class="summary-row">
-            <span>Days</span>
+            <span>Total Days</span>
             <strong>${days}</strong>
         </div>
         <%-- ✅ ADDED: total amount --%>
@@ -43,7 +42,6 @@
         <input type="hidden" name="vehicleId"   value="${vehicleId}"/>
         <input type="hidden" name="fromDate"    value="${fromDate}"/>
         <input type="hidden" name="toDate"      value="${toDate}"/>
-        <%-- ✅ ADDED: pass totalAmount to servlet --%>
         <input type="hidden" name="totalAmount" value="${totalAmount}"/>
 
         <div class="form-field">
@@ -66,6 +64,11 @@
                 <input type="text" placeholder="123" maxlength="3" required/>
             </div>
         </div>
+
+        <label class="save-card">
+            <input type="checkbox" name="saveCard">
+            Save card for future payments
+        </label>
 
         <button type="submit" class="btn-pay">
             <i class="fas fa-lock"></i> Confirm Payment

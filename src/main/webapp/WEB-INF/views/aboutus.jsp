@@ -3,25 +3,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="/WEB-INF/templates/head.jsp">
-    <jsp:param name="title" value="Wheels.NP" />
+    <jsp:param name="title" value="Aboutus" />
     <jsp:param name="cssFile" value="main" />
 </jsp:include>
 <body>
 
-<header>
-    <div class="logo">VEHICLES<span>.NP</span></div>
-
-    <div class="hamburger" onclick="toggleTopNav()" id="menuBtn">☰</div>
-
-    <nav id="nav">
-        <a href="${pageContext.request.contextPath}/home">Home</a>
-        <a href="${pageContext.request.contextPath}/about" class="active">About Us</a>
-        <a href="${pageContext.request.contextPath}/contact">Contact Us</a>
-
-        <a href="${pageContext.request.contextPath}/login">Login</a>
-        <a href="${pageContext.request.contextPath}/signup">Signup</a>
-    </nav>
-</header>
+<jsp:include page="/WEB-INF/templates/header.jsp">
+    <jsp:param name="activePage" value="about" />
+</jsp:include>
 
 <section class="about-hero">
     <div class="about-hero-top">
@@ -170,5 +159,6 @@
 </footer>
 
 <script src="${pageContext.request.contextPath}/static/js/nav-toggle.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/profile-toggle.js"></script>
 </body>
 </html>

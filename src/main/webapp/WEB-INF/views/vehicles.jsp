@@ -2,27 +2,45 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!doctype html>
 <html lang="en">
-<jsp:include page="/WEB-INF/templates/head.jsp">
-    <jsp:param name="title" value="Vehicles" />
-    <jsp:param name="cssFile" value="vehicle" />
-</jsp:include>
-<body class="dashboard">
-<jsp:include page="/WEB-INF/templates/sidebar.jsp">
-    <jsp:param name="activePage" value="vehicles" />
-</jsp:include>
+<c:choose>
+    <%-- ADMIN: load vehicle.css first, then admin.css overrides conflicts --%>
+    <c:when test="${sessionScope.user.role == 'Admin'}">
+        <jsp:include page="/WEB-INF/templates/head.jsp">
+            <jsp:param name="title" value="Vehicles" />
+            <jsp:param name="cssFile" value="vehicle" />
+            <jsp:param name="cssFile2" value="admin" />
+        </jsp:include>
+    </c:when>
+
+    <%-- MEMBER / VISITOR: main.css + vehicle.css --%>
+    <c:otherwise>
+        <jsp:include page="/WEB-INF/templates/head.jsp">
+            <jsp:param name="title" value="Vehicles" />
+            <jsp:param name="cssFile" value="main" />
+            <jsp:param name="cssFile2" value="vehicle" />
+        </jsp:include>
+    </c:otherwise>
+</c:choose>
+<body class="${sessionScope.user.role == 'Admin' ? 'dashboard' : ''}">
+<c:if test="${sessionScope.user.role == 'Admin'}">
+    <jsp:include page="/WEB-INF/templates/sidebar.jsp">
+        <jsp:param name="activePage" value="vehicles" />
+    </jsp:include>
+</c:if>
 
 <main class="main-content">
-    <jsp:include page="/WEB-INF/templates/header.jsp" />
+    <jsp:include page="/WEB-INF/templates/header.jsp">
+        <jsp:param name="activePage" value="vehicles" />
+    </jsp:include>
 
     <section class="page active" id="page-vehicles">
 
-        <%--simple JS alert + redirect instead of alert div --%>
-        <c:if test="${param.booked == 'true'}">
-            <script>
-                alert('Booking confirmed successfully!');
-                window.location.href = '${pageContext.request.contextPath}/vehicles';
-            </script>
-        </c:if>
+            <c:if test="${param.booked == 'true'}">
+                <div class="alert-success">
+                    <i class="fas fa-circle-check"></i>
+                    Booking confirmed successfully!
+                </div>
+            </c:if>
 
         <!-- Toolbar -->
         <div class="vehicles-toolbar">
@@ -68,8 +86,28 @@
                     <c:forEach var="v" items="${vehicles}">
                         <div class="vehicle-card">
 
-                            <div class="vehicle-img" style="background: #eef2ff;">
+                            <div class="vehicle-img">
                                 <img src="" alt="${v.vehicleName}"/>
+
+                                <c:if test="${sessionScope.user.role == 'Member'}">
+                                    <form method="post" action="${pageContext.request.contextPath}/wishlist"
+                                          class="wishlist-form">
+                                            <%-- CHANGED: action is now toggle instead of add --%>
+                                        <input type="hidden" name="action" value="toggle"/>
+                                        <input type="hidden" name="vehicleId" value="${v.vehicleId}"/>
+                                        <button type="submit" class="wishlist-btn">
+                                                <%-- CHANGED: red filled if wishlisted, black outline if not --%>
+                                            <c:choose>
+                                                <c:when test="${wishlistVehicleIds.contains(v.vehicleId)}">
+                                                    <i class="fa-solid fa-heart" style="color:#ef4444;"></i>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <i class="fa-regular fa-heart" style="color:#111827;"></i>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </button>
+                                    </form>
+                                </c:if>
                             </div>
 
                             <div class="vehicle-card-header">
@@ -82,7 +120,7 @@
 
                             <div class="vehicle-meta">
                                 <div class="vehicle-plate">
-                                    <i class="fas fa-chair"></i> ${v.totalSeats} Seats
+                                    <i class="fa-solid fa-users"></i> ${v.totalSeats} Seats
                                 </div>
                                 <div class="vehicle-price">
                                     <span class="price-amount">Rs${v.pricePerDay}</span>
@@ -131,7 +169,6 @@
     <div id="modal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <i class="fas fa-calendar-check modal-icon"></i>
                 <h2>Confirm Booking</h2>
                 <p>Select your booking dates</p>
             </div>
@@ -154,10 +191,10 @@
 
                 <div class="modal-actions">
                     <button type="submit" class="btn-confirm">
-                        <i class="fas fa-check"></i> Confirm
+                        Confirm
                     </button>
                     <button type="button" class="btn-cancel" onclick="closeModal()">
-                        <i class="fas fa-xmark"></i> Cancel
+                      Cancel
                     </button>
                 </div>
             </form>

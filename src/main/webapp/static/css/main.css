@@ -86,7 +86,7 @@ nav a:hover {
 .hero {
     background: linear-gradient(135deg, #111827 0%, #1e1b4b 100%);
     color: white;
-    padding: 100px 8%;
+    padding: 60px 8% 60px;
     text-align: center;
 }
 
@@ -690,6 +690,13 @@ footer {
     color: #6366f1
 }
 
+.wishlist{
+    color: white;
+    border-radius: 6px;
+    padding: 4px 2px;
+    font-size: 1.1rem;"
+}
+
 
 
 
@@ -736,6 +743,7 @@ footer {
 
     .hamburger {
         display: block;
+
     }
 
     nav {
@@ -752,6 +760,10 @@ footer {
         transition: 0.3s ease;
         z-index: 1000;
     }
+
+
+
+
 
     nav.open {
         right: 0;

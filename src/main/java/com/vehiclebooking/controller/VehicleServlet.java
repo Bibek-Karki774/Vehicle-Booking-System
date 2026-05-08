@@ -2,8 +2,11 @@ package com.vehiclebooking.controller;
 
 import com.vehiclebooking.dao.VehicleDao;
 import com.vehiclebooking.dao.VehicleDaoImpl;
+import com.vehiclebooking.dao.WishlistDao;
+import com.vehiclebooking.dao.WishlistDaoImpl;
 import com.vehiclebooking.entity.User;
 import com.vehiclebooking.entity.Vehicle;
+import com.vehiclebooking.entity.Wishlist;
 import com.vehiclebooking.utils.SessionUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -61,6 +64,19 @@ public class VehicleServlet extends HttpServlet {
 
             request.setAttribute("vehicles", vehicles);
             request.setAttribute("totalVehicles", vehicles.size());
+
+
+
+            if (user != null && "Member".equals(user.getRole())) {
+                WishlistDao wishlistDao = new WishlistDaoImpl();
+                ArrayList<Wishlist> items = wishlistDao.fetchWishlistByUserId(user.getUserId());
+                ArrayList<Integer> wishlistVehicleIds = new ArrayList<>();
+                for (Wishlist w : items) {
+                    wishlistVehicleIds.add(w.getVehicleId());
+                }
+                request.setAttribute("wishlistVehicleIds", wishlistVehicleIds);
+            }
+
             request.getRequestDispatcher("/WEB-INF/views/vehicles.jsp")
                     .forward(request, response);
         }

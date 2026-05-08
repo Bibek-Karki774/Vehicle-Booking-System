@@ -2,33 +2,17 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Account | Vehicles.np</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/main.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/auth.css">
+<jsp:include page="/WEB-INF/templates/head.jsp">
+    <jsp:param name="title" value="Signup" />
+    <jsp:param name="cssFile" value="main" />
+    <jsp:param name="cssFile2" value="auth" />
+</jsp:include>
 
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-</head>
 <body class="auth-page">
 
-<header>
-    <div class="logo">VEHICLES<span>.NP</span></div>
-
-    <!-- Hamburger -->
-    <div class="hamburger" onclick="toggleTopNav()" id="menuBtn">☰</div>
-
-    <nav id="nav">
-        <a href="${pageContext.request.contextPath}/home">Home</a>
-        <a href="${pageContext.request.contextPath}/about">About Us</a>
-        <a href="${pageContext.request.contextPath}/contact">Contact Us</a>
-
-        <a href="${pageContext.request.contextPath}/login">Login</a>
-        <a href="${pageContext.request.contextPath}/signup" class="active">Signup</a>
-    </nav>
-</header>
+<jsp:include page="/WEB-INF/templates/header.jsp">
+    <jsp:param name="activePage" value="signup" />
+</jsp:include>
 
 <main class="auth-main">
     <div class="auth-card wide">

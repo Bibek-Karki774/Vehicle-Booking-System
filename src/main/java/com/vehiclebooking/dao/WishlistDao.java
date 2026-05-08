@@ -7,9 +7,9 @@ public interface WishlistDao {
 
     boolean insertWishlist(Wishlist wishlist);
 
-    ArrayList<Wishlist> fetchWishlistByCustomerId(int customerId);
+    ArrayList<Wishlist> fetchWishlistByUserId(int customerId);
 
     boolean deleteWishlist(int wishlistId);
-
-
+    boolean deleteAllByUserId(int userId);
+    void toggleWishlist(int userId, int vehicleId);
 }
