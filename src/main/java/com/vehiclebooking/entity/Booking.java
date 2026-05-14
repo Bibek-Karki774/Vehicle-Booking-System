@@ -6,6 +6,7 @@ public class Booking {
     private int bookingId;
     private int userId;
     private int vehicleId;
+    private int totalDays;
     private Timestamp startDate;
     private Timestamp endDate;
     private double totalAmount;
@@ -51,6 +52,8 @@ public class Booking {
     public double getTotalAmount() {
         return totalAmount;
     }
+    public int getTotalDays() { return totalDays; }
+    public void setTotalDays(int totalDays) { this.totalDays = totalDays; }
     public String getUserName() { return userName; }
     public void setUserName(String userName) { this.userName = userName; }
     public String getVehicleName() { return vehicleName; }

@@ -130,14 +130,22 @@
 
                             <div class="vehicle-actions">
 
-                                <c:if test="${sessionScope.user.role == 'Member'}">
-
-                                    <button class="book-btn"
-                                            data-vehicleId="${v.vehicleId}"
-                                            onclick="openModal(this)">
+                                <c:choose>
+                                    <c:when test="${sessionScope.user.role == 'Member'}">
+                                        <button class="book-btn"
+                                                data-vehicleId="${v.vehicleId}"
+                                                onclick="openModal(this)">
                                             Book Now
-                                    </button>
-                                </c:if>
+                                        </button>
+                                    </c:when>
+                                    <c:when test="${empty sessionScope.user}">
+                                        <%-- Visitor: redirect to login --%>
+                                        <a href="${pageContext.request.contextPath}/login"
+                                           class="book-btn" style="text-align:center; text-decoration:none;">
+                                            Book Now
+                                        </a>
+                                    </c:when>
+                                </c:choose>
 
                                 <c:if test="${sessionScope.user.role == 'Admin'}">
                                     <a href="${pageContext.request.contextPath}/vehicles?action=edit&vehicleId=${v.vehicleId}"

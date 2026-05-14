@@ -29,6 +29,8 @@
                                class="${param.activePage == 'home' ? 'active' : ''}">Home</a>
                             <a href="${pageContext.request.contextPath}/vehicles"
                                class="${param.activePage == 'vehicles' ? 'active' : ''}">Vehicles</a>
+                                    <a href="${pageContext.request.contextPath}/my-bookings"
+                                       class="${param.activePage == 'bookings' ? 'active' : ''}">My Bookings</a>
                             <a href="${pageContext.request.contextPath}/about"
                                class="${param.activePage == 'about' ? 'active' : ''}">About Us</a>
                             <a href="${pageContext.request.contextPath}/contact"
@@ -53,6 +55,8 @@
                     <%-- CHANGE THESE 5 lines --%>
                 <a href="${pageContext.request.contextPath}/home"
                    class="${param.activePage == 'home' ? 'active' : ''}">Home</a>
+                        <a href="${pageContext.request.contextPath}/vehicles"
+                           class="${param.activePage == 'vehicles' ? 'active' : ''}">Vehicles</a>
                 <a href="${pageContext.request.contextPath}/about"
                    class="${param.activePage == 'about' ? 'active' : ''}">About Us</a>
                 <a href="${pageContext.request.contextPath}/contact"

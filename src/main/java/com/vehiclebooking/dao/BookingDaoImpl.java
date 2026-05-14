@@ -144,6 +144,44 @@ public class BookingDaoImpl implements  BookingDao {
     }
 
     @Override
+    public ArrayList<Booking> getBookingsByUserId(int userId) {
+        ArrayList<Booking> bookings = new ArrayList<>();
+        Connection conn = null;
+        try {
+            conn = DatabaseConnection.getConnection();
+            String sql = "SELECT b.booking_id, b.user_id, b.vehicle_id, " +
+                    "b.total_amount, b.start_date, b.end_date, " +
+                    "v.vehicle_name " +
+                    "FROM bookings b " +
+                    "JOIN vehicles v ON b.vehicle_id = v.vehicle_id " +
+                    "WHERE b.user_id = ? " +
+                    "ORDER BY b.start_date DESC";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, userId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Booking booking = new Booking(
+                        rs.getInt("booking_id"),
+                        rs.getInt("user_id"),
+                        rs.getInt("vehicle_id"),
+                        rs.getDouble("total_amount"),
+                        rs.getTimestamp("start_date"),
+                        rs.getTimestamp("end_date")
+                );
+                booking.setVehicleName(rs.getString("vehicle_name"));
+                bookings.add(booking);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error getting bookings by user id: " + e.getMessage());
+        } finally {
+            DatabaseConnection.closeConnection(conn);
+        }
+        return bookings;
+    }
+
+
+
+    @Override
     public boolean deleteBookingById(int bookingId) {
         Connection conn = null;
         try{

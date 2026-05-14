@@ -14,4 +14,5 @@ public interface BookingDao{
     double getYesterdayRevenue();
     int getBookedToday();
     ArrayList<Booking> searchBookings(String keyword);
+    ArrayList<Booking> getBookingsByUserId(int userId);
 }

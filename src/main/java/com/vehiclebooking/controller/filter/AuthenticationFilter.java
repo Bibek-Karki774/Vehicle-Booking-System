@@ -38,7 +38,8 @@ public class AuthenticationFilter implements Filter {
         boolean isPublicPage =  "/home".equals(path) ||
                                 "/about".equals(path) ||
                                 "/contact".equals(path) ||
-                                 isAuthPage;
+                                "/vehicles".equals(path) ||
+                                isAuthPage;
 
         boolean isAdminPage = "/adminDashboard".equals(path);
 
