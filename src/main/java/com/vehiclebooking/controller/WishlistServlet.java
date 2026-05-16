@@ -42,6 +42,24 @@ public class WishlistServlet extends HttpServlet {
 
         request.setAttribute("wishlistVehicles", wishlistVehicles);
         request.setAttribute("wishlistCount", wishlistVehicles.size());
+
+        // Read booking error from session and clearing it
+        if (SessionUtil.getAttribute(request, "bookingError") != null) {
+
+            request.setAttribute("bookingError",
+                    SessionUtil.getAttribute(request, "bookingError"));
+
+            request.setAttribute("availableDates",
+                    SessionUtil.getAttribute(request, "availableDates"));
+
+            request.setAttribute("bookedVehicleId",
+                    SessionUtil.getAttribute(request, "bookedVehicleId"));
+
+            SessionUtil.removeAttribute(request, "bookingError");
+            SessionUtil.removeAttribute(request, "availableDates");
+            SessionUtil.removeAttribute(request, "bookedVehicleId");
+        }
+
         request.getRequestDispatcher("/WEB-INF/views/wishlist.jsp").forward(request, response);
     }
 

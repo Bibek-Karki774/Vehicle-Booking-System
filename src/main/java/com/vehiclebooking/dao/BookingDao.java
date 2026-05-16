@@ -2,12 +2,14 @@ package com.vehiclebooking.dao;
 
 import com.vehiclebooking.entity.Booking;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public interface BookingDao{
     boolean addBooking(Booking booking);
-    Booking getBookingById(int bookingId);
     ArrayList<Booking> getAllBookings();
+    ArrayList<String> getAvailableDatesThisWeek(int vehicleId);
+    boolean isVehicleBooked(int vehicleId, Timestamp start, Timestamp end);
     boolean deleteBookingById(int bookingId);
     double getDailyRevenue();
     double getMonthlyRevenue();

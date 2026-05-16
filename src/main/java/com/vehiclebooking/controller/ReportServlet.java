@@ -23,7 +23,7 @@ public class ReportServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        User user = (User) SessionUtil.getAttribute(request, "user");
+
 
 
         String range = request.getParameter("range");

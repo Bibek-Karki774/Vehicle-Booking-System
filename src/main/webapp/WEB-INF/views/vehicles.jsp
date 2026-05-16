@@ -41,6 +41,8 @@
                 </div>
             </c:if>
 
+
+
         <!-- Toolbar -->
         <div class="vehicles-toolbar">
             <div class="vehicles-toolbar">
@@ -111,10 +113,10 @@
 
                             <div class="vehicle-card-header">
                                 <div class="vehicle-title-row">
-                                    <h3 class="vehicle-name">${v.vehicleName}</h3>
-                                    <span class="vehicle-type-tag">${v.vehicleType}</span>
+                                    <h3 class="vehicle-name"><c:out value="${v.vehicleName}"/></h3>
+                                    <span class="vehicle-type-tag"><c:out value="${v.vehicleType}"/></span>
                                 </div>
-                                <span class="vehicle-desc">${v.vehicleDescription}</span>
+                                <span class="vehicle-desc"><c:out value="${v.vehicleDescription}"/></span>
                             </div>
 
                             <div class="vehicle-meta">
@@ -174,10 +176,34 @@
 
     <%-- modal now has form posting to booking servlet --%>
     <div id="modal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content" style="max-height: 90vh; overflow-y: auto;">
             <div class="modal-header">
                 <h2>Confirm Booking</h2>
                 <p>Select your booking dates</p>
+            </div>
+
+            <%-- Show available dates only when selected already booked dates --%>
+            <div id="available-dates-section" style="display:none; margin-bottom: 14px;
+        background: rgba(239,68,68,0.08);
+        border: 1px solid rgba(239,68,68,0.3);
+        border-radius: 8px; padding: 12px;">
+                <p style="font-size: 13px; font-weight: 600;
+              color: #ef4444; margin-bottom: 8px;">
+                    This vehicle is already booked. Please select from these available dates:
+                </p>
+                <div style="display:flex; flex-wrap:wrap; gap:6px;">
+                    <c:forEach var="d" items="${availableDates}">
+            <span style="background:rgba(239,68,68,0.15);
+                         border:1px solid rgba(239,68,68,0.3);
+                         color:#ef4444;
+                         padding:3px 10px;
+                         border-radius:6px;
+                         font-size:12px;
+                         font-weight:600;">
+                    ${d}
+            </span>
+                    </c:forEach>
+                </div>
             </div>
 
             <form method="post" action="${pageContext.request.contextPath}/booking">
@@ -209,10 +235,20 @@
         </div>
     </div>
 
+
 </main>
+
 
 <script src="${pageContext.request.contextPath}/static/js/profile-toggle.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/nav-toggle.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/modal.js"></script>
+
+<%-- Auto open modal if booking error --%>
+<c:if test="${bookingError == 'already_booked'}">
+    <script>
+        document.getElementById('available-dates-section').style.display = 'block';
+        openModal(document.querySelector('[data-vehicleId="${bookedVehicleId}"]'));
+    </script>
+</c:if>
 </body>
 </html>

@@ -233,7 +233,78 @@
 
 
 /* ── Responsive ── */
+/* ── Responsive ── */
 @media (max-width: 768px) {
-    #page-my-bookings { padding: 16px; }
-    .mb-stats { grid-template-columns: 1fr; }
+
+    /* PAGE */
+    #page-my-bookings {
+        padding: 14px;
+        gap: 14px;
+    }
+
+    /* STATS */
+    .mb-stats {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .mb-stat-box {
+        padding: 16px;
+        flex-direction: row;
+    }
+
+    .mb-stat-value {
+        font-size: 28px;
+    }
+
+    .mb-stat-value.green {
+        font-size: 22px;
+    }
+
+    /* CARD */
+    .mb-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .mb-card-title {
+        font-size: 15px;
+    }
+
+    /* TABLE */
+    .mb-table {
+        font-size: 12px;
+    }
+
+    .mb-table th,
+    .mb-table td {
+        padding: 10px 12px;
+    }
+
+    /* make table scroll nicer */
+    .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* STATUS BADGES */
+    .mb-status-badge {
+        font-size: 10px;
+        padding: 2px 8px;
+    }
+
+    /* EMPTY STATE */
+    .mb-empty-cell {
+        padding: 40px 12px !important;
+    }
+
+    .mb-empty-cell i {
+        font-size: 2rem;
+    }
+
+    .mb-browse-btn {
+        padding: 7px 16px;
+        font-size: 12px;
+    }
 }

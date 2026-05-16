@@ -280,16 +280,12 @@ public class UserDaoImpl implements UserDao {
         Connection conn = null;
         try {
             conn = DatabaseConnection.getConnection();
-            String sql = "UPDATE users SET status = 'Rejected' WHERE user_id = ?";
+            String sql = "DELETE FROM users WHERE user_id = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, userId);
-            int rowsAffected = statement.executeUpdate();
-            if (rowsAffected > 0) {
-                return true;
-            }
-            return false;
+            return statement.executeUpdate() > 0;
         } catch (SQLException e) {
-            System.out.println("Error rejecting user: " + e.getMessage());
+            System.out.println("Error rejecting/deleting user: " + e.getMessage());
             return false;
         } finally {
             DatabaseConnection.closeConnection(conn);

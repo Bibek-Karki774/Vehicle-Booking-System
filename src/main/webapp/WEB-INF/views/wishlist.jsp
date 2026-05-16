@@ -74,14 +74,14 @@
             </div>
 
             <div class="vehicle-info">
-              <div class="wl-vehicle-name">${v.vehicleName}</div>
+              <div class="wl-vehicle-name"><c:out value="${v.vehicleName}"/></div>
               <div class="wl-vehicle-meta">
-                <span class="wl-vehicle-type-tag">${v.vehicleType}</span>
+                <span class="wl-vehicle-type-tag"><c:out value="${v.vehicleType}"/></span>
                 <span class="meta-pill">
                                     <i class="fa-solid fa-users"></i> ${v.totalSeats} Seats
                                 </span>
               </div>
-              <div class="wl-vehicle-desc">${v.vehicleDescription}</div>
+              <div class="wl-vehicle-desc"><c:out value="${v.vehicleDescription}"/></div>
             </div>
 
             <div class="price-block">
@@ -122,14 +122,43 @@
 
   <%-- Booking Modal --%>
   <div id="modal" class="modal">
-    <div class="modal-content">
+    <div class="modal-content" style="max-height: 90vh; overflow-y: auto;">
       <div class="modal-header">
         <h2>Confirm Booking</h2>
         <p>Select your booking dates</p>
       </div>
+
+      <%-- ADDED: Available dates section --%>
+      <div id="available-dates-section" style="display:none; margin-bottom: 14px;
+                    background: rgba(239,68,68,0.08);
+                    border: 1px solid rgba(239,68,68,0.3);
+                    border-radius: 8px; padding: 12px;">
+        <p style="font-size: 13px; font-weight: 600;
+                          color: #ef4444; margin-bottom: 8px;">
+          This vehicle is already booked. Please select from these available dates:
+        </p>
+        <div style="display:flex; flex-wrap:wrap; gap:6px;">
+          <c:forEach var="d" items="${availableDates}">
+                        <span style="background:rgba(239,68,68,0.15);
+                                     border:1px solid rgba(239,68,68,0.3);
+                                     color:#ef4444;
+                                     padding:3px 10px;
+                                     border-radius:6px;
+                                     font-size:12px;
+                                     font-weight:600;">
+                            ${d}
+                        </span>
+          </c:forEach>
+        </div>
+      </div>
+      <%-- END ADDED --%>
+
+      <%-- ADDED: origin=wishlist so servlet redirects back here --%>
       <form method="post" action="${pageContext.request.contextPath}/booking">
         <input type="hidden" name="action" value="review"/>
-        <input type="hidden" name="vehicleId" id="modal-vehicle-id" value=""/>
+        <input type="hidden" name="origin" value="wishlist"/>
+        <input type="hidden" name="vehicleId" id="modal-vehicle-id"
+               value="${not empty bookedVehicleId ? bookedVehicleId : ''}"/>
         <div class="modal-dates">
           <div class="date-field">
             <label for="fromDate">From Date</label>
@@ -145,14 +174,26 @@
           <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
         </div>
       </form>
+      <%-- END ADDED --%>
     </div>
   </div>
 
 
 </main>
 
+<%@ include file="/WEB-INF/templates/footer.html" %>
+
 <script src="${pageContext.request.contextPath}/static/js/profile-toggle.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/nav-toggle.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/modal.js"></script>
+
+<%-- Auto open modal if booking error --%>
+<c:if test="${bookingError == 'already_booked'}">
+  <script>
+    document.getElementById('available-dates-section').style.display = 'block';
+    openModal(document.querySelector('[data-vehicleId="${bookedVehicleId}"]'));
+  </script>
+</c:if>
+<%-- END ADDED --%>
 </body>
 </html>

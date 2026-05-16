@@ -20,13 +20,13 @@ CREATE TABLE users (
     role ENUM('Admin', 'Member') DEFAULT 'Member',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    status ENUM('Pending', 'Active', 'Rejected') DEFAULT 'Pending'
+    status ENUM('Pending', 'Active') DEFAULT 'Pending'
 );
 
 CREATE TABLE vehicles (
     vehicle_id INT PRIMARY KEY AUTO_INCREMENT,
     vehicle_name VARCHAR(40) NOT NULL,
-    vehicle_type VARCHAR(30),
+    vehicle_type VARCHAR(30) NOT NULL,
     total_seats INT NOT NULL,
     vehicle_description TEXT,
     price_per_day DECIMAL(8,2) NOT NULL,
@@ -38,13 +38,13 @@ CREATE TABLE bookings (
     booking_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT NOT NULL,
     vehicle_id INT NOT NULL,
-    start_date DATE NOT NULL,
-    end_date DATE NOT NULL,
+    start_date TIMESTAMP NOT NULL,
+    end_date TIMESTAMP NOT NULL,
     total_amount DECIMAL(12,2) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(user_id),
-    FOREIGN KEY (vehicle_id) REFERENCES vehicles(vehicle_id)
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (vehicle_id) REFERENCES vehicles(vehicle_id) ON DELETE CASCADE
 );
 
 CREATE TABLE wishlist (
@@ -52,8 +52,9 @@ CREATE TABLE wishlist (
     user_id INT NOT NULL,
     vehicle_id INT NOT NULL,
     added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(user_id),
-    FOREIGN KEY (vehicle_id) REFERENCES vehicles(vehicle_id)
+    UNIQUE KEY unique_wishlist (user_id, vehicle_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)  ON DELETE CASCADE,
+    FOREIGN KEY (vehicle_id) REFERENCES vehicles(vehicle_id)  ON DELETE CASCADE
 );
 
 

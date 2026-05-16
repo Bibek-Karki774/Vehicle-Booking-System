@@ -44,7 +44,8 @@ public class SignupServlet extends HttpServlet {
         if (ValidationUtil.isNullOrEmpty(userName) ||
                 ValidationUtil.isNullOrEmpty(email) ||
                 ValidationUtil.isNullOrEmpty(phone) ||
-                ValidationUtil.isNullOrEmpty(address)) {
+                ValidationUtil.isNullOrEmpty(address) ||
+                ValidationUtil.isNullOrEmpty(drivingLicense)){
 
             errors.append("All fields are required. ");
             }

@@ -28,10 +28,7 @@ public class AdminDashboardServlet extends HttpServlet {
 
         // Session check
         User user = (User) SessionUtil.getAttribute(request, "user");
-        if (user == null || !"Admin".equals(user.getRole())) {
-            response.sendRedirect(request.getContextPath() + "/login");
-            return;
-        }
+
 
         // Get stats for admin dashboard
         ArrayList<User> users = userDAO.getAllUsers();

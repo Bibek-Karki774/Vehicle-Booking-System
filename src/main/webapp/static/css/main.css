@@ -762,9 +762,6 @@ footer {
     }
 
 
-
-
-
     nav.open {
         right: 0;
         transform: translateX(0);
@@ -788,4 +785,6 @@ footer {
     .about-hero h1 { font-size: 2rem; }
     .about-stat { padding: 10px 20px; }
     .about-stat-divider { display: none; }
+
+
 }

@@ -77,6 +77,23 @@ public class VehicleServlet extends HttpServlet {
                 request.setAttribute("wishlistVehicleIds", wishlistVehicleIds);
             }
 
+            // Read booking error from session and clearing it
+            if (SessionUtil.getAttribute(request, "bookingError") != null) {
+
+                request.setAttribute("bookingError",
+                        SessionUtil.getAttribute(request, "bookingError"));
+
+                request.setAttribute("availableDates",
+                        SessionUtil.getAttribute(request, "availableDates"));
+
+                request.setAttribute("bookedVehicleId",
+                        SessionUtil.getAttribute(request, "bookedVehicleId"));
+
+                SessionUtil.removeAttribute(request, "bookingError");
+                SessionUtil.removeAttribute(request, "availableDates");
+                SessionUtil.removeAttribute(request, "bookedVehicleId");
+            }
+
             request.getRequestDispatcher("/WEB-INF/views/vehicles.jsp")
                     .forward(request, response);
         }

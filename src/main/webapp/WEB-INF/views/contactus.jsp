@@ -53,7 +53,7 @@
                 <p>Fill out the form below and we will get back to you shortly.</p>
             </div>
 
-            <form action="ContactServlet" method="POST" class="contact-form">
+            <form class="contact-form" onsubmit="handleSubmit(event)">
                 <div class="form-row">
                     <div class="form-group">
                         <label>Full Name</label>
@@ -82,50 +82,17 @@
     </div>
 </main>
 
-<footer>
-    <div class="foot">
-        <div class="col brand">
-            <div class="footer-logo">VEHICLES<span>.NP</span></div>
-            <p>Providing safe and reliable transport solutions since 2026. Your journey is our priority.</p>
-            <div class="social">
-                <span class="icon">fb</span>
-                <span class="icon">ig</span>
-                <span class="icon">tw</span>
-            </div>
-        </div>
-        <div class="col">
-            <strong>Quick Links</strong>
-            <ul>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Our Fleet</a></li>
-                <li><a href="#">Special Offers</a></li>
-                <li><a href="#">Blog</a></li>
-            </ul>
-        </div>
-        <div class="col">
-            <strong>Support</strong>
-            <ul>
-                <li><a href="#">Help Center</a></li>
-                <li><a href="#">Terms of Service</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Contact Us</a></li>
-            </ul>
-        </div>
-        <div class="col">
-            <strong>Stay Updated</strong>
-            <p>Subscribe to get the latest deals.</p>
-            <form class="subscribe">
-                <input type="email" placeholder="Email Address">
-                <button type="submit">Join</button>
-            </form>
-        </div>
-    </div>
-    <div class="bottom">
-        <p>2026 &copy; Vehicles.co.np. All rights reserved.</p>
-    </div>
-</footer>
+<%@ include file="/WEB-INF/templates/footer.html" %>
 
 <script src="${pageContext.request.contextPath}/static/js/nav-toggle.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/profile-toggle.js"></script>
+
+<script>
+    function handleSubmit(e) {
+        e.preventDefault();
+        alert('Thank you for contacting us!');
+        e.target.reset();
+    }
+</script>
 </body>
 </html>

@@ -21,7 +21,6 @@ public class HomeServlet extends HttpServlet {
             throws ServletException, IOException {
 
         ArrayList<Vehicle> vehicles = vehicleDao.getAllVehicles();
-        System.out.println("Vehicles size: " + vehicles.size());
         request.setAttribute("vehicles", vehicles);
             request.getRequestDispatcher("/WEB-INF/views/index.jsp")
                     .forward(request, response);

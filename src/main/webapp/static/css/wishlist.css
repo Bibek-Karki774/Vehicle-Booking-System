@@ -1,6 +1,3 @@
-
-
-
 :root {
   --bg-main:       #f4f6fb;
   --bg-card:       #ffffff;
@@ -482,16 +479,74 @@ header {
   color: #fff;
 }
 
-/* 
-   FOOTER
-*/
-footer {
-  border-top: 1px solid rgba(255,255,255,0.06);
-  padding: 16px 48px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 12px;
-  color: #525c7a;
-  background: #161b27;
+/* =========================
+   MOBILE RESPONSIVE
+   ========================= */
+@media (max-width: 768px) {
+
+  /* HEADER */
+  header {
+    padding: 0 16px;
+  }
+
+  .header-search {
+    width: 140px;
+  }
+
+  .header-search:focus {
+    width: 170px;
+  }
+
+  /* PAGE WRAPPER */
+  .page-wrapper {
+    padding: 20px 16px;
+  }
+
+  /* PAGE HEADER */
+  .page-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .page-title {
+    font-size: 20px;
+  }
+
+  /* SUMMARY BAR */
+  .summary-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  /* WISHLIST CARD */
+  .wishlist-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .vehicle-thumb {
+    width: 100%;
+    height: 180px;
+  }
+
+  .price-block {
+    text-align: left;
+  }
+
+  /* ACTION BUTTONS */
+  .card-actions {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .action-btn.book {
+    width: 100%;
+    text-align: center;
+  }
+
+
 }

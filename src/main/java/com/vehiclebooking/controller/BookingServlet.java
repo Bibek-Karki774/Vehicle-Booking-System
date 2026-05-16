@@ -6,6 +6,7 @@ import com.vehiclebooking.dao.WishlistDaoImpl;
 import com.vehiclebooking.entity.Booking;
 import com.vehiclebooking.entity.User;
 import com.vehiclebooking.entity.Vehicle;
+import com.vehiclebooking.utils.SessionUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,6 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 @WebServlet("/booking")
 public class BookingServlet extends HttpServlet {
@@ -34,7 +36,7 @@ public class BookingServlet extends HttpServlet {
 
         String action = request.getParameter("action");
 
-        // Step 1: Modal submitted → go to payment page
+        // Modal submitted and then go to payment page
         if (action == null || action.equals("review")) {
             int vehicleId   = Integer.parseInt(request.getParameter("vehicleId"));
             String fromDate = request.getParameter("fromDate");
@@ -43,9 +45,39 @@ public class BookingServlet extends HttpServlet {
             Vehicle vehicle = vehicleDAO.getVehicleById(vehicleId);
             Timestamp start = Timestamp.valueOf(fromDate + " 00:00:00");
             Timestamp end   = Timestamp.valueOf(toDate   + " 00:00:00");
+
+            // Calculate number of days
             long days = (end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24);
             if (days <= 0) days = 1;
             double totalAmount = days * vehicle.getPricePerDay();
+
+            // Validate that date must be between 1 and 7 days
+            if (days < 1 || days > 7) {
+                response.sendRedirect(request.getContextPath() + "/vehicles?error=invalid_dates");
+                return;
+            }
+
+
+            // ── CHANGED: use session + redirect instead of forward ──
+            boolean isBooked = bookingDAO.isVehicleBooked(vehicleId, start, end);
+            if (isBooked) {
+                ArrayList<String> availableDates = bookingDAO.getAvailableDatesThisWeek(vehicleId);
+                String origin = request.getParameter("origin");
+
+                SessionUtil.setAttribute(request, "availableDates", availableDates);
+                SessionUtil.setAttribute(request, "bookingError", "already_booked");
+                SessionUtil.setAttribute(request, "bookedVehicleId", vehicleId);
+
+                // Redirect back to origin page
+                if ("wishlist".equals(origin)) {
+                    response.sendRedirect(request.getContextPath() + "/wishlist");
+                } else {
+                    response.sendRedirect(request.getContextPath() + "/vehicles");
+                }
+                return;
+            }
+// ── END CHANGED ──
+
 
             request.setAttribute("vehicleId",   vehicleId);
             request.setAttribute("fromDate",    fromDate);

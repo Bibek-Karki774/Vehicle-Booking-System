@@ -4,6 +4,7 @@ import com.vehiclebooking.dao.UserDaoImpl;
 import com.vehiclebooking.entity.User;
 import com.vehiclebooking.utils.PasswordUtil;
 import com.vehiclebooking.utils.SessionUtil;
+import com.vehiclebooking.utils.ValidationUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -33,6 +34,12 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
+        if (ValidationUtil.isNullOrEmpty(username) || ValidationUtil.isNullOrEmpty(password)) {
+            request.setAttribute("error", "Username and password are required.");
+            request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
+            return;
+        }
+
         User user = userDao.findByUsername(username);
 
         if (user == null) {
@@ -56,14 +63,7 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
-        if ("Rejected".equalsIgnoreCase(user.getStatus())) {
-            request.setAttribute("error", "Your registration was rejected by the admin.");
-            request.setAttribute("rejected", true);
-            request.setAttribute("rejectedUsername", user.getUserName());
-            request.getRequestDispatcher("/WEB-INF/views/login.jsp")
-                    .forward(request, response);
-            return;
-        }
+
 
         SessionUtil.setAttribute(request, "user", user);
 

@@ -57,10 +57,10 @@
           <tr>
             <td>
               <div class="table-user">
-                <span class="user-name">${user.userName}</span>
+                <span class="user-name"><c:out value="${user.userName}"/></span>
               </div>
             </td>
-            <td class="td-email">${user.email}</td>
+            <td class="td-email"><c:out value="${user.email}"/></td>
             <td class="td-date">
               <fmt:formatDate value="${user.createdAt}" pattern="dd MMM yyyy"/>
             </td>
@@ -68,25 +68,26 @@
               <fmt:formatDate value="${user.updatedAt}" pattern="dd MMM yyyy"/>
             </td>
             <td>
-              <span class="status-badge
+             <span class="status-badge
                 <c:choose>
                   <c:when test="${user.status == 'Active'}">status-approved</c:when>
-                  <c:when test="${user.status == 'Pending'}">status-pending</c:when>
-                  <c:otherwise>status-rejected</c:otherwise>
+                  <c:otherwise>status-pending</c:otherwise>
                 </c:choose>">
-                  ${user.status}
-              </span>
+                <c:out value="${user.status}"/>
+             </span>
             </td>
             <td>
               <div class="action-btns">
-                <form method="post" action="${pageContext.request.contextPath}/admin-user"
-                      onsubmit="return confirm('Are you sure you want to delete this user?')">
-                  <input type="hidden" name="action" value="delete">
-                  <input type="hidden" name="userId" value="${user.userId}">
-                  <button type="submit" class="btn-delete" title="Delete user">
-                    <i class="fas fa-trash"></i>
-                  </button>
-                </form>
+                <c:if test="${user.role != 'Admin'}">
+                  <form method="post" action="${pageContext.request.contextPath}/admin-user"
+                        onsubmit="return confirm('Are you sure you want to delete this user?')">
+                    <input type="hidden" name="action" value="delete">
+                    <input type="hidden" name="userId" value="${user.userId}">
+                    <button type="submit" class="btn-delete" title="Delete user">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </form>
+                </c:if>
               </div>
             </td>
           </tr>

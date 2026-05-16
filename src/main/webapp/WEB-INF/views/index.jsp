@@ -41,7 +41,7 @@
                     <p>Experience the best vehicle rental service in Pokhara.</p>
 
                     <div class="hero-actions">
-                        <a href="${pageContext.request.contextPath}/vehicles" class="btn-primary">
+                        <a href="${pageContext.request.contextPath}/login" class="btn-primary">
                             Get Started
                         </a>
                         <a href="${pageContext.request.contextPath}/about" class="btn-secondary">
@@ -138,52 +138,7 @@
   </section>
 </main>
 
-<footer>
-  <div class="foot">
-    <div class="col brand">
-      <div class="footer-logo">VEHICLES<span>.NP</span></div>
-      <p>Providing safe and reliable transport solutions since 2026. Your journey is our priority.</p>
-      <div class="social">
-        <i class="fab fa-facebook-f icon"></i>
-          <i class="fab fa-instagram icon"></i>
-          <i class="fab fa-twitter icon"></i>
-      </div>
-    </div>
-
-    <div class="col">
-      <strong>Quick Links</strong>
-      <ul>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Our Fleet</a></li>
-        <li><a href="#">Special Offers</a></li>
-        <li><a href="#">Blog</a></li>
-      </ul>
-    </div>
-
-    <div class="col">
-      <strong>Support</strong>
-      <ul>
-        <li><a href="#">Help Center</a></li>
-        <li><a href="#">Terms of Service</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Contact Us</a></li>
-      </ul>
-    </div>
-
-    <div class="col">
-      <strong>Stay Updated</strong>
-      <p>Subscribe to get the latest deals.</p>
-      <form class="subscribe">
-        <input type="email" placeholder="Email Address">
-        <button type="submit">Join</button>
-      </form>
-    </div>
-  </div>
-
-  <div class="bottom">
-    <p>2026 &copy; Vehicles.co.np. All rights reserved.</p>
-  </div>
-</footer>
+<%@ include file="/WEB-INF/templates/footer.html" %>
 
 
 

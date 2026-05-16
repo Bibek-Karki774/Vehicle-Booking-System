@@ -39,7 +39,6 @@ public class MyBookingsServlet extends HttpServlet {
         request.setAttribute("totalSpent", totalSpent);
         request.setAttribute("bookings", bookings);
         request.setAttribute("totalBookings", bookings.size());
-        request.setAttribute("totalSpent", totalSpent);
 
         request.getRequestDispatcher("/WEB-INF/views/member-bookings.jsp")
                 .forward(request, res);

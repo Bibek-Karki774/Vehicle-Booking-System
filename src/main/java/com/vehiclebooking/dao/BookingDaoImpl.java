@@ -3,10 +3,7 @@ package com.vehiclebooking.dao;
 import com.vehiclebooking.entity.Booking;
 import com.vehiclebooking.utils.DatabaseConnection;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class BookingDaoImpl implements  BookingDao {
@@ -36,32 +33,7 @@ public class BookingDaoImpl implements  BookingDao {
 
 
 
-    @Override
-    public Booking getBookingById(int bookingId) {
-        Connection conn = null;
-        try {
-            conn =  DatabaseConnection.getConnection();
-            String sql = "SELECT * FROM bookings WHERE booking_id = ?";
-            PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, bookingId);
-            ResultSet rs = statement.executeQuery();
-            if(rs.next()){
-                return new Booking(
-                    rs.getInt("booking_id"),
-                        rs.getInt("user_id"),
-                        rs.getInt("vehicle_id"),
-                        rs.getDouble("total_amount"),
-                        rs.getTimestamp("start_date"),
-                        rs.getTimestamp("end_date")
-                );
-            }
-        }
-        catch (SQLException e){
-            System.out.println("Error getting booking details by id: " + e.getMessage());
-        }
 
-        return null;
-    }
 
 
 
@@ -229,6 +201,7 @@ public class BookingDaoImpl implements  BookingDao {
     public boolean deleteBookingById(int bookingId) {
         Connection conn = null;
         try{
+            conn = DatabaseConnection.getConnection();
             String sql = "DELETE FROM bookings WHERE booking_id = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, bookingId);
@@ -240,6 +213,67 @@ public class BookingDaoImpl implements  BookingDao {
         } finally {
             DatabaseConnection.closeConnection(conn);
         }
+    }
+
+
+
+
+    @Override
+    public ArrayList<String> getAvailableDatesThisWeek(int vehicleId) {
+        ArrayList<String> availableDates = new ArrayList<>();
+        Connection conn = null;
+        try {
+            conn = DatabaseConnection.getConnection();
+
+            // Check each of next 7 days if it is available for this vehicle
+            String sql = "SELECT DATE(CURDATE() + INTERVAL ? DAY) AS availableDate, " +
+                    "COUNT(booking_id) AS bookingCount " +
+                    "FROM bookings " +
+                    "WHERE vehicle_id = ? " +
+                    "AND DATE(CURDATE() + INTERVAL ? DAY) BETWEEN DATE(start_date) AND DATE(end_date)";
+
+            for (int day = 0; day <= 6; day++) {
+                PreparedStatement statement = conn.prepareStatement(sql);
+                statement.setInt(1, day);
+                statement.setInt(2, vehicleId);
+                statement.setInt(3, day);
+                ResultSet rs = statement.executeQuery();
+
+                // If no bookings found for that day, it is available
+                if (rs.next() && rs.getInt("bookingCount") == 0) {
+                    availableDates.add(rs.getString("availableDate"));
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error fetching available dates: " + e.getMessage());
+        } finally {
+            DatabaseConnection.closeConnection(conn);
+        }
+        return availableDates;
+    }
+
+    @Override
+    public boolean isVehicleBooked(int vehicleId, Timestamp start, Timestamp end) {
+        Connection conn = null;
+        try {
+            conn = DatabaseConnection.getConnection();
+            // Check if any existing booking overlaps with the requested dates
+            String sql = "SELECT COUNT(*) FROM bookings " +
+                    "WHERE vehicle_id = ? " +
+                    "AND start_date <= ? AND end_date >= ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, vehicleId);
+            ps.setTimestamp(2, end);
+            ps.setTimestamp(3, start);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) return rs.getInt(1) > 0;
+        } catch (SQLException e) {
+            System.out.println("Error checking vehicle availability: " + e.getMessage());
+        } finally {
+            DatabaseConnection.closeConnection(conn);
+        }
+        return false;
     }
 
     @Override

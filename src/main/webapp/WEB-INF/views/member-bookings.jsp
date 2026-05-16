@@ -65,7 +65,6 @@
                         <c:when test="${empty bookings}">
                             <tr>
                                 <td colspan="4" class="mb-empty-cell">
-                                    <i class="fa-solid fa-calendar-xmark"></i>
                                     <p>You have no bookings yet.</p>
                                     <a href="${pageContext.request.contextPath}/vehicles" class="mb-browse-btn">
                                         Browse Vehicles
@@ -103,6 +102,8 @@
 
     </div>
 </main>
+
+<%@ include file="/WEB-INF/templates/footer.html" %>
 
 <script src="${pageContext.request.contextPath}/static/js/profile-toggle.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/nav-toggle.js"></script>

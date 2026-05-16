@@ -172,17 +172,72 @@
 }
 
 /* ── Responsive ── */
-@media (max-width: 900px) {
+@media (max-width: 768px) {
+
+  /* PAGE */
+  #page-reports {
+    padding: 14px;
+  }
+
+  /* CARD HEADER */
   .report-card-header {
     flex-direction: column;
     align-items: flex-start;
+    gap: 10px;
+  }
+
+  /* TIME RANGE BUTTONS */
+  .time-range-group {
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .time-btn {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+
+  /* REPORT ITEM */
+  .report-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+  }
+
+  /* RANK */
+  .rank-badge {
+    font-size: 13px;
+    padding: 5px 10px;
+  }
+
+  /* INFO */
+  .report-vehicle-name {
+    font-size: 13px;
+  }
+
+  .report-vehicle-meta {
+    font-size: 11px;
+  }
+
+  /* STATS */
+  .report-item-stat {
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .stat-bookings {
+    font-size: 12px;
+  }
+
+  .stat-revenue {
+    font-size: 11px;
+  }
+
+  /* EMPTY STATE */
+  .report-empty {
+    padding: 30px 12px;
   }
 }
 
-@media (max-width: 768px) {
-  #page-reports { padding: 16px; }
-}
-
-@media (max-width: 480px) {
-  .report-item { padding: 12px 14px; gap: 12px; }
-}
