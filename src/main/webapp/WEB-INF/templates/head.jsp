@@ -24,4 +24,8 @@
     <c:if test="${not empty param.cssFile2}">
       <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/${param.cssFile2}.css" />
     </c:if>
+
+    <c:if test="${not empty param.cssFile3}">
+      <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/${param.cssFile3}.css" />
+    </c:if>
     </head>

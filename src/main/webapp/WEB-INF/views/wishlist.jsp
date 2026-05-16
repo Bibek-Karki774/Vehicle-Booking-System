@@ -6,6 +6,7 @@
   <jsp:param name="title" value="My Wishlist" />
   <jsp:param name="cssFile" value="main" />
   <jsp:param name="cssFile2" value="wishlist" />
+  <jsp:param name="cssFile3" value="vehicle" />
 </jsp:include>
 
 <body>
@@ -73,14 +74,14 @@
             </div>
 
             <div class="vehicle-info">
-              <div class="vehicle-name">${v.vehicleName}</div>
-              <div class="vehicle-meta">
-                <span class="vehicle-type-tag">${v.vehicleType}</span>
+              <div class="wl-vehicle-name">${v.vehicleName}</div>
+              <div class="wl-vehicle-meta">
+                <span class="wl-vehicle-type-tag">${v.vehicleType}</span>
                 <span class="meta-pill">
                                     <i class="fa-solid fa-users"></i> ${v.totalSeats} Seats
                                 </span>
               </div>
-              <div class="vehicle-desc">${v.vehicleDescription}</div>
+              <div class="wl-vehicle-desc">${v.vehicleDescription}</div>
             </div>
 
             <div class="price-block">
@@ -93,7 +94,11 @@
               <form method="post" action="${pageContext.request.contextPath}/booking">
                 <input type="hidden" name="action" value="review" />
                 <input type="hidden" name="vehicleId" value="${v.vehicleId}" />
-                <button type="submit" class="action-btn book">Book Now</button>
+                <button type="button" class="action-btn book"
+                        data-vehicleId="${v.vehicleId}"
+                        onclick="openModal(this)">
+                  Book Now
+                </button>
               </form>
 
                 <%-- Remove --%>
@@ -115,10 +120,39 @@
   </div>
 
 
+  <%-- Booking Modal --%>
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Confirm Booking</h2>
+        <p>Select your booking dates</p>
+      </div>
+      <form method="post" action="${pageContext.request.contextPath}/booking">
+        <input type="hidden" name="action" value="review"/>
+        <input type="hidden" name="vehicleId" id="modal-vehicle-id" value=""/>
+        <div class="modal-dates">
+          <div class="date-field">
+            <label for="fromDate">From Date</label>
+            <input type="date" id="fromDate" name="fromDate" class="date-input" required/>
+          </div>
+          <div class="date-field">
+            <label for="toDate">To Date</label>
+            <input type="date" id="toDate" name="toDate" class="date-input" required/>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button type="submit" class="btn-confirm">Confirm</button>
+          <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
 
 </main>
 
 <script src="${pageContext.request.contextPath}/static/js/profile-toggle.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/nav-toggle.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/modal.js"></script>
 </body>
 </html>

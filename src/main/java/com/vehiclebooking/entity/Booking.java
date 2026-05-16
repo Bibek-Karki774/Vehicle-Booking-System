@@ -10,6 +10,8 @@ public class Booking {
     private Timestamp startDate;
     private Timestamp endDate;
     private double totalAmount;
+    private String vehicleType;
+    private int totalBookings;
     private String userName;
     private String vehicleName;
 
@@ -33,6 +35,8 @@ public class Booking {
         this.totalAmount = totalAmount;
     }
 
+    public Booking() {}
+
     // Getters
     public int getBookingId() {
         return bookingId;
@@ -52,8 +56,15 @@ public class Booking {
     public double getTotalAmount() {
         return totalAmount;
     }
+    public void setTotalAmount(double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
     public int getTotalDays() { return totalDays; }
     public void setTotalDays(int totalDays) { this.totalDays = totalDays; }
+    public String getVehicleType() { return vehicleType; }
+    public void setVehicleType(String vehicleType) { this.vehicleType = vehicleType; }
+    public int getTotalBookings() { return totalBookings; }
+    public void setTotalBookings(int totalBookings) { this.totalBookings = totalBookings; }
     public String getUserName() { return userName; }
     public void setUserName(String userName) { this.userName = userName; }
     public String getVehicleName() { return vehicleName; }

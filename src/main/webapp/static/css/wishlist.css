@@ -316,7 +316,7 @@ header {
   min-width: 0;
 }
 
-.vehicle-name {
+.wl-vehicle-name {
   font-family: 'Syne', sans-serif;
   font-size: 15px;
   font-weight: 700;
@@ -327,7 +327,7 @@ header {
   text-overflow: ellipsis;
 }
 
-.vehicle-meta {
+.wl-vehicle-meta {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
@@ -344,7 +344,7 @@ header {
   padding: 2px 10px;
 }
 
-.vehicle-type-tag {
+.wl-vehicle-type-tag {
   font-size: 11px;
   font-weight: 600;
   color: #4b5563;
@@ -355,7 +355,7 @@ header {
   white-space: nowrap;
 }
 
-.vehicle-desc {
+.wl-vehicle-desc {
   font-size: 12px;
   color: var(--text-secondary);
   margin-bottom: 8px;

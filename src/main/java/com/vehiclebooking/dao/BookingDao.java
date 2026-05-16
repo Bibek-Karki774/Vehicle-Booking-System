@@ -15,4 +15,9 @@ public interface BookingDao{
     int getBookedToday();
     ArrayList<Booking> searchBookings(String keyword);
     ArrayList<Booking> getBookingsByUserId(int userId);
+    ArrayList<Booking> getTop5BookedVehicles(String range);
+
+    // For admin dashboard chart
+    ArrayList<String> getLast7DaysRevenueDates();
+    ArrayList<Double> getLast7DaysRevenueAmounts();
 }

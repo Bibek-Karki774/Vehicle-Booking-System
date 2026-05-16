@@ -8,7 +8,6 @@
         <jsp:include page="/WEB-INF/templates/head.jsp">
             <jsp:param name="title" value="Vehicles" />
             <jsp:param name="cssFile" value="vehicle" />
-            <jsp:param name="cssFile2" value="admin" />
         </jsp:include>
     </c:when>
 

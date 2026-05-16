@@ -32,8 +32,7 @@
                 <div class="mb-stat-left">
                     <span class="mb-stat-label">Total Spent</span>
                     <span class="mb-stat-value green">
-                        NPR <fmt:formatNumber value="${totalSpent}" type="number"
-                                              minFractionDigits="2" maxFractionDigits="2"/>
+                        NPR ${totalSpent}
                     </span>
                 </div>
                 <div class="mb-stat-icon icon-green">
@@ -58,7 +57,6 @@
                         <th>Vehicle</th>
                         <th>Start Date</th>
                         <th>End Date</th>
-                        <th>Days</th>
                         <th>Amount</th>
                     </tr>
                     </thead>
@@ -66,7 +64,7 @@
                     <c:choose>
                         <c:when test="${empty bookings}">
                             <tr>
-                                <td colspan="5" class="mb-empty-cell">
+                                <td colspan="4" class="mb-empty-cell">
                                     <i class="fa-solid fa-calendar-xmark"></i>
                                     <p>You have no bookings yet.</p>
                                     <a href="${pageContext.request.contextPath}/vehicles" class="mb-browse-btn">
@@ -80,7 +78,6 @@
                                 <tr>
                                     <td>
                                         <span class="mb-vehicle-name">
-                                            <i class="fa-solid fa-car"></i>
                                             <c:out value="${b.vehicleName}"/>
                                         </span>
                                     </td>
@@ -90,10 +87,9 @@
                                     <td class="td-date">
                                         <fmt:formatDate value="${b.endDate}" pattern="MMM dd, yyyy"/>
                                     </td>
-                                    <td class="td-days">${b.totalDays} days</td>
+
                                     <td class="td-amount">
-                                        NPR <fmt:formatNumber value="${b.totalAmount}"
-                                                              type="number" minFractionDigits="2" maxFractionDigits="2"/>
+                                        NPR ${totalSpent}
                                     </td>
 
                                 </tr>

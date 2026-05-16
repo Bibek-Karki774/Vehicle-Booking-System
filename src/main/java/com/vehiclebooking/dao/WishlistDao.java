@@ -12,4 +12,5 @@ public interface WishlistDao {
     boolean deleteWishlist(int wishlistId);
     boolean deleteAllByUserId(int userId);
     void toggleWishlist(int userId, int vehicleId);
+    void deleteByUserIdAndVehicleId(int userId, int vehicleId);
 }

@@ -39,7 +39,7 @@
                 </a>
             </li>
             <li class="nav-item ${param.activePage == 'reports' ? 'active' : ''}" data-page="reports">
-                <a href="${pageContext.request.contextPath}/reports">
+                <a href="${pageContext.request.contextPath}/adminReport">
                     <i class="fas fa-chart-bar"></i>
                     <span class="nav-label">Reports</span>
                 </a>

@@ -2,6 +2,7 @@ package com.vehiclebooking.controller;
 
 import com.vehiclebooking.dao.BookingDaoImpl;
 import com.vehiclebooking.dao.VehicleDaoImpl;
+import com.vehiclebooking.dao.WishlistDaoImpl;
 import com.vehiclebooking.entity.Booking;
 import com.vehiclebooking.entity.User;
 import com.vehiclebooking.entity.Vehicle;
@@ -19,6 +20,7 @@ public class BookingServlet extends HttpServlet {
 
     private BookingDaoImpl bookingDAO = new BookingDaoImpl();
     private VehicleDaoImpl vehicleDAO = new VehicleDaoImpl();
+    private WishlistDaoImpl wishlistDAO = new WishlistDaoImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -68,7 +70,9 @@ public class BookingServlet extends HttpServlet {
             Booking booking = new Booking(userId, vehicleId, totalAmount, startDate, endDate);
             bookingDAO.addBooking(booking);
 
+            wishlistDAO.deleteByUserIdAndVehicleId(userId, vehicleId);
             response.sendRedirect(request.getContextPath() + "/vehicles?booked=true");
+
         }
     }
 }

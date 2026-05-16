@@ -6,6 +6,7 @@ import com.vehiclebooking.utils.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class WishlistDaoImpl implements WishlistDao {
@@ -21,7 +22,7 @@ public class WishlistDaoImpl implements WishlistDao {
             statement.setInt(2, wishlist.getVehicleId());
             statement.executeUpdate();
             return true;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error inserting wishlist: " + e.getMessage());
             return false;
         } finally {
@@ -48,12 +49,28 @@ public class WishlistDaoImpl implements WishlistDao {
                 );
                 wishlists.add(wishlist);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error fetching all wishlist items: " + e.getMessage());
         } finally {
             DatabaseConnection.closeConnection(conn);
         }
         return wishlists;
+    }
+
+    public void deleteByUserIdAndVehicleId(int userId, int vehicleId) {
+        Connection conn = null;
+        try {
+            conn = DatabaseConnection.getConnection();
+            String sql = "DELETE FROM wishlist WHERE user_id = ? AND vehicle_id = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, userId);
+            ps.setInt(2, vehicleId);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error removing from wishlist: " + e.getMessage());
+        } finally {
+            DatabaseConnection.closeConnection(conn);
+        }
     }
 
     @Override
@@ -66,7 +83,7 @@ public class WishlistDaoImpl implements WishlistDao {
             statement.setInt(1, wishlistId);
             statement.executeUpdate();
             return true;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error deleting wishlist: " + e.getMessage());
             return false;
         } finally {
@@ -83,7 +100,7 @@ public class WishlistDaoImpl implements WishlistDao {
             statement.setInt(1, userId);
             statement.executeUpdate();
             return true;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error clearing wishlist: " + e.getMessage());
             return false;
         } finally {
@@ -113,7 +130,7 @@ public class WishlistDaoImpl implements WishlistDao {
                 ins.setInt(2, vehicleId);
                 ins.executeUpdate();
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Toggle wishlist error: " + e.getMessage());
         } finally {
             DatabaseConnection.closeConnection(conn);

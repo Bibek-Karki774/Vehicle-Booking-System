@@ -38,14 +38,14 @@ public class AdminDashboardServlet extends HttpServlet {
 
         ArrayList<Vehicle> vehicles = vehicleDAO.getAllVehicles();
         ArrayList<Booking> bookings = bookingDAO.getAllBookings();
-        double dailyRevenue  = bookingDAO.getDailyRevenue();
-        double yesterdayRevenue = bookingDAO.getYesterdayRevenue();
-        double monthlyRevenue = bookingDAO.getMonthlyRevenue();
+        double dailyRevenue      = Math.round(bookingDAO.getDailyRevenue()    * 100.0) / 100.0;
+        double yesterdayRevenue  = Math.round(bookingDAO.getYesterdayRevenue() * 100.0) / 100.0;
+        double monthlyRevenue    = Math.round(bookingDAO.getMonthlyRevenue()   * 100.0) / 100.0;
         int bookedToday        = bookingDAO.getBookedToday();
         int newUsersThisMonth  = userDAO.getNewUsersThisMonth();
 
-        double averageRevenuePerDay = monthlyRevenue / 30.0;
-        double revenueDiff = Math.abs(dailyRevenue - yesterdayRevenue);
+        double averageRevenuePerDay = Math.round(monthlyRevenue / 30.0 * 100.0) / 100.0;
+        double revenueDiff = Math.round(Math.abs(dailyRevenue - yesterdayRevenue) * 100.0) / 100.0;
 
 
 
@@ -59,6 +59,11 @@ public class AdminDashboardServlet extends HttpServlet {
         request.setAttribute("averageRevenuePerDay", averageRevenuePerDay);
 
 
+        // Data for js chart in admin dashboard
+        ArrayList<String> revenueDates = bookingDAO.getLast7DaysRevenueDates();
+        ArrayList<Double> revenueAmounts = bookingDAO.getLast7DaysRevenueAmounts();
+        request.setAttribute("revenueDates", revenueDates);
+        request.setAttribute("revenueAmounts", revenueAmounts);
 
         // Get pending users
         ArrayList<User> pendingUsers = userDAO.getPendingUsers();

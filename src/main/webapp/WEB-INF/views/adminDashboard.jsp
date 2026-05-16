@@ -2,9 +2,9 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!doctype html>
 <html lang="en">
-  <jsp:include page="/WEB-INF/templates/head.jsp">
-    <jsp:param name="title" value="WHEELS Admin Dashboard" />
-  </jsp:include>
+<jsp:include page="/WEB-INF/templates/head.jsp">
+  <jsp:param name="title" value="WHEELS Admin Dashboard" />
+</jsp:include>
 <body>
 
 <jsp:include page="/WEB-INF/templates/sidebar.jsp">
@@ -80,6 +80,17 @@
 
     </div>
 
+    <%-- ── Chart ── --%>
+    <div class="dashboard-card">
+      <div class="card-header">
+        <h3 class="card-title">Revenue This Week</h3>
+      </div>
+      <div style="height: 300px;">
+        <canvas id="revenueChart"></canvas>
+      </div>
+    </div>
+
+
     <div class="bottom-row bottom-row-single">
       <div class="dashboard-card">
         <div class="card-header">
@@ -125,5 +136,50 @@
 </main>
 <script src="${pageContext.request.contextPath}/static/js/profile-toggle.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/nav-toggle.js"></script>
+
+<%-- ── Chart.js ── --%>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const revenueCtx = document.getElementById("revenueChart");
+
+  const revenueDates = [
+    <c:forEach var="d" items="${revenueDates}" varStatus="s">
+    "${d}"${!s.last ? ',' : ''}
+    </c:forEach>
+  ];
+
+  const revenueAmounts = [
+    <c:forEach var="a" items="${revenueAmounts}" varStatus="s">
+    ${a}${!s.last ? ',' : ''}
+    </c:forEach>
+  ];
+
+  new Chart(revenueCtx, {
+    type: "line",
+    data: {
+      labels: revenueDates,
+      datasets: [{
+        label: "Revenue (NPR)",
+        data: revenueAmounts,
+        backgroundColor: "rgba(34, 197, 94, 0.1)",
+        borderColor: "rgba(34, 197, 94, 1)",
+        borderWidth: 2,
+        pointRadius: 4,
+        fill: true,
+        tension: 0.4
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: "top" }
+      },
+      scales: {
+        y: { beginAtZero: true }
+      }
+    }
+  });
+</script>
 </body>
 </html>

@@ -41,7 +41,9 @@ public class AuthenticationFilter implements Filter {
                                 "/vehicles".equals(path) ||
                                 isAuthPage;
 
-        boolean isAdminPage = "/adminDashboard".equals(path);
+        boolean isAdminPage = "/adminDashboard".equals(path) ||
+                "/adminBooking".equals(path)   ||
+                "/adminReport".equals(path);
 
 
 
@@ -59,7 +61,7 @@ public class AuthenticationFilter implements Filter {
             return;
         }
 
-        if (isAdmin && isPublicPage) {
+        if (isAdmin && isPublicPage && !"/vehicles".equals(path)) {
             res.sendRedirect(contextPath + "/adminDashboard");
             return;
         }

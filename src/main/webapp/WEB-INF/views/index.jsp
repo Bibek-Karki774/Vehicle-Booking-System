@@ -25,7 +25,7 @@
                         <a href="${pageContext.request.contextPath}/vehicles" class="btn-primary">
                             Book a Vehicle
                         </a>
-                        <a href="${pageContext.request.contextPath}/bookings" class="btn-secondary">
+                        <a href="${pageContext.request.contextPath}/my-bookings" class="btn-secondary">
                             My Bookings
                         </a>
                     </div>

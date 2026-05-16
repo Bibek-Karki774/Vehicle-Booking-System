@@ -33,6 +33,10 @@ body {
   min-height: 100vh;
 }
 
+.hamburger {
+  display: none;
+}
+
 ul {
   list-style: none;
 }
@@ -604,50 +608,7 @@ button {
   }
 }
 
-/* Extra small devices (max-width: 480px) */
-@media (max-width: 480px) {
-  .dashboard-overview {
-    padding: 16px 14px;
-  }
-  .stat-card {
-    padding: 16px;
-  }
-  .stat-value {
-    font-size: 28px;
-  }
-  .stat-trend {
-    font-size: 10px;
-  }
-  .top-navbar {
-    padding: 10px 14px;
-  }
-  .mobile-menu-btn {
-    width: 36px;
-    height: 36px;
-  }
-  .signout-btn {
-    padding: 6px 10px;
-  }
-  .admin-avatar {
-    width: 30px;
-    height: 30px;
-  }
-  .approval-item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .action-btns {
-    justify-content: flex-start;
-    width: auto;
-  }
-  .btn-approve, .btn-reject {
-    font-size: 12px;
-    padding: 6px 14px;
-  }
-  .pill {
-    font-size: 9px;
-    padding: 2px 8px;
-  }
-}
+
+
 
 
