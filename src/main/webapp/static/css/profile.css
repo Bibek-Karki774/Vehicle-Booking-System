@@ -160,6 +160,31 @@
     color: #ffffff;
 }
 
+/* Password change section */
+/* ── ADDED ── */
+.profile-change-password {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px 10px 6px;
+    padding: 9px;
+    background: #fef3c7;
+    color: #d97706;
+    border-radius: 6px;
+    gap: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.profile-change-password:hover {
+    background: #d97706;
+    color: #ffffff;
+}
+
+
+
 
 /* Responsive Design */
 @media (max-width: 768px) {

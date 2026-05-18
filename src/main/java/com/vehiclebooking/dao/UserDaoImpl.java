@@ -349,6 +349,22 @@ public class UserDaoImpl implements UserDao {
         return null;
     }
 
+    public boolean updatePassword(int userId, String newPassword) {
+        Connection conn = null;
+        try {
+            conn = DatabaseConnection.getConnection();
+            String sql = "UPDATE users SET password = ? WHERE user_id = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, newPassword);
+            statement.setInt(2, userId);
+            return statement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println("Error updating password: " + e.getMessage());
+            return false;
+        } finally {
+            DatabaseConnection.closeConnection(conn);
+        }
+    }
 
 }
 

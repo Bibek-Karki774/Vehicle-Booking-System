@@ -33,6 +33,9 @@
             <a class="profile-edit" href="${pageContext.request.contextPath}/editProfile">
                 <i class="fas fa-pen"></i> Edit Profile
             </a>
+            <a class="profile-change-password" href="${pageContext.request.contextPath}/changePassword">
+                <i class="fas fa-key"></i> Change Password
+            </a>
             <a href="${pageContext.request.contextPath}/logout" class="profile-logout">
                 <i class="fas fa-sign-out-alt"></i> Logout
             </a>

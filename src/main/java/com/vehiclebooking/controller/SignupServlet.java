@@ -45,7 +45,9 @@ public class SignupServlet extends HttpServlet {
                 ValidationUtil.isNullOrEmpty(email) ||
                 ValidationUtil.isNullOrEmpty(phone) ||
                 ValidationUtil.isNullOrEmpty(address) ||
-                ValidationUtil.isNullOrEmpty(drivingLicense)){
+                ValidationUtil.isNullOrEmpty(drivingLicense) ||
+                ValidationUtil.isNullOrEmpty(password) ||
+                ValidationUtil.isNullOrEmpty(confirmPassword)){
 
             errors.append("All fields are required. ");
             }
@@ -58,7 +60,7 @@ public class SignupServlet extends HttpServlet {
             errors.append("Invalid email format. ");
         }
         if (!ValidationUtil.isValidPassword(password)) {
-            errors.append("Password must be 8+ characters with uppercase, number, and symbol. ");
+            errors.append("Password must be 8+ characters with uppercase, number, and symbol (@$!%*?&). ");
         }
         if (!ValidationUtil.doPasswordsMatch(password, confirmPassword)) {
             errors.append("Passwords do not match. ");

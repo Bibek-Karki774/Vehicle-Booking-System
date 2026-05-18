@@ -2,6 +2,15 @@ package com.vehiclebooking.entity;
 
 import java.sql.Timestamp;
 
+/**
+ * This class represents a booking record in the vehicle booking system.
+ * <p>
+ * It stores all booking-related information such as user ID,
+ * vehicle ID, booking dates, total amount etc.
+ * This class contain some getter and setter method such as
+ * getVehilceId(), setTotalAmount() etc. to retrieve and update info.
+ * </p>
+ */
 public class Booking {
     private int bookingId;
     private int userId;

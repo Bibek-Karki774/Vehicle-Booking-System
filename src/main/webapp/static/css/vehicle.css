@@ -560,6 +560,45 @@ button {
   font-size: 14px;
 }
 
+/* Filter vehicle buttons*/
+.type-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 20px;
+}
+
+.type-pill {
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1px solid #cbd5e1;   /* clearer border */
+  background: #f8fafc;
+  color: #6b7280;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.type-pill:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;   /* stronger visible hover border */
+  color: #4b5563;
+}
+
+.type-pill.active {
+  background: #e2e8f0;
+  border-color: #64748b;   /* clearly visible selected border */
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.type-pill:active {
+  transform: scale(0.97);
+}
+
 
 
 

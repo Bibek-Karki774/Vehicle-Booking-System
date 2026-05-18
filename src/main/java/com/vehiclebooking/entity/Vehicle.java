@@ -2,6 +2,13 @@ package com.vehiclebooking.entity;
 
 import java.sql.Timestamp;
 
+/**
+ * This class represents a vehicle in the vehicle booking system.
+ * This class stores all vehicle-related information such as name, type,
+ * seating capacity, descriptions etc.
+ * It provides getter and setter methods to access and update vehicle details
+ * such as name, type, seats, description, and price.
+ */
 public class Vehicle {
 
     private int vehicleId;

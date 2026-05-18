@@ -24,17 +24,12 @@
     <form action="${pageContext.request.contextPath}/login" method="POST" class="auth-form">
       <div class="form-group">
 
+        <c:if test="${param.passwordChanged == 'true'}">
+          <p class="success">Password changed successfully. Please login again.</p>
+        </c:if>
 
         <c:if test="${not empty error}">
-          <p class="error">
-          <c:out value="${error}" />
-          <c:if test="${rejected}">
-            <form action="${pageContext.request.contextPath}/reapply" method="POST" style="display:inline;">
-              <input type="hidden" name="username" value="${rejectedUsername}" />
-              <button type="submit" class="reapply-link">Re-apply</button>
-            </form>
-          </c:if>
-          </p>
+          <p class="error"><c:out value="${error}" /></p>
         </c:if>
 
         <label>Username</label>

@@ -2,6 +2,14 @@ package com.vehiclebooking.entity;
 
 import java.sql.Timestamp;
 
+/**
+ * This class represents a user in the vehicle booking system.
+ * <p>
+ * It stores user information such as
+ * login credentials, role, status etc.
+ * This also class contains getter and setters methods to retrieve and update info.
+ * </p>
+ */
 public class User {
     // Private attributes of users
     private int userId;

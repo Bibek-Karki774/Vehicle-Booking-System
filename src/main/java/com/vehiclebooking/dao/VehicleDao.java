@@ -15,5 +15,10 @@ public interface VehicleDao {
     boolean deleteVehicle(int vehicleId);
 
     Vehicle getVehicleById(int vehicleId);
+
     ArrayList<Vehicle> searchVehicles(String keyword);
+
+    ArrayList<String> getDistinctVehicleTypes();
+
+    ArrayList<Vehicle> filterByType(String type);
 }

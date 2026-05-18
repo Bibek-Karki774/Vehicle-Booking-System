@@ -75,6 +75,8 @@
                            required />
                 </div>
 
+
+
                 <div class="form-actions">
                     <a href="${pageContext.request.contextPath}/adminDashboard" class="profile-form-cancel">Cancel</a>
                     <button type="submit" class="profile-form-submit">Save Changes</button>
@@ -89,5 +91,7 @@
 
 <script src="${pageContext.request.contextPath}/static/js/profile-toggle.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/nav-toggle.js"></script>
+
+
 </body>
 </html>

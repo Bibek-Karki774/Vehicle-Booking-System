@@ -2,6 +2,12 @@ package com.vehiclebooking.entity;
 
 import java.sql.Timestamp;
 
+/**
+ * This class represents wishlist in the vehicle booking system.
+ * This class stores information about vehicles saved by users for future reference.
+ * It links a user with a vehicle they are interested in and keeps track of
+ * when the item was added to the wishlist.
+ */
 public class Wishlist {
 
     private int wishlistId;

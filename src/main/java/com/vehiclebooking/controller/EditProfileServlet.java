@@ -51,7 +51,6 @@ public class EditProfileServlet extends HttpServlet {
         String address    = request.getParameter("address");
 
 
-
         StringBuilder errors = new StringBuilder();
 
         // Check if user's previous data and new data are same
@@ -86,6 +85,7 @@ public class EditProfileServlet extends HttpServlet {
 
 
 
+
         if (!errors.isEmpty()) {
             request.setAttribute("error", errors.toString().trim());
             request.getRequestDispatcher("/WEB-INF/views/editProfile.jsp")
@@ -101,6 +101,7 @@ public class EditProfileServlet extends HttpServlet {
 
         // update in database
         boolean updated = userDao.updateUser(user);
+
 
         if (updated) {
             //Update session

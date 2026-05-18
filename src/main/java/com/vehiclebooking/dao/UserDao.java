@@ -16,4 +16,5 @@ public interface UserDao {
     ArrayList<User> searchUsers(String keyword);
     boolean deleteUser(int userId);
     int getNewUsersThisMonth();
+    boolean updatePassword(int userId, String newPassword);
 }

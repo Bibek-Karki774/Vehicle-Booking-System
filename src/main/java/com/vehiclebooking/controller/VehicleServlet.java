@@ -30,6 +30,7 @@ public class VehicleServlet extends HttpServlet {
 
         String action = request.getParameter("action");
 
+
         if ("add".equals(action)) {
             if (!"Admin".equals(user.getRole())) {
                 response.sendRedirect(request.getContextPath() + "/vehicles");
@@ -52,18 +53,23 @@ public class VehicleServlet extends HttpServlet {
         else {
             // Search or show all
             String keyword = request.getParameter("search");
+            String type = request.getParameter("type");
 
             ArrayList<Vehicle> vehicles;
 
             if (keyword != null && !keyword.trim().isEmpty()) {
                 vehicles = vehicleDAO.searchVehicles(keyword.trim());
                 request.setAttribute("keyword", keyword.trim());
+            } else if (type != null && !type.trim().isEmpty()) {
+                vehicles = vehicleDAO.filterByType(type.trim());
             } else {
                 vehicles = vehicleDAO.getAllVehicles();
             }
 
             request.setAttribute("vehicles", vehicles);
             request.setAttribute("totalVehicles", vehicles.size());
+            request.setAttribute("vehicleTypes",vehicleDAO.getDistinctVehicleTypes());
+            request.setAttribute("selectedType", type);
 
 
 

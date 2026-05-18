@@ -74,11 +74,24 @@
             </c:if>
         </div>
 
+        <%-- filter according to vehicle type --%>
+        <c:if test="${empty keyword}">
+            <div class="type-filter-bar">
+                <a href="${pageContext.request.contextPath}/vehicles"
+                   class="type-pill ${empty selectedType ? 'active' : ''}">All</a>
+                <c:forEach var="t" items="${vehicleTypes}">
+                    <a href="${pageContext.request.contextPath}/vehicles?type=${t}"
+                       class="type-pill ${selectedType == t ? 'active' : ''}">
+                        <c:out value="${t}"/>
+                    </a>
+                </c:forEach>
+            </div>
+        </c:if>
+
         <!-- Vehicles Grid -->
         <c:choose>
             <c:when test="${empty vehicles}">
                 <div style="text-align:center; padding:80px 20px; color:#999;">
-                    <i class="fas fa-truck" style="font-size:3rem; margin-bottom:12px; display:block;"></i>
                     <p>No vehicles available.</p>
                 </div>
             </c:when>
