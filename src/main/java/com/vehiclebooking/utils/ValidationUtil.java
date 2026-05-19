@@ -12,8 +12,6 @@ import java.util.regex.Pattern;
 
 public class ValidationUtil {
 
-
-
     /**
      * This isNullOrEmpty() method checks if a value is null or empty.
      * @param value is the string to check
@@ -24,7 +22,6 @@ public class ValidationUtil {
     }
 
 
-
     /**
      * It checks if a string starts with a letter and is alphanumeric.
      * @param value the string to check
@@ -33,8 +30,6 @@ public class ValidationUtil {
     public static boolean isAlphanumericStartingWithLetter(String value) {
         return value != null && value.matches("^[a-zA-Z][a-zA-Z0-9]*$");
     }
-
-
 
 
     /**
@@ -59,8 +54,6 @@ public class ValidationUtil {
         String passwordRegex = "^(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
         return password != null && password.matches(passwordRegex);
     }
-
-
 
 
     /**

@@ -74,7 +74,8 @@ public class UserDaoImpl implements UserDao {
                         rs.getString("role"),
                         rs.getTimestamp("created_at"),
                         rs.getTimestamp("updated_at"),
-                        rs.getString("status")
+                        rs.getString("status"),
+                        rs.getString("image")
                 );
             }
         } catch (SQLException e){
@@ -106,7 +107,8 @@ public class UserDaoImpl implements UserDao {
                         rs.getString("role"),
                         rs.getTimestamp("created_at"),
                         rs.getTimestamp("updated_at"),
-                        rs.getString("status")
+                        rs.getString("status"),
+                        rs.getString("image")
                 );
             }
         } catch (SQLException e){
@@ -124,7 +126,7 @@ public class UserDaoImpl implements UserDao {
         try{
             conn = DatabaseConnection.getConnection();
             String sql = "SELECT user_id, username, password, phone, address, driving_license, " +
-                    "email, role, created_at, updated_at, status FROM users " +
+                    "email, role, created_at, updated_at, status, image FROM users " +
                     "WHERE username LIKE ? OR email LIKE ? " +
                     "ORDER BY created_at DESC";
 
@@ -146,7 +148,8 @@ public class UserDaoImpl implements UserDao {
                         rs.getString("role"),
                         rs.getTimestamp("created_at"),
                         rs.getTimestamp("updated_at"),
-                        rs.getString("status")
+                        rs.getString("status"),
+                        rs.getString("image")
                 );
                 users.add(user);
             }
@@ -202,7 +205,8 @@ public class UserDaoImpl implements UserDao {
                         rs.getString("role"),
                         rs.getTimestamp("created_at"),
                         rs.getTimestamp("updated_at"),
-                        rs.getString("status")
+                        rs.getString("status"),
+                        rs.getString("image")
                 );
                 pendingUsers.add(user);
             }
@@ -238,7 +242,8 @@ public class UserDaoImpl implements UserDao {
                         rs.getString("role"),
                         rs.getTimestamp("created_at"),
                         rs.getTimestamp("updated_at"),
-                        rs.getString("status")
+                        rs.getString("status"),
+                        rs.getString("image")
                 );
             users.add(user);
 
@@ -294,20 +299,19 @@ public class UserDaoImpl implements UserDao {
 
     public boolean updateUser(User user) {
         Connection conn = null;
-        System.out.println("User ID: " + user.getUserId());
         try{
             conn = DatabaseConnection.getConnection();
-            String sql = "UPDATE users SET username = ?, email= ?,  phone = ?, address=? WHERE user_id = ?";
+            String sql = "UPDATE users SET username = ?, email= ?,  phone = ?, address=?, image=? WHERE user_id = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
 
             statement.setString(1, user.getUserName());
             statement.setString(2, user.getEmail());
             statement.setString(3, user.getPhone());
             statement.setString(4, user.getAddress());
-            statement.setInt(5, user.getUserId());
+            statement.setString(5, user.getImage());
+            statement.setInt(6, user.getUserId());
 
             int rowsAffected = statement.executeUpdate();
-            System.out.println("Rows affected"+ rowsAffected);
             return rowsAffected > 0;
 
         } catch (SQLException e) {
@@ -338,7 +342,8 @@ public class UserDaoImpl implements UserDao {
                         rs.getString("role"),
                         rs.getTimestamp("created_at"),
                         rs.getTimestamp("updated_at"),
-                        rs.getString("status")
+                        rs.getString("status"),
+                        rs.getString("image")
                 );
             }
         } catch (SQLException e) {

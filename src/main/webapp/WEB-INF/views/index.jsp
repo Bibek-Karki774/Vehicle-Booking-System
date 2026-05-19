@@ -14,7 +14,7 @@
 <section class="hero">
     <c:choose>
 
-        <%-- MEMBER HERO --%>
+        <%-- Member hero section --%>
         <c:when test="${not empty sessionScope.user}">
             <section class="hero" style="min-height: 150px; padding: 20px 0;">
                 <div class="hero-box">
@@ -33,7 +33,7 @@
             </section>
         </c:when>
 
-        <%-- VISITOR HERO --%>
+        <%-- Visitor hero section --%>
         <c:otherwise>
             <section class="hero">
                 <div class="hero-box">
@@ -58,13 +58,13 @@
 <main>
   <section class="cars">
     <div class="title">
+        <!-- Display text according to user -->
         <c:choose>
 
             <c:when test="${not empty sessionScope.user}">
                 <h2>Recommended Vehicles</h2>
                 <p>Quick access to vehicles based on your activity</p>
             </c:when>
-
 
             <c:otherwise>
                 <h2>Featured Vehicles</h2>
@@ -75,18 +75,25 @@
 
     </div>
 
+      <!-- Display recommended vehicles -->
       <div class="vehicles-grid index-grid">
           <c:forEach var="v" items="${vehicles}" varStatus="status">
               <c:if test="${status.index < 6}">
 
                   <div class="vehicle-card">
 
-                      <!-- Image -->
+                      <!-- Display image, else show default image  -->
                       <div class="vehicle-img">
-                          <img src="" alt="${v.vehicleName}"/>
+                          <c:choose>
+                              <c:when test="${not empty v.image}">
+                                  <img src="${pageContext.request.contextPath}/${v.image}" alt="${v.vehicleName}"/>
+                              </c:when>
+                              <c:otherwise>
+                                  <img src="${pageContext.request.contextPath}/static/images/Default_Vehicle.jpg" alt="${v.vehicleName}"/>
+                              </c:otherwise>
+                          </c:choose>
                       </div>
 
-                      <!-- Header -->
                       <div class="vehicle-card-header">
                           <div class="vehicle-title-row">
                               <h3 class="vehicle-name">${v.vehicleName}</h3>
@@ -95,7 +102,6 @@
                           <span class="vehicle-desc">${v.vehicleDescription}</span>
                       </div>
 
-                      <!-- Meta -->
                       <div class="vehicle-meta">
                           <div class="vehicle-plate">
                               <i class="fa-solid fa-users"></i> ${v.totalSeats} Seats
@@ -109,7 +115,7 @@
                           <%-- Actions --%>
                       <div class="vehicle-actions">
 
-                              <%-- Member --%>
+                              <%-- Member actions for booking --%>
                           <c:if test="${sessionScope.user.role == 'Member'}">
                               <a href="${pageContext.request.contextPath}/booking?vehicleId=${v.vehicleId}"
                                  class="book-btn" >
@@ -117,9 +123,7 @@
                               </a>
                           </c:if>
 
-
-
-                              <%-- Visitor --%>
+                              <%-- Visitor redirects to login page --%>
                           <c:if test="${empty sessionScope.user}">
                               <a href="${pageContext.request.contextPath}/login"
                                  class="book-btn">

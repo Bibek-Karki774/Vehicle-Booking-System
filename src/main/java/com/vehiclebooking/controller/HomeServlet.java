@@ -20,6 +20,7 @@ public class HomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        // Fetch vehicles and display in home page
         ArrayList<Vehicle> vehicles = vehicleDao.getAllVehicles();
         request.setAttribute("vehicles", vehicles);
             request.getRequestDispatcher("/WEB-INF/views/index.jsp")

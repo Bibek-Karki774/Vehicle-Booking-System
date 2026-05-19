@@ -236,8 +236,6 @@ button {
   border-color: var(--red);
 }
 
-
-
 .dashboard-overview {
   padding: 28px 32px;
   display: flex;
@@ -501,9 +499,8 @@ button {
 }
 
 
-/* Main Mobile Breakpoint (max-width: 768px) */
+/* Responsive Design */
 @media (max-width: 768px) {
-  /* Sidebar transforms into slide-out menu (hidden by default) */
   .hamburger {
     display: block;
     color: white;
@@ -532,21 +529,20 @@ button {
     box-shadow: 4px 0 20px rgba(0, 0, 0, 0.25);
   }
 
-  /* Main content takes full width */
   .main-content {
     margin-left: 0 !important;
     width: 100%;
   }
 
-  /* Top navbar: show hamburger menu button */
+  /* show hamburger menu button */
   .top-navbar {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* KEY */
+    justify-content: space-between;
   }
 
   .admin-details {
-    display: none; /* hide name/email on very narrow? optional */
+    display: none;
   }
   .admin-name, .admin-email {
     display: none;
@@ -558,15 +554,13 @@ button {
     padding: 8px 12px;
   }
 
-  /* Dashboard overview spacing */
   .dashboard-overview {
     padding: 20px 16px;
     gap: 20px;
   }
 
-  /* Adjust stat cards */
   .stat-cards-row {
-    grid-template-columns: 1fr;  /* Single column on mobile */
+    grid-template-columns: 1fr;
     gap: 14px;
   }
 

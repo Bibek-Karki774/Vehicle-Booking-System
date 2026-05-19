@@ -20,6 +20,7 @@ public class User {
     private String drivingLicense;
     private String email;
     private String role;
+    private String image;
     private Timestamp createdAt;
     private Timestamp updatedAt;
     private String status;
@@ -40,7 +41,7 @@ public class User {
     // Constructor for reading database
     public User(int userId, String userName, String password, String phone,
                 String address, String drivingLicense, String email, String role,
-                Timestamp createdAt, Timestamp updatedAt, String status) {
+                Timestamp createdAt, Timestamp updatedAt, String status, String image) {
 
         this.userId = userId;
         this.userName = userName;
@@ -53,6 +54,7 @@ public class User {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.status= status;
+        this.image = image;
 
     }
 
@@ -108,6 +110,10 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getImage() { return image; }
+
+    public void setImage(String image) { this.image = image; }
 
     @Override
     public String toString(){

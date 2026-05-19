@@ -21,9 +21,7 @@
   --font-body: "DM Sans", sans-serif;
 }
 
-/* ================================================
-   2. RESET & BASE
-================================================ */
+
 * {
   margin: 0;
   padding: 0;
@@ -72,19 +70,11 @@ button {
   min-height: 100vh;
 }
 
-
-
-
-/* ================================================
-   5. PAGE LAYOUT
-================================================ */
 #page-users {
   padding: 28px 32px;
 }
 
-/* ================================================
-   6. SEARCH BAR
-================================================ */
+/* Search bar */
 .users-search-bar {
   display: flex;
   align-items: center;
@@ -131,10 +121,6 @@ button {
 }
 
 
-
-/* ================================================
-   7. TABLE
-================================================ */
 .table-wrapper {
   overflow-x: auto;
 }
@@ -206,9 +192,7 @@ button {
   white-space: nowrap;
 }
 
-/* ================================================
-   8. BADGES & PILLS
-================================================ */
+/* Badge CSS */
 .role-badge {
   font-size: 10px;
   font-weight: 700;
@@ -269,9 +253,8 @@ button {
   background: #ef4444;
 }
 
-/* ================================================
-   9. ACTION BUTTONS
-================================================ */
+
+/* Action Buttons */
 .action-btns {
   display: flex;
   gap: 6px;
@@ -299,12 +282,9 @@ button {
   transform: scale(0.97);
 }
 
-/* ================================================
-   10. RESPONSIVE
-================================================ */
-@media (max-width: 768px) {
 
-  /* Hide table headers */
+/* Responsive Design*/
+@media (max-width: 768px) {
   .users-table thead {
     display: none;
   }
@@ -320,7 +300,6 @@ button {
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   }
 
-  /* Each cell becomes a row */
   .users-table td {
     display: flex;
     justify-content: space-between;
@@ -343,6 +322,7 @@ button {
   .users-table td:nth-child(4)::before { content: "Updated"; }
   .users-table td:nth-child(5)::before { content: "Status"; }
   .users-table td:nth-child(6)::before { content: "Actions"; }
+
 
   .users-table td::before {
     font-weight: 600;

@@ -35,12 +35,14 @@ public class ChangePasswordServlet extends HttpServlet {
             return;
         }
 
+        // Get current password from the form input
         String currentPassword = request.getParameter("currentPassword");
         String newPassword     = request.getParameter("newPassword");
         String confirmPassword = request.getParameter("confirmPassword");
 
         StringBuilder errors = new StringBuilder();
 
+        // Validate the input fields
         if (ValidationUtil.isNullOrEmpty(currentPassword) ||
                 ValidationUtil.isNullOrEmpty(newPassword) ||
                 ValidationUtil.isNullOrEmpty(confirmPassword)) {

@@ -38,7 +38,6 @@ body {
   flex-direction: column;
 }
 
-
 header {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -137,9 +136,6 @@ header {
 
 .header-avatar:hover { border-color: var(--accent); }
 
-/* 
-   MAIN WRAPPER
- */
 .page-wrapper {
   margin-top: var(--header-h);
   flex: 1;
@@ -150,9 +146,6 @@ header {
   margin-right: auto;
 }
 
-/* 
-   PAGE HEADER
-*/
 .page-header { 
   display: flex;
   align-items: flex-start;
@@ -173,9 +166,6 @@ header {
   margin-top: 3px;
 }
 
-/* 
-   SUMMARY BAR
- */
 .summary-bar {
   display: flex;
   align-items: center;
@@ -220,9 +210,6 @@ header {
   background: var(--red-soft);
 }
 
-/* 
-   SECTION HEADER
- */
 .section-header {
   margin-bottom: 12px;
   margin-top: 28px;
@@ -244,9 +231,6 @@ header {
   font-size: 14px;
 }
 
-/* 
-   WISHLIST CARD
- */
 .wishlist-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -286,7 +270,6 @@ header {
   opacity: 0.6;
 }
 
-/* Thumbnail  */
 .vehicle-thumb {
   width: 88px;
   height: 66px;
@@ -307,7 +290,7 @@ header {
   border-radius: inherit;
 }
 
-/*  Info  */
+
 .vehicle-info {
   flex: 1;
   min-width: 0;
@@ -359,7 +342,6 @@ header {
   line-height: 1.5;
 }
 
-/*  Availability  */
 .availability {
   font-size: 11px;
   font-weight: 600;
@@ -387,7 +369,6 @@ header {
   background: currentColor;
 }
 
-/*  Price  */
 .price-block {
   text-align: right;
   flex-shrink: 0;
@@ -411,7 +392,6 @@ header {
   margin-top: 2px;
 }
 
-/*  Actions  */
 .card-actions {
   display: flex;
   flex-direction: column;
@@ -479,12 +459,8 @@ header {
   color: #fff;
 }
 
-/* =========================
-   MOBILE RESPONSIVE
-   ========================= */
+/* Responsive */
 @media (max-width: 768px) {
-
-  /* HEADER */
   header {
     padding: 0 16px;
   }
@@ -497,12 +473,10 @@ header {
     width: 170px;
   }
 
-  /* PAGE WRAPPER */
   .page-wrapper {
     padding: 20px 16px;
   }
 
-  /* PAGE HEADER */
   .page-header {
     flex-direction: column;
     gap: 10px;
@@ -512,14 +486,12 @@ header {
     font-size: 20px;
   }
 
-  /* SUMMARY BAR */
   .summary-bar {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
   }
 
-  /* WISHLIST CARD */
   .wishlist-card {
     flex-direction: column;
     align-items: flex-start;
@@ -535,7 +507,7 @@ header {
     text-align: left;
   }
 
-  /* ACTION BUTTONS */
+  /* Action Buttons */
   .card-actions {
     width: 100%;
     justify-content: flex-start;
@@ -547,6 +519,5 @@ header {
     width: 100%;
     text-align: center;
   }
-
 
 }

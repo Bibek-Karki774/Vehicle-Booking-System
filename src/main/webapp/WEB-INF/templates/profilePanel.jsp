@@ -1,12 +1,34 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <div class="profile-wrapper">
     <div class="profile-trigger" id="profileIcon">
-        <i class="fas fa-user-circle profile-trigger"></i>
+
+        <c:choose>
+            <c:when test="${not empty sessionScope.user.image}">
+                <img src="${pageContext.request.contextPath}/${sessionScope.user.image}"
+                     alt="Profile Picture"/>
+            </c:when>
+            <c:otherwise>
+                <img src="${pageContext.request.contextPath}/static/images/Default_Profile.jpg"
+                     alt="Default Profile"/>
+            </c:otherwise>
+        </c:choose>
+
     </div>
     <div class="profile-dropdown" id="profilePanel">
         <div class="profile-container">
             <div class="profile-header">
                 <div class="profile-avatar">
-                    <i class="fas fa-user"></i>
+                    <c:choose>
+                        <c:when test="${not empty sessionScope.user.image}">
+                            <img src="${pageContext.request.contextPath}/${sessionScope.user.image}"
+                                 alt="Profile Picture"/>
+                        </c:when>
+                        <c:otherwise>
+                            <img src="${pageContext.request.contextPath}/static/images/Default_Profile.jpg"
+                                 alt="Default Profile"/>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
                 <div class="profile-title">${sessionScope.user.userName}</div>
             </div>

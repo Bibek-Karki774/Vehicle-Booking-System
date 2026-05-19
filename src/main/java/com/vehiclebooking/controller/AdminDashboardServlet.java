@@ -25,14 +25,11 @@ public class AdminDashboardServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-
-        // Session check
+        // Check session
         User user = (User) SessionUtil.getAttribute(request, "user");
-
 
         // Get stats for admin dashboard
         ArrayList<User> users = userDAO.getAllUsers();
-
         ArrayList<Vehicle> vehicles = vehicleDAO.getAllVehicles();
         ArrayList<Booking> bookings = bookingDAO.getAllBookings();
         double dailyRevenue      = Math.round(bookingDAO.getDailyRevenue()    * 100.0) / 100.0;
@@ -45,7 +42,7 @@ public class AdminDashboardServlet extends HttpServlet {
         double revenueDiff = Math.round(Math.abs(dailyRevenue - yesterdayRevenue) * 100.0) / 100.0;
 
 
-
+        // Set the calculated values in request attribute
         request.setAttribute("totalUsers", users.size());
         request.setAttribute("newUsersThisMonth", newUsersThisMonth);
         request.setAttribute("bookedToday", bookedToday);
@@ -80,6 +77,7 @@ public class AdminDashboardServlet extends HttpServlet {
         String action = request.getParameter("action");
         int userId = Integer.parseInt(request.getParameter("userId"));
 
+        // Approve or reject user based on action
         if ("approve".equals(action)) {
             userDAO.approveUser(userId);
         } else if ("reject".equals(action)) {

@@ -15,6 +15,7 @@ public class AboutContactServlet extends HttpServlet {
 
         String path = request.getServletPath();
 
+        // Send user to about us or contact page
         if (path.equals("/about")) {
             request.getRequestDispatcher("/WEB-INF/views/aboutus.jsp").forward(request, response);
         } else if (path.equals("/contact")) {

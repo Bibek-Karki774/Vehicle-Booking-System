@@ -21,6 +21,7 @@ public class AuthenticationFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
 
+        // Get actual page path from the URL
         String uri = req.getRequestURI();
         String contextPath = req.getContextPath();
         String path  = uri.substring(contextPath.length());
@@ -30,6 +31,9 @@ public class AuthenticationFilter implements Filter {
             return;
         }
 
+        /*Get the user from session and checks if the user is
+         logged in, also checks if the user is an admin,
+         and checks whether the current page is login or signup.*/
         User user = (User) SessionUtil.getAttribute(req, "user");
         boolean isLoggedIn = user != null;
         boolean isAdmin = isLoggedIn && "Admin".equals(user.getRole());
@@ -43,7 +47,8 @@ public class AuthenticationFilter implements Filter {
 
         boolean isAdminPage = "/adminDashboard".equals(path) ||
                 "/adminBooking".equals(path)   ||
-                "/adminReport".equals(path);
+                "/adminReport".equals(path) ||
+                "/admin-user".equals(path);
 
 
 
@@ -80,6 +85,8 @@ public class AuthenticationFilter implements Filter {
             }
             return;
         }
+
+        // Pass the request to next page
         chain.doFilter(request, response);
     }
 }

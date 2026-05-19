@@ -18,6 +18,7 @@
 
     <div id="page-bookings">
 
+        <!-- Booking stats section -->
         <div class="booking-stats">
             <div class="stat-box">
                 <div class="stat-box-left">
@@ -43,6 +44,7 @@
         </div>
 
         <form method="get" action="${pageContext.request.contextPath}/adminBooking">
+            <!-- Search bar for searching bookings -->
             <div class="users-search-bar">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input type="text"
@@ -55,6 +57,8 @@
                     </a>
                 </c:if>
             </div>
+
+            <!-- Shows the result of searching -->
             <c:if test="${not empty search}">
                 <p class="search-hint">
                     Results for "<strong><c:out value="${search}"/></strong>" —
@@ -63,6 +67,7 @@
             </c:if>
         </form>
 
+        <!-- Show total bookings -->
         <div class="booking-card">
             <div class="booking-card-header">
                 <span class="booking-card-title">
@@ -70,6 +75,8 @@
                 </span>
                 <span class="booking-count-pill">${totalBookings} total</span>
             </div>
+
+            <!-- Display all booking in table format -->
             <div class="table-wrapper">
                 <table class="users-table">
                     <thead>

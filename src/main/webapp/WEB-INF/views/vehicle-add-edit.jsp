@@ -8,26 +8,20 @@
 </jsp:include>
 <body>
 
-<!-- Sidebar -->
 <jsp:include page="/WEB-INF/templates/sidebar.jsp" />
 
-<!-- Main Content -->
 <main class="main-content">
-
-    <!-- Top Navbar -->
     <jsp:include page="/WEB-INF/templates/header.jsp" />
 
     <!-- Form Section -->
     <section class="form-section">
 
         <div class="form-card">
-
-            <!-- Header -->
             <div class="form-header">
                 <h2>${vehicle == null ? 'Add Vehicle' : 'Edit Vehicle'}</h2>
             </div>
 
-            <form method="post" action="${pageContext.request.contextPath}/vehicles">
+            <form method="post" action="${pageContext.request.contextPath}/vehicles" enctype="multipart/form-data">
 
                 <input type="hidden" name="action" value="${vehicle == null ? 'add' : 'edit'}"/>
 
@@ -35,18 +29,28 @@
                     <input type="hidden" name="vehicleId" value="${vehicle.vehicleId}"/>
                 </c:if>
 
-                <!-- IMAGE -->
+                <!-- Show Images -->
                 <div class="image-box">
-                    <img src="${pageContext.request.contextPath}/static/images/Tyota_Corolla.png"
-                         alt="Vehicle Image"/>
+                    <c:choose>
+                        <c:when test="${not empty vehicle.image}">
+                            <img src="${pageContext.request.contextPath}/${vehicle.image}"
+                                 alt="Vehicle Image"
+                                 style="width:100%; max-height:200px; object-fit:cover;"/>
+                        </c:when>
+                        <c:otherwise>
+                            <img src="${pageContext.request.contextPath}/static/images/Default_Vehicle.jpg"
+                                 alt="Vehicle Image"
+                                 style="width:100%; max-height:200px; object-fit:cover;"/>
+                        </c:otherwise>
+                    </c:choose>
 
                     <label class="upload-btn">
                         <i class="fas fa-upload"></i> Choose Image
-                        <input type="file" name="image"/>
+                        <input type="file" name="image" accept=".jpg,.jpeg,.png" />
                     </label>
                 </div>
 
-                <!-- FORM INPUTS -->
+                <!-- Form inputs -->
                 <div class="form-row">
 
                     <div class="form-group">
@@ -89,7 +93,7 @@
                               placeholder="Description">${vehicle != null ? vehicle.vehicleDescription : ''}</textarea>
                 </div>
 
-                <!-- ACTION BUTTONS -->
+                <!-- Action button -->
                 <div class="form-actions">
 
                     <a href="${pageContext.request.contextPath}/vehicles" class="btn-back">
@@ -110,5 +114,6 @@
 </main>
 <script src="${pageContext.request.contextPath}/static/js/profile-toggle.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/nav-toggle.js"></script>
+
 </body>
 </html>

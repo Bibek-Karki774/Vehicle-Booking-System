@@ -30,7 +30,7 @@ public class SignupServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-    // Get the form data
+        // Get the form data
         String userName = request.getParameter("username");
         String email= request.getParameter("email");
         String phone = request.getParameter("phone");
@@ -41,6 +41,7 @@ public class SignupServlet extends HttpServlet {
 
         StringBuilder errors = new StringBuilder();
 
+        // Check if fields are empty
         if (ValidationUtil.isNullOrEmpty(userName) ||
                 ValidationUtil.isNullOrEmpty(email) ||
                 ValidationUtil.isNullOrEmpty(phone) ||
@@ -82,6 +83,7 @@ public class SignupServlet extends HttpServlet {
             return;
         }
 
+        // Get hashed password from password util
         String hashedPassword = PasswordUtil.getHashPassword(password);
         User user = new User(userName, hashedPassword, phone, address, drivingLicense, email);
 

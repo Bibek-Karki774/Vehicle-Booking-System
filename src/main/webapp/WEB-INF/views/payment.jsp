@@ -30,7 +30,8 @@
             <span>Total Days</span>
             <strong>${days}</strong>
         </div>
-        <%-- ✅ ADDED: total amount --%>
+
+        <!-- Total amount -->
         <div class="summary-row" style="border-top:1px solid #e5e7eb; padding-top:8px; margin-top:4px;">
             <span><strong>Total</strong></span>
             <strong style="color:#2563eb;">Rs ${totalAmount}</strong>

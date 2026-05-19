@@ -23,6 +23,7 @@
 
         <form action="${pageContext.request.contextPath}/signup" method="POST" class="auth-form">
 
+            <!-- Show if any errors -->
             <c:if test="${not empty error}">
                 <p class="error"><c:out value="${error}" /></p>
             </c:if>

@@ -12,6 +12,7 @@
     <jsp:param name="activePage" value="contact" />
 </jsp:include>
 
+<!-- Hero section for contact us -->
 <section class="hero contact-hero">
     <div class="hero-content">
         <h1>Get in <span>Touch</span></h1>
@@ -22,6 +23,7 @@
 <main class="contact-section">
     <div class="contact-layout">
 
+        <!-- Contact information -->
         <div class="contact-info">
             <h2>Contact Details</h2>
 
@@ -53,6 +55,7 @@
                 <p>Fill out the form below and we will get back to you shortly.</p>
             </div>
 
+            <!-- Form section to send messages -->
             <form class="contact-form" onsubmit="handleSubmit(event)">
                 <div class="form-row">
                     <div class="form-group">

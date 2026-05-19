@@ -3,7 +3,7 @@
 <!doctype html>
 <html lang="en">
 <c:choose>
-    <%-- ADMIN: load vehicle.css first, then admin.css overrides conflicts --%>
+    <%-- Load css for admin --%>
     <c:when test="${sessionScope.user.role == 'Admin'}">
         <jsp:include page="/WEB-INF/templates/head.jsp">
             <jsp:param name="title" value="Vehicles" />
@@ -11,7 +11,7 @@
         </jsp:include>
     </c:when>
 
-    <%-- MEMBER / VISITOR: main.css + vehicle.css --%>
+    <%-- Load css for both member and visitor --%>
     <c:otherwise>
         <jsp:include page="/WEB-INF/templates/head.jsp">
             <jsp:param name="title" value="Vehicles" />
@@ -20,6 +20,7 @@
         </jsp:include>
     </c:otherwise>
 </c:choose>
+
 <body class="${sessionScope.user.role == 'Admin' ? 'dashboard' : ''}">
 <c:if test="${sessionScope.user.role == 'Admin'}">
     <jsp:include page="/WEB-INF/templates/sidebar.jsp">
@@ -42,11 +43,10 @@
             </c:if>
 
 
-
-        <!-- Toolbar -->
         <div class="vehicles-toolbar">
             <div class="vehicles-toolbar">
                 <form method="get" action="${pageContext.request.contextPath}/vehicles">
+                    <!-- Search vehicles by name or type -->
                     <div class="search-box">
                         <i class="fas fa-magnifying-glass"></i>
                         <input type="text" name="search" placeholder="Search by name or type..." value="${keyword}"/>
@@ -56,6 +56,8 @@
                             </a>
                         </c:if>
                     </div>
+
+                    <!-- Show hint after showing result -->
                     <c:if test="${not empty keyword}">
                         <p class="search-hint">
                             Results for "<strong><c:out value="${keyword}"/></strong>" —
@@ -74,7 +76,7 @@
             </c:if>
         </div>
 
-        <%-- filter according to vehicle type --%>
+        <%-- Filter according to vehicle type --%>
         <c:if test="${empty keyword}">
             <div class="type-filter-bar">
                 <a href="${pageContext.request.contextPath}/vehicles"
@@ -88,7 +90,6 @@
             </div>
         </c:if>
 
-        <!-- Vehicles Grid -->
         <c:choose>
             <c:when test="${empty vehicles}">
                 <div style="text-align:center; padding:80px 20px; color:#999;">
@@ -100,17 +101,23 @@
                     <c:forEach var="v" items="${vehicles}">
                         <div class="vehicle-card">
 
+                            <%-- Display image from upload or static folder --%>
                             <div class="vehicle-img">
-                                <img src="" alt="${v.vehicleName}"/>
+                                <c:choose>
+                                    <c:when test="${not empty v.image}">
+                                        <img src="${pageContext.request.contextPath}/${v.image}" alt="${v.vehicleName}"/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="${pageContext.request.contextPath}/static/images/Default_Vehicle.jpg" alt="${v.vehicleName}"/>
+                                    </c:otherwise>
+                                </c:choose>
 
                                 <c:if test="${sessionScope.user.role == 'Member'}">
                                     <form method="post" action="${pageContext.request.contextPath}/wishlist"
                                           class="wishlist-form">
-                                            <%-- CHANGED: action is now toggle instead of add --%>
                                         <input type="hidden" name="action" value="toggle"/>
                                         <input type="hidden" name="vehicleId" value="${v.vehicleId}"/>
                                         <button type="submit" class="wishlist-btn">
-                                                <%-- CHANGED: red filled if wishlisted, black outline if not --%>
                                             <c:choose>
                                                 <c:when test="${wishlistVehicleIds.contains(v.vehicleId)}">
                                                     <i class="fa-solid fa-heart" style="color:#ef4444;"></i>
@@ -143,7 +150,6 @@
                             </div>
 
                             <div class="vehicle-actions">
-
                                 <c:choose>
                                     <c:when test="${sessionScope.user.role == 'Member'}">
                                         <button class="book-btn"
@@ -153,7 +159,7 @@
                                         </button>
                                     </c:when>
                                     <c:when test="${empty sessionScope.user}">
-                                        <%-- Visitor: redirect to login --%>
+                                        <%-- visitor redirect to login --%>
                                         <a href="${pageContext.request.contextPath}/login"
                                            class="book-btn" style="text-align:center; text-decoration:none;">
                                             Book Now
@@ -167,6 +173,7 @@
                                         <i class="fas fa-pen-to-square"></i> Edit
                                     </a>
 
+                                    <!-- Delete vehicles from database -->
                                     <form method="post" action="${pageContext.request.contextPath}/vehicles"
                                           onsubmit="return confirm('Delete this vehicle?');"
                                           style="margin:0;">
@@ -187,7 +194,7 @@
 
     </section>
 
-    <%-- modal now has form posting to booking servlet --%>
+    <!-- Modal class for selecting dates -->
     <div id="modal" class="modal">
         <div class="modal-content" style="max-height: 90vh; overflow-y: auto;">
             <div class="modal-header">

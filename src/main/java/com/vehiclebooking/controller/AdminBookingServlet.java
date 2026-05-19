@@ -24,6 +24,7 @@ public class AdminBookingServlet extends HttpServlet {
         String search = request.getParameter("search");
         ArrayList<Booking> bookings;
 
+        // Show searched bookings, otherwise show all bookings
         if (search != null && !search.trim().isEmpty()) {
             bookings = bookingDao.searchBookings(search.trim());
             request.setAttribute("search", search.trim());
@@ -31,9 +32,11 @@ public class AdminBookingServlet extends HttpServlet {
             bookings = bookingDao.getAllBookings();
         }
 
-        double totalRevenue = bookings.stream()
-                .mapToDouble(Booking::getTotalAmount)
-                .sum();
+        // Calculate total revenue
+        double totalRevenue = 0;
+        for (Booking booking : bookings) {
+            totalRevenue += booking.getTotalAmount();
+        }
 
         request.setAttribute("bookings", bookings);
         request.setAttribute("totalBookings", bookings.size());
@@ -47,11 +50,5 @@ public class AdminBookingServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String action = request.getParameter("action");
-        if ("delete".equals(action)) {
-            int bookingId = Integer.parseInt(request.getParameter("bookingId"));
-            bookingDao.deleteBookingById(bookingId);
-        }
-        response.sendRedirect(request.getContextPath() + "/adminBooking");
     }
 }

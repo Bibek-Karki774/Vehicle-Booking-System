@@ -13,13 +13,11 @@
       <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/profile.css" />
     </c:if>
 
-    <%-- Load admin.css only for Admin so css doesn't conflict--%>
+    <%-- Load admin.css only for Admin--%>
     <c:if test="${sessionScope.user.role == 'Admin'}">
       <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/admin.css" />
     </c:if>
-
-
-
+    
   <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/${param.cssFile}.css" />
     <c:if test="${not empty param.cssFile2}">
       <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/${param.cssFile2}.css" />

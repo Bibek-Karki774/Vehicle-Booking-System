@@ -16,19 +16,36 @@
 }
 
 .profile-trigger {
-    width: 38px;
-    font-size: 40px;
-    height: 38px;
-    background: #2a2f4a;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    overflow: hidden;
     cursor: pointer;
 }
 
-/* Only change these 3 blocks, everything else stays the same */
+.profile-trigger img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* profile image inside trigger */
+.profile-trigger img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+
+.profile-trigger .trigger-icon {
+    font-size: 18px;
+    color: #6B7280;
+}
+
 
 .profile-dropdown {
     position: absolute;
@@ -41,56 +58,57 @@
     overflow: hidden;
     border: 1px solid #c8cde0;
     border-radius: 10px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.35); /* darker shadow */
-    z-index: 9999;                              /* fixes overlap */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+    z-index: 9999;
     display: none;
-}
-
-.profile-container {
-    border-top: 2px solid #4f46e5;  /* accent color instead of grey */
-    border-bottom: 2px solid #e2e5ef;
 }
 
 .profile-header {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 16px;
-    padding: 12px;
-    background: linear-gradient(135deg, #1e1b4b, #4f46e5); /* dark indigo gradient */
+    gap: 14px;
+    padding: 18px 16px;
+    background: #dbdee0;
+    border-bottom: 1px solid #e5e7eb;
 }
 
 .profile-avatar {
-    width: 80px;
-    height: 80px;
-    margin: 0;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.15);         /* glass effect */
-    border: 2px solid rgba(255,255,255,0.3);
+    overflow: hidden;
+    background: #f3f4f6;
+    border:2px solid #b7b3b3;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 30px;
-    color: var(--muted);
+    flex-shrink: 0;
 }
 
-.profile-avatar i {
-    color: rgba(255,255,255,0.85); /* white icon on dark header */
-    font-size: 50px;
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.panel-user {
+    color: #6B7280;
+    font-size: 36px;
 }
 
 .profile-title {
     font-size: 16px;
-    font-weight: 700;
-    color: #ffffff;
-    letter-spacing: 0.4px;
-    margin-top: 20px;
+    font-weight: 600;
+    color: #111827;
+    margin: 0;
 }
 
 .profile-details {
     padding: 10px 12px;
-    border-top: none;        /* remove top line */
-    border-bottom: none;     /* remove bottom line */
+    border-top: none;
+    border-bottom: none;
 }
 
 .profile-item {
@@ -161,7 +179,6 @@
 }
 
 /* Password change section */
-/* ── ADDED ── */
 .profile-change-password {
     display: flex;
     align-items: center;
@@ -182,8 +199,6 @@
     background: #d97706;
     color: #ffffff;
 }
-
-
 
 
 /* Responsive Design */
@@ -241,7 +256,6 @@
 
 
 
-
 /* Edit Profile CSS */
 body.dashboard .profile-page {
     min-height: auto;
@@ -257,7 +271,7 @@ body.dashboard .profile-page {
     padding: 24px;
 }
 
-/* Card (FIXED visibility) */
+
 .profile-card {
     width: 100%;
     max-width: 420px;
@@ -268,8 +282,8 @@ body.dashboard .profile-page {
     box-shadow: 0 12px 32px rgba(0,0,0,0.1);
 }
 
-/* Title */
-.profile-title {
+
+.edit-profile-title {
     text-align: center;
     margin-bottom: 20px;
     font-size: 20px;
@@ -277,27 +291,37 @@ body.dashboard .profile-page {
     color: var(--text);
 }
 
-.profile-avatar {
+.edit-avatar {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background: #f3f4f6;
-    border: 2px solid #d1d5db;
+    overflow: hidden;
+    border:2px solid #cbcaca;
     margin-bottom: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: #f3f4f6;
 }
 
-.profile-avatar i {
+.edit-avatar i {
+    font-size: 40px;
     color: #6b7280;
-    font-size: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 
-/* Avatar with light circular border */
+.edit-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
 
 
-/* Form */
 .form-group {
     margin-bottom: 18px;
     display: flex;
@@ -311,7 +335,7 @@ body.dashboard .profile-page {
     font-weight: 500;
 }
 
-/* INPUT FIX (clear, visible, better UX) */
+
 .form-group input {
     padding: 12px 14px;
     border-radius: 10px;
@@ -321,13 +345,12 @@ body.dashboard .profile-page {
     transition: all 0.2s ease;
 }
 
-/* Better focus */
+
 .form-group input:focus {
     outline: none;
     border-color: var(--primary);
     box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
 }
-
 
 .error{
     background-color: #fee;
@@ -350,7 +373,6 @@ body.dashboard .profile-page {
     border: 1px solid #b7e4c7;
 }
 
-/* Buttons */
 .form-actions {
     display: flex;
     justify-content: flex-end;
@@ -360,7 +382,7 @@ body.dashboard .profile-page {
 
 .profile-form-cancel,
 .profile-form-submit {
-    flex: 1;                  /* equal width */
+    flex: 1;                  
     padding: 11px;
     border-radius: 8px;
     font-size: 14px;

@@ -67,13 +67,10 @@ public class WishlistServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-
         User user = (User) SessionUtil.getAttribute(request, "user");
-
-
-
         String action = request.getParameter("action");
 
+        // Perform wishlist operations according to action
         if ("toggle".equals(action)) {
             int vehicleId = Integer.parseInt(request.getParameter("vehicleId"));
             wishlistDao.toggleWishlist(user.getUserId(), vehicleId);

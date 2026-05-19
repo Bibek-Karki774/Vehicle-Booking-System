@@ -18,6 +18,7 @@ CREATE TABLE users (
     driving_license VARCHAR(60) UNIQUE NOT NULL,
     email VARCHAR(80) UNIQUE NOT NULL,
     role ENUM('Admin', 'Member') DEFAULT 'Member',
+    image VARCHAR(255) DEFAULT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     status ENUM('Pending', 'Active') DEFAULT 'Pending'
@@ -30,6 +31,7 @@ CREATE TABLE vehicles (
     total_seats INT NOT NULL,
     vehicle_description TEXT,
     price_per_day DECIMAL(8,2) NOT NULL,
+    image VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );

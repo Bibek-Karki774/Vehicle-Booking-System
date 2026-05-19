@@ -20,7 +20,7 @@
     <div class="profile-page">
         <div class="profile-card">
 
-            <h2 class="profile-title">Change Password</h2>
+            <h2 class="password-title">Change Password</h2>
 
             <form action="${pageContext.request.contextPath}/changePassword" method="post">
 

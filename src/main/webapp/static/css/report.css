@@ -1,9 +1,7 @@
-/* ── Page Layout ── */
 #page-reports {
   padding: 28px 32px;
 }
 
-/* ── Report Card ── */
 .report-card {
   background: var(--card);
   border: 1px solid var(--border);
@@ -35,7 +33,6 @@
   margin-top: 3px;
 }
 
-/* ── Time Range Selector ── */
 .time-range-group {
   display: flex;
   align-items: center;
@@ -74,7 +71,6 @@
   border-color: rgba(79, 70, 229, 0.22);
 }
 
-/* ── Report List ── */
 .report-list {
   display: flex;
   flex-direction: column;
@@ -98,7 +94,7 @@
   box-shadow: 0 4px 18px rgba(79, 70, 229, 0.12);
 }
 
-/* ── Rank Badge ── */
+/* Rank Badge */
 .rank-badge {
   font-family: var(--font-secondary);
   font-size: 15px;
@@ -114,7 +110,6 @@
   letter-spacing: 0.5px;
 }
 
-/* ── Item Info ── */
 .report-item-info {
   flex: 1;
   display: flex;
@@ -134,7 +129,6 @@
   color: var(--text-muted);
 }
 
-/* ── Item Stats ── */
 .report-item-stat {
   display: flex;
   flex-direction: column;
@@ -157,7 +151,6 @@
   white-space: nowrap;
 }
 
-/* ── Empty State ── */
 .report-empty {
   text-align: center;
   padding: 48px 16px;
@@ -171,22 +164,18 @@
   display: block;
 }
 
-/* ── Responsive ── */
+/* Responsive */
 @media (max-width: 768px) {
-
-  /* PAGE */
   #page-reports {
     padding: 14px;
   }
 
-  /* CARD HEADER */
   .report-card-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
   }
 
-  /* TIME RANGE BUTTONS */
   .time-range-group {
     flex-wrap: wrap;
     width: 100%;
@@ -198,7 +187,6 @@
     padding: 5px 10px;
   }
 
-  /* REPORT ITEM */
   .report-item {
     flex-direction: column;
     align-items: flex-start;
@@ -206,13 +194,11 @@
     padding: 12px 14px;
   }
 
-  /* RANK */
   .rank-badge {
     font-size: 13px;
     padding: 5px 10px;
   }
 
-  /* INFO */
   .report-vehicle-name {
     font-size: 13px;
   }
@@ -221,7 +207,6 @@
     font-size: 11px;
   }
 
-  /* STATS */
   .report-item-stat {
     align-items: flex-start;
     width: 100%;
@@ -235,7 +220,6 @@
     font-size: 11px;
   }
 
-  /* EMPTY STATE */
   .report-empty {
     padding: 30px 12px;
   }

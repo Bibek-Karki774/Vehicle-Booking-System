@@ -101,7 +101,7 @@
 }
 
 .save-card input {
-    transform: scale(1); /* makes checkbox slightly smaller */
+    transform: scale(1);
 }
 
 /* Buttons */

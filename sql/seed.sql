@@ -5,7 +5,7 @@ DELETE FROM wishlist;
 DELETE FROM vehicles;
 DELETE FROM users;
 
-
+-- Insert data into the tables
 INSERT INTO users (username, password, phone, address, driving_license, email, role, status)
 VALUES
     ('admin123', '$2a$10$OmIkYe1zV50R2gvKR.pom.7GWbfyqBdgJBBqk/Fd7Cqkoq9FX.Bcq', '+977-9835025437', 'Phoolbari-11, Pokhara', '01-02-12345678', 'admin123@gmail.com', 'Admin', 'Active'),
@@ -17,12 +17,24 @@ VALUES
     ('test12345678', '$2a$10$d9srKe5Slf16pw1mxNgXjuI.Ap/YQItb2WjHmRBDR44st//MlI8g6', '+977-9806958463', 'Imadol-10, Lalitpur', '98-07-78564038', 'timrosathi456@gmail.com', 'Member', 'Pending');
 
 
-INSERT INTO vehicles (vehicle_name, vehicle_type, total_seats, vehicle_description, price_per_day)
+INSERT INTO vehicles (vehicle_name, vehicle_type, total_seats, vehicle_description, price_per_day,  image)
 VALUES
-    ('Mahindra Scorpio', 'SUV', 8, 'Rugged SUV known for durability and rough-road performance.', 1000.00),
-    ('Toyota Corolla', 'Sedan', 7, 'Reliable sedan with long-lasting performance and low maintenance.', 950.00),
-    ('Toyota Fortuner', 'SUV', 8, 'Strong and powerful SUV, ideal for off-road and long-distance travel.', 2000.00),
-    ('Taruck', 'SUV', 4, 'Strong and powerful SUV, ideal for off-road and long-distance travel.', 2000.00);
+    ('Toyota Corolla', 'Sedan', 4, 'Reliable sedan known for comfort, efficiency, and long life.', 950.00, 'static/images/Toyota_Corolla.jpg'),
+    ('Honda Civic', 'Sedan', 5, 'Sporty sedan offering smooth drive, style, and reliability.', 650.00, 'static/images/Skoda_Rapid.jpg'),
+    ('BMW 3 Series', 'Sedan', 6, 'Luxury sedan offering sporty performance, comfort, and precision driving', 2000.00, 'static/images/Ford_Mustang.jpg'),
+    ('Mahindra Scorpio', 'SUV', 8, 'Rugged SUV known for durability and rough-road performance.', 1000.00, 'static/images/Mahendra.jpg'),
+    ('Hyundai Creta', 'SUV', 7, 'Versatile compact SUV with strong road presence, and modern features.', 500.00, 'static/images/Hyundai_Creta.jpg'),
+    ('Mahindra Bolero', 'SUV', 8, 'Rugged SUV built for durability, strength, and rural roads.', 1500.00, 'static/images/Mahendra_Bolero.jpg'),
+    ('Volkswagen Golf', 'Hatchback', 4, 'Compact hatchback known for practicality, performance, and reliability.', 1600.00, 'static/images/Volkswagen_Golf.jpg'),
+    ('Tata Tiago', 'Hatchback', 5, 'Affordable hatchback known for safety, mileage, and reliability.', 1000.00, 'static/images/Toyota_Hilux.jpg'),
+    ('Suzuki Swift', 'Hatchback', 8, 'Compact hatchback known for fuel efficiency, style, and reliability.', 1450.00, 'static/images/BMW_Z4.jpg'),
+    ('Ford Mustang', 'Coupe', 5, 'Iconic muscle car known for power, speed, and bold design.', 5000.00, 'static/images/Ford_Mustang.jpg'),
+    ('Audi A5', 'Coupe', 6, 'Luxury coupe known for style, performance, and refined comfort.', 4000.00, 'static/images/Toyota_Hilux.jpg'),
+    ('Ferrari Roma', 'Coupe', 7, 'Luxury coupe known for speed, elegance, and driving pleasure', 2000.00, 'static/images/BMW_Z4.jpg'),
+    ('Tata Tiago EV', 'EV', 6, 'Electric hatchback offering efficiency, low cost, and eco friendly.', 500.00, 'static/images/Ford_Mustang.jpg'),
+    ('BYD Dolphin', 'EV', 4, 'Electric hatchback known for efficiency, range, comfort, and innovation.', 1600.00, 'static/images/Mahendra.jpg'),
+    ('Deepal S7', 'EV', 5, 'Electric SUV offering modern design, performance, comfort, and technology.', 2000.00, 'static/images/Deepal.jpg');
+
 
 
 INSERT INTO bookings (user_id, vehicle_id, start_date, end_date, total_amount)

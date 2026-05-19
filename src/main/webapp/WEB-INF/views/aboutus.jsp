@@ -12,6 +12,7 @@
     <jsp:param name="activePage" value="about" />
 </jsp:include>
 
+<!-- About us hero section  -->
 <section class="about-hero">
     <div class="about-hero-top">
 
@@ -24,7 +25,6 @@
     </div>
 </section>
 
-<!-- STATS STRIP — separate from hero -->
 <section class="about-stats-strip">
     <div class="about-stat">
         <span class="about-stat-num">50+</span>
@@ -49,7 +49,7 @@
 
 <main>
 
-    <!-- WHY CHOOSE US -->
+    <!-- Why choose us section  -->
     <section class="why-choose-section">
         <div class="sec-header">
             <span class="sec-tag">Who We Are ?</span>
@@ -76,7 +76,7 @@
         </div>
     </section>
 
-    <!-- OUR SERVICES -->
+    <!-- Our Services Section  -->
     <section class="services-section">
         <div class="sec-header">
             <h2 class="sec-title">Our Services</h2>

@@ -3,7 +3,7 @@
 
 <c:choose>
 
-    <%-- ADMIN --%>
+    <%-- For Admin --%>
     <c:when test="${sessionScope.user.role == 'Admin'}">
         <header class="top-navbar">
             <div class="hamburger" id="menuBtn">☰</div>
@@ -14,17 +14,15 @@
         </header>
     </c:when>
 
-    <%-- MEMBER --%>
+    <%-- For member --%>
     <c:when test="${sessionScope.user.role == 'Member'}">
         <header>
             <div class="logo">VEHICLES<span>.NP</span></div>
 
-
             <div class="header-right">
                 <div class="hamburger" id="menuBtn">☰</div>
-                    <%-- MEMBER nav --%>
+                    <%-- Nav for Member --%>
                         <nav id="nav">
-                                <%-- CHANGE THESE 4 lines --%>
                             <a href="${pageContext.request.contextPath}/home"
                                class="${param.activePage == 'home' ? 'active' : ''}">Home</a>
                             <a href="${pageContext.request.contextPath}/vehicles"
@@ -43,16 +41,15 @@
         </header>
     </c:when>
 
-    <%-- VISITOR (not logged in) --%>
+    <%-- For Visitor --%>
     <c:otherwise>
         <header>
             <div class="logo">VEHICLES<span>.NP</span></div>
 
             <div class="hamburger" id="menuBtn">☰</div>
 
-                <%-- VISITOR nav --%>
+                <%-- Nav for Visitor --%>
             <nav id="nav">
-                    <%-- CHANGE THESE 5 lines --%>
                 <a href="${pageContext.request.contextPath}/home"
                    class="${param.activePage == 'home' ? 'active' : ''}">Home</a>
                         <a href="${pageContext.request.contextPath}/vehicles"

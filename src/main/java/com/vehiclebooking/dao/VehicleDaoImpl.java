@@ -17,13 +17,14 @@ public class VehicleDaoImpl implements VehicleDao {
         Connection conn = null;
         try {
             conn = DatabaseConnection.getConnection();
-            String sql = "INSERT INTO vehicles (vehicle_name, vehicle_type, total_seats, vehicle_description, price_per_day) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO vehicles (vehicle_name, vehicle_type, total_seats, vehicle_description, price_per_day, image) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, vehicle.getVehicleName());
             statement.setString(2, vehicle.getVehicleType());
             statement.setInt(3, vehicle.getTotalSeats());
             statement.setString(4, vehicle.getVehicleDescription());
             statement.setDouble(5, vehicle.getPricePerDay());
+            statement.setString(6, vehicle.getImage());
             statement.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -51,6 +52,7 @@ public class VehicleDaoImpl implements VehicleDao {
                         rs.getInt("total_seats"),
                         rs.getString("vehicle_description"),
                         rs.getDouble("price_per_day"),
+                        rs.getString("image"),
                         rs.getTimestamp("created_at"),
                         rs.getTimestamp("updated_at")
                 );
@@ -82,6 +84,7 @@ public class VehicleDaoImpl implements VehicleDao {
                         rs.getInt("total_seats"),
                         rs.getString("vehicle_description"),
                         rs.getDouble("price_per_day"),
+                        rs.getString("image"),
                         rs.getTimestamp("created_at"),
                         rs.getTimestamp("updated_at")
                 );
@@ -101,14 +104,15 @@ public class VehicleDaoImpl implements VehicleDao {
         Connection conn = null;
         try {
             conn = DatabaseConnection.getConnection();
-            String sql = "UPDATE vehicles SET vehicle_name = ?, vehicle_type = ?, total_seats = ?, vehicle_description = ?, price_per_day = ? WHERE vehicle_id = ?";
+            String sql = "UPDATE vehicles SET vehicle_name = ?, vehicle_type = ?, total_seats = ?, vehicle_description = ?, price_per_day = ?, image = ? WHERE vehicle_id = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, vehicle.getVehicleName());
             statement.setString(2, vehicle.getVehicleType());
             statement.setInt(3, vehicle.getTotalSeats());
             statement.setString(4, vehicle.getVehicleDescription());
             statement.setDouble(5, vehicle.getPricePerDay());
-            statement.setInt(6, vehicleId);
+            statement.setString(6, vehicle.getImage());
+            statement.setInt(7, vehicleId);
             statement.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -160,6 +164,7 @@ public class VehicleDaoImpl implements VehicleDao {
                         rs.getInt("total_seats"),
                         rs.getString("vehicle_description"),
                         rs.getDouble("price_per_day"),
+                        rs.getString("image"),
                         rs.getTimestamp("created_at"),
                         rs.getTimestamp("updated_at")
                 ));
@@ -210,6 +215,7 @@ public class VehicleDaoImpl implements VehicleDao {
                         rs.getInt("total_seats"),
                         rs.getString("vehicle_description"),
                         rs.getDouble("price_per_day"),
+                        rs.getString("image"),
                         rs.getTimestamp("created_at"),
                         rs.getTimestamp("updated_at")
                 ));

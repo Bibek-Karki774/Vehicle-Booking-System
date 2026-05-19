@@ -24,6 +24,7 @@
                     <h2 class="report-card-title">Most Booked Vehicles</h2>
                     <p class="report-card-sub">Top 5 vehicles by number of bookings</p>
                 </div>
+                <!-- Select time range -->
                 <div class="time-range-group">
                     <a href="${pageContext.request.contextPath}/adminReport?range=7d"
                        class="time-btn ${selectedRange == '7d' ? 'active' : ''}">7D</a>
@@ -72,7 +73,7 @@
             </div>
         </div>
 
-        <%-- ── Chart Card ── --%>
+        <%-- Display top 5 vehicles with bookings --%>
         <c:if test="${not empty top5Vehicles}">
             <div class="report-card">
                 <div class="report-card-header">
@@ -81,6 +82,8 @@
                         <p class="report-card-sub">Visual breakdown of top 5 vehicles</p>
                     </div>
                 </div>
+
+                <!-- Chart section -->
                 <div style="height: 300px;">
                     <canvas id="reportChart"></canvas>
                 </div>
@@ -93,7 +96,7 @@
 <script src="${pageContext.request.contextPath}/static/js/profile-toggle.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/nav-toggle.js"></script>
 
-<%-- ── Chart.js ── --%>
+<%-- Chart js--%>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const ctx = document.getElementById("reportChart");

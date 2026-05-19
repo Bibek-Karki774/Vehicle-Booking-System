@@ -15,6 +15,7 @@
   <jsp:include page="/WEB-INF/templates/header.jsp" />
   <div class="dashboard-overview" id="page-overview">
 
+    <!-- Show admin summary data -->
     <div class="stat-cards-row">
 
       <div class="stat-card card-highlight">
@@ -80,7 +81,7 @@
 
     </div>
 
-    <%-- ── Chart ── --%>
+    <%-- Revenue Chart --%>
     <div class="dashboard-card">
       <div class="card-header">
         <h3 class="card-title">Revenue This Week</h3>
@@ -91,14 +92,13 @@
     </div>
 
 
+    <!-- Display all pending user -->
     <div class="bottom-row bottom-row-single">
       <div class="dashboard-card">
         <div class="card-header">
           <h3 class="card-title">Pending Approvals</h3>
           <span class="pill pill-orange">${pendingUsers.size()} pending</span>
         </div>
-
-
 
         <c:forEach var="pendingUser" items="${pendingUsers}">
           <div class="approval-item">
@@ -107,6 +107,7 @@
               <span class="user-email">${pendingUser.email}</span>
             </div>
             <div class="action-btns">
+
                 <%-- Approve Button --%>
               <form method="post" action="${pageContext.request.contextPath}/adminDashboard" >
                 <input type="hidden" name="userId" value="${pendingUser.userId}" />
@@ -137,7 +138,7 @@
 <script src="${pageContext.request.contextPath}/static/js/profile-toggle.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/nav-toggle.js"></script>
 
-<%-- ── Chart.js ── --%>
+<!-- Chart JS -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
   const revenueCtx = document.getElementById("revenueChart");

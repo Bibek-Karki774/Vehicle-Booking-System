@@ -13,10 +13,12 @@ import java.sql.SQLException;
  * </p>
  */
 public class DatabaseConnection {
+    // Database connection credentials
     private static final String DB_URL = "jdbc:mysql://localhost:3306/vehicle_booking";
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "";
 
+    // Registers MySQL JDBC driver for database connection
     static {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

@@ -18,6 +18,7 @@ public class Vehicle {
     private int totalSeats;
     private String vehicleDescription;
     private double pricePerDay;
+    private String image;
     private Timestamp createdAt;
     private Timestamp updatedAt;
 
@@ -29,20 +30,20 @@ public class Vehicle {
         this.totalSeats = totalSeats;
         this.vehicleDescription = vehicleDescription;
         this.pricePerDay = pricePerDay;
-        // vehicleId, createdAt, updatedAt will be set by database
     }
 
 
     // Constructor for reading data from database
     public Vehicle(int vehicleId, String vehicleName, String vehicleType,
                    int totalSeats, String vehicleDescription, double pricePerDay,
-                   Timestamp createdAt, Timestamp updatedAt) {
+                   String image, Timestamp createdAt, Timestamp updatedAt) {
         this.vehicleId = vehicleId;
         this.vehicleName = vehicleName;
         this.vehicleType = vehicleType;
         this.totalSeats = totalSeats;
         this.vehicleDescription = vehicleDescription;
         this.pricePerDay = pricePerDay;
+        this.image = image;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -95,6 +96,10 @@ public class Vehicle {
     public void setPricePerDay(double pricePerDay) {
         this.pricePerDay = pricePerDay;
     }
+
+    public String getImage() { return image; }
+
+    public void setImage(String image) { this.image = image; }
 
     public Timestamp getCreatedAt() {
         return createdAt;

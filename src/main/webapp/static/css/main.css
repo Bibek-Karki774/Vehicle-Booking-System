@@ -33,8 +33,6 @@ header {
     gap: 20px;
 }
 
-
-
 .logo {
     font-size: 1.3rem;
     font-weight: 800;
@@ -44,8 +42,6 @@ header {
 .logo span {
     color: var(--primary);
 }
-
-
 
 nav {
     display: flex;
@@ -61,7 +57,7 @@ nav {
     z-index: 2000;
 }
 
-/* Nav links and signup button uniform */
+/* Nav links and signup button*/
 nav a {
     text-decoration: none;
     color: var(--gray-light);
@@ -166,8 +162,6 @@ nav a:hover {
     font-size: 1rem;
     color: #6b7280;
 }
-
-
 
 .index-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -315,8 +309,6 @@ footer {
 }
 
 
-
-
 /* Contact us */
 .contact-hero {
     padding: 60px 8%;
@@ -449,8 +441,6 @@ footer {
 .btn-submit:hover {
     background-color: var(--primary-hover);
 }
-
-
 
 
 /* About us */
@@ -699,12 +689,7 @@ footer {
 
 
 
-
-
-
-
 /* Responsive Design */
-/* Tablets */
 @media (max-width: 1024px) {
 
     header {
@@ -737,7 +722,6 @@ footer {
 
 
 
-
 /* Mobile phones */
 @media (max-width: 768px) {
 
@@ -760,7 +744,6 @@ footer {
         transition: 0.3s ease;
         z-index: 1000;
     }
-
 
     nav.open {
         right: 0;
@@ -785,6 +768,4 @@ footer {
     .about-hero h1 { font-size: 2rem; }
     .about-stat { padding: 10px 20px; }
     .about-stat-divider { display: none; }
-
-
 }

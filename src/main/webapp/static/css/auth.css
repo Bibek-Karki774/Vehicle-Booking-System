@@ -31,7 +31,7 @@ body.auth-page {
 }
 
 .auth-card.wide {
-    max-width: 600px; /* For signup page */
+    max-width: 600px;
 }
 
 .auth-header {
@@ -55,8 +55,6 @@ body.auth-page {
     display: flex;
     flex-direction: column;
 }
-
-
 
 .full-width {
     grid-column: span 2;
@@ -203,9 +201,6 @@ body.auth-page {
     .full-width {
         grid-column: span 1;
     }
-}
-
-@media (max-width: 480px) {
     .auth-card, .auth-card.wide {
         padding: 24px 16px;
         margin: 0 12px;

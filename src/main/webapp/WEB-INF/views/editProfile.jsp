@@ -8,38 +8,25 @@
 </jsp:include>
 <body class="${sessionScope.user.role == 'Admin' ? 'dashboard' : ''}">
 
-
 <c:if test="${sessionScope.user.role == 'Admin'}">
     <jsp:include page="/WEB-INF/templates/sidebar.jsp">
         <jsp:param name="activePage" value="" />
     </jsp:include>
 </c:if>
 
-<!-- ── MAIN ── -->
 <main class="main-content">
 
-    <!-- ── NAVBAR ── -->
     <jsp:include page="/WEB-INF/templates/header.jsp" />
 
-    <!-- ── EDIT PROFILE CONTENT ── -->
+    <!-- Edit profile contents -->
     <div class="profile-page">
         <div class="profile-card">
 
-            <h2 class="profile-title">Edit Profile</h2>
+            <h2 class="edit-profile-title">Edit Profile</h2>
 
-            <div class="profile-avatar-wrapper">
-                <div class="profile-avatar">
-                    <i class="fas fa-user"></i>
-                </div>
-                <label for="photoInput" class="change-photo-btn">
-                    Change Picture
-                </label>
-                <input type="file" id="photoInput" name="photo" accept="image/*" style="display:none" />
-            </div>
+            <form action="${pageContext.request.contextPath}/editProfile" method="post" enctype="multipart/form-data">
 
-
-            <form action="${pageContext.request.contextPath}/editProfile" method="post">
-
+                <!-- Display error or success message -->
                 <c:if test="${not empty error}">
                     <p class="error"><c:out value="${error}" /></p>
                 </c:if>
@@ -48,6 +35,27 @@
                     <p class="success"><c:out value="${success}" /></p>
                 </c:if>
 
+                <!-- Display user uploaded pic or default pic -->
+                <div class="profile-avatar-wrapper">
+                    <div class="edit-avatar">
+                        <c:choose>
+                            <c:when test="${not empty sessionScope.user.image}">
+                                <img src="${pageContext.request.contextPath}/${sessionScope.user.image}"
+                                     alt="Profile Picture"/>
+                            </c:when>
+                            <c:otherwise>
+                                <img src="${pageContext.request.contextPath}/static/images/Default_Profile.jpg"
+                                     alt="Default Profile"/>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                    <label for="photoInput" class="change-photo-btn">
+                        Change Picture
+                    </label>
+                    <input type="file" id="photoInput" name="image" accept=".jpg,.jpeg,.png" style="display:none" />
+                </div>
+
+                <!-- Input filed to update the personal details -->
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" id="username" name="userName"

@@ -31,13 +31,6 @@ public class BookingDaoImpl implements  BookingDao {
     }
 
 
-
-
-
-
-
-
-
     @Override
     public ArrayList<Booking> getAllBookings() {
         ArrayList<Booking> bookings = new ArrayList<>();
@@ -159,6 +152,7 @@ public class BookingDaoImpl implements  BookingDao {
         try {
             conn = DatabaseConnection.getConnection();
 
+            // Filter bookings based on selected time range
             String dateFilter;
             if ("7d".equals(range)) {
                 dateFilter = "AND DATEDIFF(CURDATE(), b.start_date) <= 7";
@@ -214,8 +208,6 @@ public class BookingDaoImpl implements  BookingDao {
             DatabaseConnection.closeConnection(conn);
         }
     }
-
-
 
 
     @Override

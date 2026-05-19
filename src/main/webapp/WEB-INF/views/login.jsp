@@ -24,6 +24,7 @@
     <form action="${pageContext.request.contextPath}/login" method="POST" class="auth-form">
       <div class="form-group">
 
+        <!-- Error and success message -->
         <c:if test="${param.passwordChanged == 'true'}">
           <p class="success">Password changed successfully. Please login again.</p>
         </c:if>
@@ -55,6 +56,7 @@
   </div>
 </main>
 
+<!-- Static footer section -->
 <%@ include file="/WEB-INF/templates/footer.html" %>
 
 <script src="${pageContext.request.contextPath}/static/js/nav-toggle.js"></script>

@@ -24,6 +24,7 @@ public class AdminUserServlet extends HttpServlet {
 
         ArrayList<User> users;
 
+        // Search matching user or load all users
         if (keyword != null && !keyword.trim().isEmpty()) {
             users = userDAO.searchUsers(keyword.trim());
             request.setAttribute("keyword", keyword.trim());
@@ -41,6 +42,7 @@ public class AdminUserServlet extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("action");
 
+        // Delete the user
         if ("delete".equals(action)) {
             int userId = Integer.parseInt(request.getParameter("userId"));
             boolean deleted = userDAO.deleteUser(userId);

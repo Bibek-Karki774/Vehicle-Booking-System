@@ -31,7 +31,8 @@
           </a>
         </c:if>
       </div>
-      <!-- ADDED: search hint -->
+
+      <!-- Show the result of search -->
       <c:if test="${not empty keyword}">
         <p class="search-hint">
           Results for "<strong><c:out value="${keyword}"/></strong>" —
@@ -77,6 +78,7 @@
              </span>
             </td>
             <td>
+              <!-- Action Buttons -->
               <div class="action-btns">
                 <c:if test="${user.role != 'Admin'}">
                   <form method="post" action="${pageContext.request.contextPath}/admin-user"

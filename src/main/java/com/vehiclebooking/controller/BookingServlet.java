@@ -57,8 +57,9 @@ public class BookingServlet extends HttpServlet {
                 return;
             }
 
-
-            // ── CHANGED: use session + redirect instead of forward ──
+            /*Checks if the vehicle is already booked, if yes, it stores available dates
+             and an error message in session,then redirects the user back to the previous
+              page (wishlist or vehicles).*/
             boolean isBooked = bookingDAO.isVehicleBooked(vehicleId, start, end);
             if (isBooked) {
                 ArrayList<String> availableDates = bookingDAO.getAvailableDatesThisWeek(vehicleId);
@@ -76,7 +77,6 @@ public class BookingServlet extends HttpServlet {
                 }
                 return;
             }
-// ── END CHANGED ──
 
 
             request.setAttribute("vehicleId",   vehicleId);
@@ -86,8 +86,8 @@ public class BookingServlet extends HttpServlet {
             request.setAttribute("totalAmount", totalAmount);
             request.getRequestDispatcher("/WEB-INF/views/payment.jsp").forward(request, response);
 
-            // Payment Successful
         } else if (action.equals("confirm")) {
+            //Confirms booking, saves it, and remove from wishlist
             int vehicleId      = Integer.parseInt(request.getParameter("vehicleId"));
             String fromDate    = request.getParameter("fromDate");
             String toDate      = request.getParameter("toDate");
@@ -96,6 +96,7 @@ public class BookingServlet extends HttpServlet {
             User user  = (User) request.getSession().getAttribute("user");
             int userId = user.getUserId();
 
+            // Convert start and end dates into Timestamp format
             Timestamp startDate = Timestamp.valueOf(fromDate + " 00:00:00");
             Timestamp endDate   = Timestamp.valueOf(toDate   + " 00:00:00");
 

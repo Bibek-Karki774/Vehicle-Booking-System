@@ -18,10 +18,10 @@ public class LoginServlet extends HttpServlet {
 
     private UserDaoImpl userDao = new UserDaoImpl();
 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // Forward to login page
         request.getRequestDispatcher("/WEB-INF/views/login.jsp")
                 .forward(request, response);
     }
@@ -34,6 +34,7 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
+        // Validate the data
         if (ValidationUtil.isNullOrEmpty(username) || ValidationUtil.isNullOrEmpty(password)) {
             request.setAttribute("error", "Username and password are required.");
             request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);

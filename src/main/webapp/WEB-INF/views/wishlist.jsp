@@ -17,7 +17,6 @@
 
   <div class="page-wrapper">
 
-    <%-- Page Title --%>
     <div class="page-header">
       <div>
         <div class="page-title">
@@ -89,8 +88,8 @@
               <div class="price-label">per day</div>
             </div>
 
+              <%-- Book Now --%>
             <div class="card-actions">
-                <%-- Book Now --%>
               <form method="post" action="${pageContext.request.contextPath}/booking">
                 <input type="hidden" name="action" value="review" />
                 <input type="hidden" name="vehicleId" value="${v.vehicleId}" />
@@ -101,7 +100,7 @@
                 </button>
               </form>
 
-                <%-- Remove --%>
+                <%-- Remove from wishlist --%>
               <form method="post" action="${pageContext.request.contextPath}/wishlist">
                 <input type="hidden" name="action" value="remove" />
                 <input type="hidden" name="wishlistId" value="${v.wishlistId}" />
@@ -120,7 +119,7 @@
   </div>
 
 
-  <%-- Booking Modal --%>
+  <%-- Booking Modal for selecting dates --%>
   <div id="modal" class="modal">
     <div class="modal-content" style="max-height: 90vh; overflow-y: auto;">
       <div class="modal-header">
@@ -128,7 +127,7 @@
         <p>Select your booking dates</p>
       </div>
 
-      <%-- ADDED: Available dates section --%>
+      <%-- Show available dates section --%>
       <div id="available-dates-section" style="display:none; margin-bottom: 14px;
                     background: rgba(239,68,68,0.08);
                     border: 1px solid rgba(239,68,68,0.3);
@@ -151,9 +150,7 @@
           </c:forEach>
         </div>
       </div>
-      <%-- END ADDED --%>
 
-      <%-- ADDED: origin=wishlist so servlet redirects back here --%>
       <form method="post" action="${pageContext.request.contextPath}/booking">
         <input type="hidden" name="action" value="review"/>
         <input type="hidden" name="origin" value="wishlist"/>
@@ -174,7 +171,6 @@
           <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
         </div>
       </form>
-      <%-- END ADDED --%>
     </div>
   </div>
 
@@ -194,6 +190,5 @@
     openModal(document.querySelector('[data-vehicleId="${bookedVehicleId}"]'));
   </script>
 </c:if>
-<%-- END ADDED --%>
 </body>
 </html>

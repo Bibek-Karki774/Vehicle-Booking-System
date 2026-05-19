@@ -3,17 +3,25 @@ package com.vehiclebooking.controller;
 import com.vehiclebooking.dao.UserDao;
 import com.vehiclebooking.dao.UserDaoImpl;
 import com.vehiclebooking.entity.User;
+import com.vehiclebooking.utils.ImageUtil;
 import com.vehiclebooking.utils.SessionUtil;
 import com.vehiclebooking.utils.ValidationUtil;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 
 import java.io.IOException;
 
 @WebServlet("/editProfile")
+@MultipartConfig(
+        fileSizeThreshold = 1024 * 1024 * 2,
+        maxFileSize       = 1024 * 1024 * 10,
+        maxRequestSize    = 1024 * 1024 * 50
+)
 public class EditProfileServlet extends HttpServlet {
     UserDao userDao = new UserDaoImpl();
 
@@ -21,8 +29,8 @@ public class EditProfileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        // Get logged-in user from the session
         User user = (User) SessionUtil.getAttribute(request, "user");
-
 
         String success = (String) SessionUtil.getAttribute(request, "success");
         if (success != null) {
@@ -45,6 +53,11 @@ public class EditProfileServlet extends HttpServlet {
             return;
         }
 
+        // Get the uploaded image
+        Part imagePart = request.getPart("image");
+        String imageName = ImageUtil.uploadImage(imagePart);
+        boolean imageChanged = imageName != null;
+
         String userName = request.getParameter("userName");
         String email    = request.getParameter("email");
         String phone    = request.getParameter("phone");
@@ -59,7 +72,7 @@ public class EditProfileServlet extends HttpServlet {
         boolean sameEmail    = user.getEmail().equals(email.trim());
         boolean sameAddress  = user.getAddress().equals(address.trim());
 
-        if (sameUserName && samePhone && sameEmail && sameAddress) {
+        if (sameUserName && samePhone && sameEmail && sameAddress && !imageChanged) {
             errors.append("No changes detected. Please update at least one field.");
         }
 
@@ -76,15 +89,9 @@ public class EditProfileServlet extends HttpServlet {
             errors.append("Username must be alphanumeric, start with a letter, and be at least 5 characters. ");
         }
 
-
-
-
         if (!ValidationUtil.isValidEmail(email)) {
             errors.append("Invalid email format. ");
         }
-
-
-
 
         if (!errors.isEmpty()) {
             request.setAttribute("error", errors.toString().trim());
@@ -93,6 +100,10 @@ public class EditProfileServlet extends HttpServlet {
             return;
         }
 
+        if (imageChanged) {
+            ImageUtil.deleteImage(user.getImage());
+            user.setImage(imageName);
+        }
 
         user.setUserName(userName.trim());
         user.setEmail(email.trim());

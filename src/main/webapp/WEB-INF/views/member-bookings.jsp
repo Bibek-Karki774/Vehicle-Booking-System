@@ -17,7 +17,7 @@
 
     <div id="page-my-bookings">
 
-        <!-- Stats -->
+        <!-- Show summary of bookings of logged in member -->
         <div class="mb-stats">
             <div class="mb-stat-box">
                 <div class="mb-stat-left">
