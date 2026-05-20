@@ -31,6 +31,12 @@ public class AuthenticationFilter implements Filter {
             return;
         }
 
+        // Redirect root URL to home
+        if ("/".equals(path) || path.isEmpty()) {
+            res.sendRedirect(contextPath + "/home");
+            return;
+        }
+
         /*Get the user from session and checks if the user is
          logged in, also checks if the user is an admin,
          and checks whether the current page is login or signup.*/
@@ -71,9 +77,10 @@ public class AuthenticationFilter implements Filter {
             return;
         }
 
+
+        // If not logged in and not a public page, show 404 error page
         if (!isLoggedIn && !isPublicPage) {
-            boolean isVisitor = req.getSession(false) == null;
-            res.sendRedirect(contextPath + (isVisitor ? "/home" : "/login"));
+            res.sendError(404);
             return;
         }
 
