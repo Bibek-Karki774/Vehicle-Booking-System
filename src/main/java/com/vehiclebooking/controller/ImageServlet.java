@@ -11,10 +11,13 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 
 /**
- * Serves uploaded images from the external uploads folder.
- * <p>Maps to /uploads/* so that images stored in
- * external folder are accessible via URL.
- * For example: /uploads/2026-05-18_cat.jpg</p>
+ * Servlet for serving uploaded images in the Vehicle Booking System.
+ * This controller provides access to image files stored in an external
+ * uploads directory. It maps the /uploads/* URL pattern to fetch and
+ * display images dynamically in the browser.
+ * It also performs security checks to ensure that only valid files within
+ * the uploads directory are accessed and returns appropriate HTTP error
+ * responses for invalid or missing files.
  */
 @WebServlet("/uploads/*")
 public class ImageServlet extends HttpServlet {

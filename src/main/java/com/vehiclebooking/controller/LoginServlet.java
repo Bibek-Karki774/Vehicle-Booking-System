@@ -13,6 +13,15 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+/**
+ * Servlet for handling user login functionality in the Vehicle Booking System.
+ * This controller authenticates users by validating username and password,
+ * checks account status, and manages session creation upon successful login.
+ * It also handles role-based redirection, sending admins to the dashboard
+ * and normal users to the home page.
+ * It ensures proper validation and prevents login for invalid, unregistered,
+ * or pending approval accounts.
+ */
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 

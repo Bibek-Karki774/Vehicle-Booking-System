@@ -15,6 +15,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Servlet for displaying logged-in user's booking history in the Vehicle Booking System.
+ * This controller retrieves all bookings made by the current user and calculates
+ * summary information such as total bookings and total amount spent. The data is
+ * then forwarded to the user bookings page for display.
+ * It allows users to view their past and active bookings in a consolidated view.
+ */
 @WebServlet("/my-bookings")
 public class MyBookingsServlet extends HttpServlet {
 

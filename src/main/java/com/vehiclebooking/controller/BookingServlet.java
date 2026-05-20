@@ -17,6 +17,16 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
+/**
+ * This Servlet is for handling vehicle booking process.
+ * This controller manages booking workflow including booking review, validation,
+ * payment redirection, and final booking confirmation. It also checks vehicle
+ * availability, prevents double booking, and calculates total booking cost based
+ * on selected dates.
+ * Additionally, it handles wishlist integration by removing booked vehicles
+ * from the wishlist after successful booking and redirects users appropriately
+ * based on booking status.
+ */
 @WebServlet("/booking")
 public class BookingServlet extends HttpServlet {
 
@@ -47,15 +57,14 @@ public class BookingServlet extends HttpServlet {
             Timestamp end   = Timestamp.valueOf(toDate   + " 00:00:00");
 
             // Calculate number of days
-            long days = (end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24);
-            if (days <= 0) days = 1;
-            double totalAmount = days * vehicle.getPricePerDay();
+            long days = (end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24) + 1;
 
             // Validate that date must be between 1 and 7 days
             if (days < 1 || days > 7) {
                 response.sendRedirect(request.getContextPath() + "/vehicles?error=invalid_dates");
                 return;
             }
+            double totalAmount = days * vehicle.getPricePerDay();
 
             /*Checks if the vehicle is already booked, if yes, it stores available dates
              and an error message in session,then redirects the user back to the previous
@@ -82,7 +91,7 @@ public class BookingServlet extends HttpServlet {
             request.setAttribute("vehicleId",   vehicleId);
             request.setAttribute("fromDate",    fromDate);
             request.setAttribute("toDate",      toDate);
-            request.setAttribute("days",        days);
+            request.setAttribute("days", (int) days);
             request.setAttribute("totalAmount", totalAmount);
             request.getRequestDispatcher("/WEB-INF/views/payment.jsp").forward(request, response);
 

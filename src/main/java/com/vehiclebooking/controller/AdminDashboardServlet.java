@@ -14,6 +14,15 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * This Servlet is for Admin Dashboard management.
+ * This controller is responsible for displaying stats
+ * such as total users, vehicles and pending
+ * user approvals etc. It also handles admin actions like
+ * approving or rejecting user accounts and updates the dashboard
+ * data accordingly.The dashboard also
+ * includes revenue analytics for better decision-making.
+ */
 @WebServlet("/adminDashboard")
 public class AdminDashboardServlet extends HttpServlet {
 

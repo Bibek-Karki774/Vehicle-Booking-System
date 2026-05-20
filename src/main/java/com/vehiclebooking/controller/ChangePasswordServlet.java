@@ -13,6 +13,15 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+/**
+ * Servlet for handling user password change functionality.
+ * This controller allows authenticated users to securely update their password.
+ * It performs validation checks such as current password verification,
+ * password strength validation, and confirmation matching.
+ * If the password update is successful, the user session is invalidated and
+ * the user is redirected to the login page to re-authenticate. Otherwise,
+ * appropriate error messages are displayed on the change password page.
+ */
 @WebServlet("/changePassword")
 public class ChangePasswordServlet extends HttpServlet {
 

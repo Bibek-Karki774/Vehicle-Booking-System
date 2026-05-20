@@ -12,6 +12,14 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+/**
+ * Servlet for handling user registration (signup) in the Vehicle Booking System.
+ * This controller manages user account creation by validating input fields such as
+ * username, email, phone, address, driving license, and password. It ensures data
+ * correctness, checks for duplicate entries, and applies password hashing before
+ * storing user information in the database.
+ * Upon successful registration, the user is redirected to the login page.
+ */
 @WebServlet("/signup")
 public class SignupServlet extends HttpServlet {
 

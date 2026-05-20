@@ -7,6 +7,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * This controller handles About and Contact page requests.
+ * This servlet maps two URLs:
+ * /about  → forwards user to About Us page
+ * /contact → forwards user to Contact Us page
+ * It does not process any business logic, only request forwarding
+ * to the appropriate JSP views.
+ */
 @WebServlet({"/about", "/contact"})
 public class AboutContactServlet extends HttpServlet {
     @Override

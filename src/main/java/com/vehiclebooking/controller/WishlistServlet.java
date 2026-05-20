@@ -16,6 +16,14 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Servlet for managing user wishlist functionality in the Vehicle Booking System.
+ * This controller allows users to view their wishlist, add or remove vehicles,
+ * toggle wishlist status, and clear all wishlist items. It retrieves vehicle
+ * details for each wishlist entry and prepares data for display.
+ * It also handles session-based booking error messages and ensures proper
+ * synchronization between wishlist and vehicle booking operations.
+ */
 @WebServlet("/wishlist")
 public class WishlistServlet extends HttpServlet {
 

@@ -21,6 +21,15 @@ import jakarta.servlet.http.Part;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Servlet for managing vehicle operations in the Vehicle Booking System.
+ * This controller handles displaying, searching, filtering, adding, editing,
+ * and deleting vehicle records. It also manages role-based access control,
+ * allowing only admin users to perform vehicle management operations.
+ * Additionally, it integrates wishlist data for members, handles booking
+ * error messages via session, and manages vehicle image upload and deletion.
+ * The servlet acts as the central controller for all vehicle-related features.
+ */
 @WebServlet("/vehicles")
 @MultipartConfig(
         fileSizeThreshold = 1024 * 1024 * 2,
@@ -165,6 +174,10 @@ public class VehicleServlet extends HttpServlet {
                     }
                 }
 
+                if (ValidationUtil.isNullOrEmpty(desc)) {
+                    errors.append("Vehicle description is required. ");
+                }
+
                 if (!errors.isEmpty()) {
                     request.setAttribute("error", errors.toString().trim());
                     request.getRequestDispatcher("/WEB-INF/views/vehicle-add-edit.jsp")
@@ -222,6 +235,10 @@ public class VehicleServlet extends HttpServlet {
                     } catch (NumberFormatException e) {
                         errors.append("Price must be a valid number. ");
                     }
+                }
+
+                if (ValidationUtil.isNullOrEmpty(desc)) {
+                    errors.append("Vehicle description is required. ");
                 }
 
                 if (!errors.isEmpty()) {

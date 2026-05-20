@@ -12,6 +12,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * This Servlet is for Admin User Management in the Vehicle Booking System.
+ * This controller handles displaying all users, searching users by keyword,
+ * and managing user data for the admin panel. It provides functionality
+ * to view total users and filter user records based on search input.
+ * It also supports administrative operations such as deleting user accounts
+ * and redirects the admin with appropriate status messages after actions.
+ */
 @WebServlet("/admin-user")
 public class AdminUserServlet extends HttpServlet {
     private final UserDao userDAO = new UserDaoImpl();

@@ -9,10 +9,15 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-
+/**
+ * Authentication filter used to control access to application resources.
+ * It intercepts all incoming HTTP requests
+ * It ensures that ,only authenticated users can access protected pages,
+ * unauthorized users are redirected appropriately,
+ * static resources are always accessible
+ */
 @WebFilter("/*")
 public class AuthenticationFilter implements Filter {
-
     @Override
     public void doFilter(ServletRequest request,
                          ServletResponse response,

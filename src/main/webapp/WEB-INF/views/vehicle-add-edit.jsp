@@ -50,6 +50,10 @@
                     </label>
                 </div>
 
+                <c:if test="${not empty error}">
+                    <p class="error"><c:out value="${error}" /></p>
+                </c:if>
+
                 <!-- Form inputs -->
                 <div class="form-row">
 
@@ -89,7 +93,7 @@
 
                 <div class="form-group">
                     <label>Vehicle Description</label>
-                    <textarea name="vehicleDescription"
+                    <textarea name="vehicleDescription" required
                               placeholder="Description">${vehicle != null ? vehicle.vehicleDescription : ''}</textarea>
                 </div>
 

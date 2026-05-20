@@ -12,6 +12,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Servlet for admin booking management.
+ * This servlet handles the retrieval and display of all booking records
+ * for the admin dashboard. It also supports search functionality and
+ * calculates total revenue from bookings.
+ */
 @WebServlet("/adminBooking")
 public class AdminBookingServlet extends HttpServlet {
 

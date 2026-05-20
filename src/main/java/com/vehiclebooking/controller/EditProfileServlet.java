@@ -16,6 +16,15 @@ import jakarta.servlet.http.Part;
 
 import java.io.IOException;
 
+/**
+ * Servlet for handling user profile editing functionality.
+ * This controller allows authenticated users to update their profile details
+ * such as username, email, phone number, address, and profile image.
+ * It performs validation checks to ensure data correctness and prevents
+ * unnecessary updates when no changes are detected.
+ * It also manages profile image upload and deletion of the previous image,
+ * and updates both the database and session after successful modification.
+ */
 @WebServlet("/editProfile")
 @MultipartConfig(
         fileSizeThreshold = 1024 * 1024 * 2,

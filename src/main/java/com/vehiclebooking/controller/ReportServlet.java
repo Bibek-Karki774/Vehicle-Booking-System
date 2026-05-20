@@ -14,6 +14,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Servlet for generating admin booking reports in the Vehicle Booking System.
+ * This controller provides reporting functionality for administrators, including
+ * retrieving the most frequently booked vehicles based on a selected time range.
+ * It supports default reporting (last 7 days) and forwards data to the report view.
+ * The report helps administrators analyze booking trends and system performance.
+ */
 @WebServlet("/adminReport")
 public class ReportServlet extends HttpServlet {
 

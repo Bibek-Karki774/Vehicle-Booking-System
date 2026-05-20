@@ -69,7 +69,14 @@
           <div class="wishlist-card">
 
             <div class="vehicle-thumb">
-              <img src="" alt="${v.vehicleName}" />
+              <c:choose>
+                <c:when test="${not empty v.image}">
+                  <img src="${pageContext.request.contextPath}/${v.image}" alt="${v.vehicleName}"/>
+                </c:when>
+                <c:otherwise>
+                  <img src="${pageContext.request.contextPath}/static/images/Default_Vehicle.jpg" alt="${v.vehicleName}"/>
+                </c:otherwise>
+              </c:choose>
             </div>
 
             <div class="vehicle-info">
